@@ -1,0 +1,1148 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		80B86E5BE6EF1FDB570993F5 /* libPods-BlocklyApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 912C7ADF09223B8A8B1E187E /* libPods-BlocklyApp.a */; };
+		C6250A031F189D6D005E66DE /* sirui.bin in Resources */ = {isa = PBXBuildFile; fileRef = C6250A021F189D6D005E66DE /* sirui.bin */; };
+		C65B98FB1F467EAC005DDB59 /* event_blocks.json in Resources */ = {isa = PBXBuildFile; fileRef = C65B98FA1F467EAC005DDB59 /* event_blocks.json */; };
+		C666B2341EF2261F00D621A6 /* RGBLightModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C666B2331EF2261F00D621A6 /* RGBLightModel.m */; };
+		C666B2361EF25B2C00D621A6 /* typename.plist in Resources */ = {isa = PBXBuildFile; fileRef = C666B2351EF25B2C00D621A6 /* typename.plist */; };
+		C677254D1F003CB70031A73D /* ValueModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C677254C1F003CB70031A73D /* ValueModel.m */; };
+		C67725581F009CA80031A73D /* PersonalWorksModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C67725571F009CA80031A73D /* PersonalWorksModel.m */; };
+		C67EEACE1F2594E800A4198E /* animateColor.plist in Resources */ = {isa = PBXBuildFile; fileRef = C67EEACD1F2594E800A4198E /* animateColor.plist */; };
+		C687DBCE1F025AFF001E6219 /* toolBox0.xml in Resources */ = {isa = PBXBuildFile; fileRef = C687DBCD1F025AFF001E6219 /* toolBox0.xml */; };
+		C687DBD11F02A7AF001E6219 /* ValueView.m in Sources */ = {isa = PBXBuildFile; fileRef = C687DBD01F02A7AF001E6219 /* ValueView.m */; };
+		C687DBD51F02A876001E6219 /* ValueView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C687DBD41F02A876001E6219 /* ValueView.xib */; };
+		C687DC2D1F0381B0001E6219 /* SuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C687DC2C1F0381B0001E6219 /* SuperViewController.m */; };
+		C6A737291ED6AC9F0065B501 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A737281ED6AC9F0065B501 /* main.m */; };
+		C6A7372C1ED6AC9F0065B501 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A7372B1ED6AC9F0065B501 /* AppDelegate.m */; };
+		C6A7372F1ED6AC9F0065B501 /* BlockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A7372E1ED6AC9F0065B501 /* BlockVC.m */; };
+		C6A737321ED6AC9F0065B501 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6A737301ED6AC9F0065B501 /* Main.storyboard */; };
+		C6A737341ED6AC9F0065B501 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6A737331ED6AC9F0065B501 /* Assets.xcassets */; };
+		C6A737371ED6AC9F0065B501 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6A737351ED6AC9F0065B501 /* LaunchScreen.storyboard */; };
+		C6A737421ED6AC9F0065B501 /* BlocklyAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A737411ED6AC9F0065B501 /* BlocklyAppTests.m */; };
+		C6A7374D1ED6AC9F0065B501 /* BlocklyAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A7374C1ED6AC9F0065B501 /* BlocklyAppUITests.m */; };
+		C6A737A81ED6AF1F0065B501 /* AEXML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A737911ED6AEB40065B501 /* AEXML.framework */; };
+		C6A737A91ED6AF1F0065B501 /* AEXML.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C6A737911ED6AEB40065B501 /* AEXML.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C6A737AD1ED6AF2A0065B501 /* Blockly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A737831ED6AEA10065B501 /* Blockly.framework */; };
+		C6A737AE1ED6AF2A0065B501 /* Blockly.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C6A737831ED6AEA10065B501 /* Blockly.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C6A737B31ED6B19D0065B501 /* BlocklyToolBoxHealper.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A737B21ED6B19D0065B501 /* BlocklyToolBoxHealper.m */; };
+		C6A737B41ED6B1F40065B501 /* BlockVC.h in Resources */ = {isa = PBXBuildFile; fileRef = C6A7372D1ED6AC9F0065B501 /* BlockVC.h */; };
+		C6A737B51ED6B1F40065B501 /* BlockVC.m in Resources */ = {isa = PBXBuildFile; fileRef = C6A7372E1ED6AC9F0065B501 /* BlockVC.m */; };
+		C6A737B61ED6B1F40065B501 /* BlocklyToolBoxHealper.h in Resources */ = {isa = PBXBuildFile; fileRef = C6A737B11ED6B19D0065B501 /* BlocklyToolBoxHealper.h */; };
+		C6A737B71ED6B1F40065B501 /* BlocklyToolBoxHealper.m in Resources */ = {isa = PBXBuildFile; fileRef = C6A737B21ED6B19D0065B501 /* BlocklyToolBoxHealper.m */; };
+		C6A737C81ED6B2E90065B501 /* toolBox1.xml in Resources */ = {isa = PBXBuildFile; fileRef = C6A737BB1ED6B2E90065B501 /* toolBox1.xml */; };
+		C6A737C91ED6B2E90065B501 /* bl_sanjiao.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A737BC1ED6B2E90065B501 /* bl_sanjiao.png */; };
+		C6E5602D1EE4F4D4000FE9EF /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E5602C1EE4F4D4000FE9EF /* LoginVC.m */; };
+		C6E560301EE50E04000FE9EF /* APPControll.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E5602F1EE50E04000FE9EF /* APPControll.m */; };
+		C6E560341EE53053000FE9EF /* ChackBlocklyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E560331EE53053000FE9EF /* ChackBlocklyVC.m */; };
+		C6E560421EE53EAC000FE9EF /* CustomHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E560411EE53EAC000FE9EF /* CustomHUD.m */; };
+		C6E560461EE5470E000FE9EF /* NavigationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E560451EE5470E000FE9EF /* NavigationVC.m */; };
+		C6E560491EE54F57000FE9EF /* SelfVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E560481EE54F57000FE9EF /* SelfVC.m */; };
+		C6E560501EE564E1000FE9EF /* SetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E5604F1EE564E1000FE9EF /* SetVC.m */; };
+		C6E5605A1EE56CDE000FE9EF /* SetTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E560591EE56CDE000FE9EF /* SetTableCell.m */; };
+		C6E560611EE68E13000FE9EF /* SetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E560601EE68E13000FE9EF /* SetModel.m */; };
+		C6E5606B1EE7915C000FE9EF /* HTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E5606A1EE7915C000FE9EF /* HTTPRequest.m */; };
+		C6E5607B1EE83F00000FE9EF /* PersonalWorksVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E5607A1EE83F00000FE9EF /* PersonalWorksVC.m */; };
+		C6E560851EE84436000FE9EF /* PersonalWorksCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E560841EE84436000FE9EF /* PersonalWorksCell.m */; };
+		C6E560881EE91D1F000FE9EF /* CurrentBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E560871EE91D1F000FE9EF /* CurrentBlock.m */; };
+		C6E5608C1EE9242C000FE9EF /* BlocklyControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E5608B1EE9242C000FE9EF /* BlocklyControl.m */; };
+		C6E5608F1EE9280A000FE9EF /* BLEControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E5608E1EE9280A000FE9EF /* BLEControl.m */; };
+		C6E560B01EE96912000FE9EF /* BluetoothVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E560AF1EE96912000FE9EF /* BluetoothVC.m */; };
+		C6E560B31EE987DD000FE9EF /* BluetoothCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E560B21EE987DD000FE9EF /* BluetoothCell.m */; };
+		C6E560C11EEA75A3000FE9EF /* NSData+Healper.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E560C01EEA75A3000FE9EF /* NSData+Healper.m */; };
+		C6E560C41EEAA44F000FE9EF /* CustomNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E560C31EEAA44F000FE9EF /* CustomNotificationCenter.m */; };
+		C6E852671F25E72A00F371E3 /* type_point.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6E852661F25E72A00F371E3 /* type_point.plist */; };
+		C6E852961F2869C100F371E3 /* control_blocks.json in Resources */ = {isa = PBXBuildFile; fileRef = C6E8528D1F2869C100F371E3 /* control_blocks.json */; };
+		C6E852971F2869C100F371E3 /* light_blocks.json in Resources */ = {isa = PBXBuildFile; fileRef = C6E8528E1F2869C100F371E3 /* light_blocks.json */; };
+		C6E852981F2869C100F371E3 /* machine_blocks.json in Resources */ = {isa = PBXBuildFile; fileRef = C6E8528F1F2869C100F371E3 /* machine_blocks.json */; };
+		C6E852991F2869C100F371E3 /* math_blocks.json in Resources */ = {isa = PBXBuildFile; fileRef = C6E852901F2869C100F371E3 /* math_blocks.json */; };
+		C6E8529A1F2869C100F371E3 /* port_control_blocks.json in Resources */ = {isa = PBXBuildFile; fileRef = C6E852911F2869C100F371E3 /* port_control_blocks.json */; };
+		C6E8529B1F2869C100F371E3 /* sound_blocks.json in Resources */ = {isa = PBXBuildFile; fileRef = C6E852921F2869C100F371E3 /* sound_blocks.json */; };
+		C6E8529C1F2869C100F371E3 /* start_blocks.json in Resources */ = {isa = PBXBuildFile; fileRef = C6E852931F2869C100F371E3 /* start_blocks.json */; };
+		C6E8529D1F2869C100F371E3 /* timer_blocks.json in Resources */ = {isa = PBXBuildFile; fileRef = C6E852941F2869C100F371E3 /* timer_blocks.json */; };
+		C6E8529E1F2869C100F371E3 /* variable_blocks.json in Resources */ = {isa = PBXBuildFile; fileRef = C6E852951F2869C100F371E3 /* variable_blocks.json */; };
+		C6FE28C21EFF8C0D0069CF1B /* InputNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FE28C11EFF8C0D0069CF1B /* InputNameView.m */; };
+		C6FE28CB1EFF8C260069CF1B /* InputNameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6FE28CA1EFF8C260069CF1B /* InputNameView.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C6A7373E1ED6AC9F0065B501 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6A7371C1ED6AC9F0065B501 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C6A737231ED6AC9F0065B501;
+			remoteInfo = BlocklyApp;
+		};
+		C6A737491ED6AC9F0065B501 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6A7371C1ED6AC9F0065B501 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C6A737231ED6AC9F0065B501;
+			remoteInfo = BlocklyApp;
+		};
+		C6A737821ED6AEA10065B501 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6A7377D1ED6AEA00065B501 /* Blockly.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FA548C051B630BAC008BC59C;
+			remoteInfo = Blockly;
+		};
+		C6A737841ED6AEA10065B501 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6A7377D1ED6AEA00065B501 /* Blockly.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FA548C101B630BAD008BC59C;
+			remoteInfo = BlocklyTests;
+		};
+		C6A737901ED6AEB40065B501 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6A737861ED6AEB40065B501 /* AEXML.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8B4A92791BDD47210011F36F;
+			remoteInfo = "AEXML iOS";
+		};
+		C6A737921ED6AEB40065B501 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6A737861ED6AEB40065B501 /* AEXML.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8B4A92DF1BDD5D330011F36F;
+			remoteInfo = "AEXML watchOS";
+		};
+		C6A737941ED6AEB40065B501 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6A737861ED6AEB40065B501 /* AEXML.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8B4A92991BDD4CEF0011F36F;
+			remoteInfo = "AEXML iOS Tests";
+		};
+		C6A737961ED6AEB40065B501 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6A737861ED6AEB40065B501 /* AEXML.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8B4A92BE1BDD5B300011F36F;
+			remoteInfo = "AEXML tvOS";
+		};
+		C6A737981ED6AEB40065B501 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6A737861ED6AEB40065B501 /* AEXML.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8B4A92CC1BDD5BB20011F36F;
+			remoteInfo = "AEXML tvOS Tests";
+		};
+		C6A7379A1ED6AEB40065B501 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6A737861ED6AEB40065B501 /* AEXML.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8B4A928A1BDD49390011F36F;
+			remoteInfo = "AEXML OSX";
+		};
+		C6A7379C1ED6AEB40065B501 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6A737861ED6AEB40065B501 /* AEXML.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8B4A92AB1BDD54F50011F36F;
+			remoteInfo = "AEXML OSX Tests";
+		};
+		C6A737AA1ED6AF1F0065B501 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6A737861ED6AEB40065B501 /* AEXML.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8B4A92781BDD47210011F36F;
+			remoteInfo = "AEXML iOS";
+		};
+		C6A737AF1ED6AF2A0065B501 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6A7377D1ED6AEA00065B501 /* Blockly.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = FA548C041B630BAC008BC59C;
+			remoteInfo = Blockly;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C6A737AC1ED6AF1F0065B501 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C6A737A91ED6AF1F0065B501 /* AEXML.framework in Embed Frameworks */,
+				C6A737AE1ED6AF2A0065B501 /* Blockly.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		04B913E2B23CC65AB8BFE6ED /* Pods-BlocklyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlocklyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlocklyApp/Pods-BlocklyApp.release.xcconfig"; sourceTree = "<group>"; };
+		4CA5ABC16FF2A6F1201CFACA /* Pods-BlocklyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlocklyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlocklyApp/Pods-BlocklyApp.debug.xcconfig"; sourceTree = "<group>"; };
+		912C7ADF09223B8A8B1E187E /* libPods-BlocklyApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BlocklyApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6250A021F189D6D005E66DE /* sirui.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = sirui.bin; sourceTree = "<group>"; };
+		C65B98FA1F467EAC005DDB59 /* event_blocks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = event_blocks.json; sourceTree = "<group>"; };
+		C666B22A1EF21CA100D621A6 /* Control.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Control.pch; sourceTree = "<group>"; };
+		C666B2321EF2261F00D621A6 /* RGBLightModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RGBLightModel.h; sourceTree = "<group>"; };
+		C666B2331EF2261F00D621A6 /* RGBLightModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RGBLightModel.m; sourceTree = "<group>"; };
+		C666B2351EF25B2C00D621A6 /* typename.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = typename.plist; sourceTree = "<group>"; };
+		C677254B1F003CB70031A73D /* ValueModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueModel.h; sourceTree = "<group>"; };
+		C677254C1F003CB70031A73D /* ValueModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueModel.m; sourceTree = "<group>"; };
+		C67725561F009CA80031A73D /* PersonalWorksModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalWorksModel.h; sourceTree = "<group>"; };
+		C67725571F009CA80031A73D /* PersonalWorksModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalWorksModel.m; sourceTree = "<group>"; };
+		C67EEACD1F2594E800A4198E /* animateColor.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = animateColor.plist; sourceTree = "<group>"; };
+		C687DBCD1F025AFF001E6219 /* toolBox0.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = toolBox0.xml; sourceTree = "<group>"; };
+		C687DBCF1F02A7AF001E6219 /* ValueView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueView.h; sourceTree = "<group>"; };
+		C687DBD01F02A7AF001E6219 /* ValueView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueView.m; sourceTree = "<group>"; };
+		C687DBD41F02A876001E6219 /* ValueView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ValueView.xib; sourceTree = "<group>"; };
+		C687DC2B1F0381B0001E6219 /* SuperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperViewController.h; sourceTree = "<group>"; };
+		C687DC2C1F0381B0001E6219 /* SuperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperViewController.m; sourceTree = "<group>"; };
+		C6A737241ED6AC9F0065B501 /* BlocklyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlocklyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6A737281ED6AC9F0065B501 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C6A7372A1ED6AC9F0065B501 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C6A7372B1ED6AC9F0065B501 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C6A7372D1ED6AC9F0065B501 /* BlockVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockVC.h; sourceTree = "<group>"; };
+		C6A7372E1ED6AC9F0065B501 /* BlockVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockVC.m; sourceTree = "<group>"; wrapsLines = 0; };
+		C6A737311ED6AC9F0065B501 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C6A737331ED6AC9F0065B501 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C6A737361ED6AC9F0065B501 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C6A737381ED6AC9F0065B501 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6A7373D1ED6AC9F0065B501 /* BlocklyAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlocklyAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6A737411ED6AC9F0065B501 /* BlocklyAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlocklyAppTests.m; sourceTree = "<group>"; };
+		C6A737431ED6AC9F0065B501 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6A737481ED6AC9F0065B501 /* BlocklyAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlocklyAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6A7374C1ED6AC9F0065B501 /* BlocklyAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlocklyAppUITests.m; sourceTree = "<group>"; };
+		C6A7374E1ED6AC9F0065B501 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6A7377D1ED6AEA00065B501 /* Blockly.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Blockly.xcodeproj; path = "blockly-ios-develop/Blockly.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		C6A737861ED6AEB40065B501 /* AEXML.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AEXML.xcodeproj; path = "blockly-ios-develop/third_party/Carthage/Checkouts/AEXML/AEXML.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		C6A737B11ED6B19D0065B501 /* BlocklyToolBoxHealper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocklyToolBoxHealper.h; sourceTree = "<group>"; };
+		C6A737B21ED6B19D0065B501 /* BlocklyToolBoxHealper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlocklyToolBoxHealper.m; sourceTree = "<group>"; };
+		C6A737BB1ED6B2E90065B501 /* toolBox1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = toolBox1.xml; sourceTree = "<group>"; };
+		C6A737BC1ED6B2E90065B501 /* bl_sanjiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bl_sanjiao.png; sourceTree = "<group>"; };
+		C6E5602B1EE4F4D4000FE9EF /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
+		C6E5602C1EE4F4D4000FE9EF /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
+		C6E5602E1EE50E04000FE9EF /* APPControll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPControll.h; sourceTree = "<group>"; };
+		C6E5602F1EE50E04000FE9EF /* APPControll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPControll.m; sourceTree = "<group>"; };
+		C6E560321EE53053000FE9EF /* ChackBlocklyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChackBlocklyVC.h; sourceTree = "<group>"; };
+		C6E560331EE53053000FE9EF /* ChackBlocklyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChackBlocklyVC.m; sourceTree = "<group>"; };
+		C6E560401EE53EAC000FE9EF /* CustomHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomHUD.h; sourceTree = "<group>"; };
+		C6E560411EE53EAC000FE9EF /* CustomHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomHUD.m; sourceTree = "<group>"; };
+		C6E560441EE5470E000FE9EF /* NavigationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationVC.h; sourceTree = "<group>"; };
+		C6E560451EE5470E000FE9EF /* NavigationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationVC.m; sourceTree = "<group>"; };
+		C6E560471EE54F57000FE9EF /* SelfVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfVC.h; sourceTree = "<group>"; };
+		C6E560481EE54F57000FE9EF /* SelfVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfVC.m; sourceTree = "<group>"; };
+		C6E5604E1EE564E1000FE9EF /* SetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetVC.h; sourceTree = "<group>"; };
+		C6E5604F1EE564E1000FE9EF /* SetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetVC.m; sourceTree = "<group>"; };
+		C6E560581EE56CDE000FE9EF /* SetTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTableCell.h; sourceTree = "<group>"; };
+		C6E560591EE56CDE000FE9EF /* SetTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTableCell.m; sourceTree = "<group>"; };
+		C6E5605F1EE68E13000FE9EF /* SetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetModel.h; sourceTree = "<group>"; };
+		C6E560601EE68E13000FE9EF /* SetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetModel.m; sourceTree = "<group>"; };
+		C6E560691EE7915C000FE9EF /* HTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPRequest.h; sourceTree = "<group>"; };
+		C6E5606A1EE7915C000FE9EF /* HTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPRequest.m; sourceTree = "<group>"; };
+		C6E560791EE83F00000FE9EF /* PersonalWorksVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalWorksVC.h; sourceTree = "<group>"; };
+		C6E5607A1EE83F00000FE9EF /* PersonalWorksVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalWorksVC.m; sourceTree = "<group>"; };
+		C6E560831EE84436000FE9EF /* PersonalWorksCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalWorksCell.h; sourceTree = "<group>"; };
+		C6E560841EE84436000FE9EF /* PersonalWorksCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalWorksCell.m; sourceTree = "<group>"; };
+		C6E560861EE91D1F000FE9EF /* CurrentBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentBlock.h; sourceTree = "<group>"; };
+		C6E560871EE91D1F000FE9EF /* CurrentBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentBlock.m; sourceTree = "<group>"; };
+		C6E5608A1EE9242C000FE9EF /* BlocklyControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocklyControl.h; sourceTree = "<group>"; };
+		C6E5608B1EE9242C000FE9EF /* BlocklyControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlocklyControl.m; sourceTree = "<group>"; };
+		C6E5608D1EE9280A000FE9EF /* BLEControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEControl.h; sourceTree = "<group>"; };
+		C6E5608E1EE9280A000FE9EF /* BLEControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEControl.m; sourceTree = "<group>"; };
+		C6E560AE1EE96912000FE9EF /* BluetoothVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothVC.h; sourceTree = "<group>"; };
+		C6E560AF1EE96912000FE9EF /* BluetoothVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothVC.m; sourceTree = "<group>"; };
+		C6E560B11EE987DD000FE9EF /* BluetoothCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothCell.h; sourceTree = "<group>"; };
+		C6E560B21EE987DD000FE9EF /* BluetoothCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothCell.m; sourceTree = "<group>"; };
+		C6E560BF1EEA75A3000FE9EF /* NSData+Healper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Healper.h"; sourceTree = "<group>"; };
+		C6E560C01EEA75A3000FE9EF /* NSData+Healper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Healper.m"; sourceTree = "<group>"; };
+		C6E560C21EEAA44F000FE9EF /* CustomNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNotificationCenter.h; sourceTree = "<group>"; };
+		C6E560C31EEAA44F000FE9EF /* CustomNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNotificationCenter.m; sourceTree = "<group>"; };
+		C6E852661F25E72A00F371E3 /* type_point.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = type_point.plist; sourceTree = "<group>"; };
+		C6E8528D1F2869C100F371E3 /* control_blocks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = control_blocks.json; sourceTree = "<group>"; };
+		C6E8528E1F2869C100F371E3 /* light_blocks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = light_blocks.json; sourceTree = "<group>"; };
+		C6E8528F1F2869C100F371E3 /* machine_blocks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = machine_blocks.json; sourceTree = "<group>"; };
+		C6E852901F2869C100F371E3 /* math_blocks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = math_blocks.json; sourceTree = "<group>"; };
+		C6E852911F2869C100F371E3 /* port_control_blocks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = port_control_blocks.json; sourceTree = "<group>"; };
+		C6E852921F2869C100F371E3 /* sound_blocks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sound_blocks.json; sourceTree = "<group>"; };
+		C6E852931F2869C100F371E3 /* start_blocks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = start_blocks.json; sourceTree = "<group>"; };
+		C6E852941F2869C100F371E3 /* timer_blocks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = timer_blocks.json; sourceTree = "<group>"; };
+		C6E852951F2869C100F371E3 /* variable_blocks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = variable_blocks.json; sourceTree = "<group>"; };
+		C6FE28C01EFF8C0D0069CF1B /* InputNameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputNameView.h; sourceTree = "<group>"; };
+		C6FE28C11EFF8C0D0069CF1B /* InputNameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputNameView.m; sourceTree = "<group>"; };
+		C6FE28CA1EFF8C260069CF1B /* InputNameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputNameView.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C6A737211ED6AC9F0065B501 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6A737A81ED6AF1F0065B501 /* AEXML.framework in Frameworks */,
+				C6A737AD1ED6AF2A0065B501 /* Blockly.framework in Frameworks */,
+				80B86E5BE6EF1FDB570993F5 /* libPods-BlocklyApp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6A7373A1ED6AC9F0065B501 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6A737451ED6AC9F0065B501 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		235B14B8695359D406D7F31D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4CA5ABC16FF2A6F1201CFACA /* Pods-BlocklyApp.debug.xcconfig */,
+				04B913E2B23CC65AB8BFE6ED /* Pods-BlocklyApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C0A0465D9A72FDF917CDA5B3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				912C7ADF09223B8A8B1E187E /* libPods-BlocklyApp.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C67725551F009C750031A73D /* model */ = {
+			isa = PBXGroup;
+			children = (
+				C677254B1F003CB70031A73D /* ValueModel.h */,
+				C677254C1F003CB70031A73D /* ValueModel.m */,
+				C6E5605F1EE68E13000FE9EF /* SetModel.h */,
+				C6E560601EE68E13000FE9EF /* SetModel.m */,
+				C67725561F009CA80031A73D /* PersonalWorksModel.h */,
+				C67725571F009CA80031A73D /* PersonalWorksModel.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		C6A7371B1ED6AC9F0065B501 = {
+			isa = PBXGroup;
+			children = (
+				C6A737261ED6AC9F0065B501 /* BlocklyApp */,
+				C6A737401ED6AC9F0065B501 /* BlocklyAppTests */,
+				C6A7374B1ED6AC9F0065B501 /* BlocklyAppUITests */,
+				C6A737251ED6AC9F0065B501 /* Products */,
+				235B14B8695359D406D7F31D /* Pods */,
+				C0A0465D9A72FDF917CDA5B3 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C6A737251ED6AC9F0065B501 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C6A737241ED6AC9F0065B501 /* BlocklyApp.app */,
+				C6A7373D1ED6AC9F0065B501 /* BlocklyAppTests.xctest */,
+				C6A737481ED6AC9F0065B501 /* BlocklyAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C6A737261ED6AC9F0065B501 /* BlocklyApp */ = {
+			isa = PBXGroup;
+			children = (
+				C6E560891EE923FF000FE9EF /* BlocklyHealper */,
+				C6E560431EE546B6000FE9EF /* custom */,
+				C6E560311EE5128D000FE9EF /* framework */,
+				C6E5602A1EE4F4A1000FE9EF /* view */,
+				C6E560221EE4F48D000FE9EF /* VC */,
+				C6A737BA1ED6B2D00065B501 /* dataSource */,
+				C6A7372A1ED6AC9F0065B501 /* AppDelegate.h */,
+				C6A7372B1ED6AC9F0065B501 /* AppDelegate.m */,
+				C6A737301ED6AC9F0065B501 /* Main.storyboard */,
+				C6A737331ED6AC9F0065B501 /* Assets.xcassets */,
+				C6A737351ED6AC9F0065B501 /* LaunchScreen.storyboard */,
+				C6A737381ED6AC9F0065B501 /* Info.plist */,
+				C6A737271ED6AC9F0065B501 /* Supporting Files */,
+			);
+			path = BlocklyApp;
+			sourceTree = "<group>";
+		};
+		C6A737271ED6AC9F0065B501 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C6A737281ED6AC9F0065B501 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C6A737401ED6AC9F0065B501 /* BlocklyAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				C6A737411ED6AC9F0065B501 /* BlocklyAppTests.m */,
+				C6A737431ED6AC9F0065B501 /* Info.plist */,
+			);
+			path = BlocklyAppTests;
+			sourceTree = "<group>";
+		};
+		C6A7374B1ED6AC9F0065B501 /* BlocklyAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C6A7374C1ED6AC9F0065B501 /* BlocklyAppUITests.m */,
+				C6A7374E1ED6AC9F0065B501 /* Info.plist */,
+			);
+			path = BlocklyAppUITests;
+			sourceTree = "<group>";
+		};
+		C6A7377E1ED6AEA00065B501 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C6A737831ED6AEA10065B501 /* Blockly.framework */,
+				C6A737851ED6AEA10065B501 /* BlocklyTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C6A737871ED6AEB40065B501 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C6A737911ED6AEB40065B501 /* AEXML.framework */,
+				C6A737931ED6AEB40065B501 /* AEXML.framework */,
+				C6A737951ED6AEB40065B501 /* AEXML iOS Tests.xctest */,
+				C6A737971ED6AEB40065B501 /* AEXML.framework */,
+				C6A737991ED6AEB40065B501 /* AEXML tvOS Tests.xctest */,
+				C6A7379B1ED6AEB40065B501 /* AEXML.framework */,
+				C6A7379D1ED6AEB40065B501 /* AEXML OSX Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C6A737BA1ED6B2D00065B501 /* dataSource */ = {
+			isa = PBXGroup;
+			children = (
+				C65B98FA1F467EAC005DDB59 /* event_blocks.json */,
+				C6E8528D1F2869C100F371E3 /* control_blocks.json */,
+				C6E8528E1F2869C100F371E3 /* light_blocks.json */,
+				C6E8528F1F2869C100F371E3 /* machine_blocks.json */,
+				C6E852901F2869C100F371E3 /* math_blocks.json */,
+				C6E852911F2869C100F371E3 /* port_control_blocks.json */,
+				C6E852921F2869C100F371E3 /* sound_blocks.json */,
+				C6E852931F2869C100F371E3 /* start_blocks.json */,
+				C6E852941F2869C100F371E3 /* timer_blocks.json */,
+				C6E852951F2869C100F371E3 /* variable_blocks.json */,
+				C67EEACD1F2594E800A4198E /* animateColor.plist */,
+				C666B2351EF25B2C00D621A6 /* typename.plist */,
+				C6E852661F25E72A00F371E3 /* type_point.plist */,
+				C6250A021F189D6D005E66DE /* sirui.bin */,
+				C687DBCD1F025AFF001E6219 /* toolBox0.xml */,
+				C6A737BB1ED6B2E90065B501 /* toolBox1.xml */,
+				C6A737BC1ED6B2E90065B501 /* bl_sanjiao.png */,
+			);
+			name = dataSource;
+			sourceTree = "<group>";
+		};
+		C6E560221EE4F48D000FE9EF /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				C67725551F009C750031A73D /* model */,
+				C6A7372D1ED6AC9F0065B501 /* BlockVC.h */,
+				C6A7372E1ED6AC9F0065B501 /* BlockVC.m */,
+				C6E5602B1EE4F4D4000FE9EF /* LoginVC.h */,
+				C6E5602C1EE4F4D4000FE9EF /* LoginVC.m */,
+				C6E560321EE53053000FE9EF /* ChackBlocklyVC.h */,
+				C6E560331EE53053000FE9EF /* ChackBlocklyVC.m */,
+				C6E560471EE54F57000FE9EF /* SelfVC.h */,
+				C6E560481EE54F57000FE9EF /* SelfVC.m */,
+				C6E5604E1EE564E1000FE9EF /* SetVC.h */,
+				C6E5604F1EE564E1000FE9EF /* SetVC.m */,
+				C6E560791EE83F00000FE9EF /* PersonalWorksVC.h */,
+				C6E5607A1EE83F00000FE9EF /* PersonalWorksVC.m */,
+				C6E560AE1EE96912000FE9EF /* BluetoothVC.h */,
+				C6E560AF1EE96912000FE9EF /* BluetoothVC.m */,
+				C687DC2B1F0381B0001E6219 /* SuperViewController.h */,
+				C687DC2C1F0381B0001E6219 /* SuperViewController.m */,
+			);
+			name = VC;
+			sourceTree = "<group>";
+		};
+		C6E5602A1EE4F4A1000FE9EF /* view */ = {
+			isa = PBXGroup;
+			children = (
+				C6FE28C01EFF8C0D0069CF1B /* InputNameView.h */,
+				C6FE28C11EFF8C0D0069CF1B /* InputNameView.m */,
+				C6FE28CA1EFF8C260069CF1B /* InputNameView.xib */,
+				C6E560581EE56CDE000FE9EF /* SetTableCell.h */,
+				C6E560591EE56CDE000FE9EF /* SetTableCell.m */,
+				C6E560831EE84436000FE9EF /* PersonalWorksCell.h */,
+				C6E560841EE84436000FE9EF /* PersonalWorksCell.m */,
+				C6E560B11EE987DD000FE9EF /* BluetoothCell.h */,
+				C6E560B21EE987DD000FE9EF /* BluetoothCell.m */,
+				C687DBCF1F02A7AF001E6219 /* ValueView.h */,
+				C687DBD01F02A7AF001E6219 /* ValueView.m */,
+				C687DBD41F02A876001E6219 /* ValueView.xib */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		C6E560311EE5128D000FE9EF /* framework */ = {
+			isa = PBXGroup;
+			children = (
+				C6A737861ED6AEB40065B501 /* AEXML.xcodeproj */,
+				C6A7377D1ED6AEA00065B501 /* Blockly.xcodeproj */,
+			);
+			name = framework;
+			sourceTree = "<group>";
+		};
+		C6E560431EE546B6000FE9EF /* custom */ = {
+			isa = PBXGroup;
+			children = (
+				C6E560401EE53EAC000FE9EF /* CustomHUD.h */,
+				C6E560411EE53EAC000FE9EF /* CustomHUD.m */,
+				C6E5602E1EE50E04000FE9EF /* APPControll.h */,
+				C6E5602F1EE50E04000FE9EF /* APPControll.m */,
+				C6E560441EE5470E000FE9EF /* NavigationVC.h */,
+				C6E560451EE5470E000FE9EF /* NavigationVC.m */,
+				C6E560691EE7915C000FE9EF /* HTTPRequest.h */,
+				C6E5606A1EE7915C000FE9EF /* HTTPRequest.m */,
+				C666B22A1EF21CA100D621A6 /* Control.pch */,
+			);
+			name = custom;
+			sourceTree = "<group>";
+		};
+		C6E560891EE923FF000FE9EF /* BlocklyHealper */ = {
+			isa = PBXGroup;
+			children = (
+				C6E560861EE91D1F000FE9EF /* CurrentBlock.h */,
+				C6E560871EE91D1F000FE9EF /* CurrentBlock.m */,
+				C6A737B11ED6B19D0065B501 /* BlocklyToolBoxHealper.h */,
+				C6A737B21ED6B19D0065B501 /* BlocklyToolBoxHealper.m */,
+				C6E5608A1EE9242C000FE9EF /* BlocklyControl.h */,
+				C6E5608B1EE9242C000FE9EF /* BlocklyControl.m */,
+				C6E5608D1EE9280A000FE9EF /* BLEControl.h */,
+				C6E5608E1EE9280A000FE9EF /* BLEControl.m */,
+				C6E560BF1EEA75A3000FE9EF /* NSData+Healper.h */,
+				C6E560C01EEA75A3000FE9EF /* NSData+Healper.m */,
+				C6E560C21EEAA44F000FE9EF /* CustomNotificationCenter.h */,
+				C6E560C31EEAA44F000FE9EF /* CustomNotificationCenter.m */,
+				C666B2321EF2261F00D621A6 /* RGBLightModel.h */,
+				C666B2331EF2261F00D621A6 /* RGBLightModel.m */,
+			);
+			name = BlocklyHealper;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C6A737231ED6AC9F0065B501 /* BlocklyApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6A737511ED6AC9F0065B501 /* Build configuration list for PBXNativeTarget "BlocklyApp" */;
+			buildPhases = (
+				B83BED4862C9EF2056799C1E /* [CP] Check Pods Manifest.lock */,
+				C6A737201ED6AC9F0065B501 /* Sources */,
+				C6A737211ED6AC9F0065B501 /* Frameworks */,
+				C6A737221ED6AC9F0065B501 /* Resources */,
+				C6A737AC1ED6AF1F0065B501 /* Embed Frameworks */,
+				75AA1B0F35072D7E17A5F572 /* [CP] Embed Pods Frameworks */,
+				B697D64055D5FC81A631705F /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C6A737AB1ED6AF1F0065B501 /* PBXTargetDependency */,
+				C6A737B01ED6AF2A0065B501 /* PBXTargetDependency */,
+			);
+			name = BlocklyApp;
+			productName = BlocklyApp;
+			productReference = C6A737241ED6AC9F0065B501 /* BlocklyApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C6A7373C1ED6AC9F0065B501 /* BlocklyAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6A737541ED6AC9F0065B501 /* Build configuration list for PBXNativeTarget "BlocklyAppTests" */;
+			buildPhases = (
+				C6A737391ED6AC9F0065B501 /* Sources */,
+				C6A7373A1ED6AC9F0065B501 /* Frameworks */,
+				C6A7373B1ED6AC9F0065B501 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C6A7373F1ED6AC9F0065B501 /* PBXTargetDependency */,
+			);
+			name = BlocklyAppTests;
+			productName = BlocklyAppTests;
+			productReference = C6A7373D1ED6AC9F0065B501 /* BlocklyAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C6A737471ED6AC9F0065B501 /* BlocklyAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6A737571ED6AC9F0065B501 /* Build configuration list for PBXNativeTarget "BlocklyAppUITests" */;
+			buildPhases = (
+				C6A737441ED6AC9F0065B501 /* Sources */,
+				C6A737451ED6AC9F0065B501 /* Frameworks */,
+				C6A737461ED6AC9F0065B501 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C6A7374A1ED6AC9F0065B501 /* PBXTargetDependency */,
+			);
+			name = BlocklyAppUITests;
+			productName = BlocklyAppUITests;
+			productReference = C6A737481ED6AC9F0065B501 /* BlocklyAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C6A7371C1ED6AC9F0065B501 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = text;
+				TargetAttributes = {
+					C6A737231ED6AC9F0065B501 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 74C5QH84T8;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+					C6A7373C1ED6AC9F0065B501 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 74C5QH84T8;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C6A737231ED6AC9F0065B501;
+					};
+					C6A737471ED6AC9F0065B501 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 74C5QH84T8;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C6A737231ED6AC9F0065B501;
+					};
+				};
+			};
+			buildConfigurationList = C6A7371F1ED6AC9F0065B501 /* Build configuration list for PBXProject "BlocklyApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C6A7371B1ED6AC9F0065B501;
+			productRefGroup = C6A737251ED6AC9F0065B501 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C6A737871ED6AEB40065B501 /* Products */;
+					ProjectRef = C6A737861ED6AEB40065B501 /* AEXML.xcodeproj */;
+				},
+				{
+					ProductGroup = C6A7377E1ED6AEA00065B501 /* Products */;
+					ProjectRef = C6A7377D1ED6AEA00065B501 /* Blockly.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				C6A737231ED6AC9F0065B501 /* BlocklyApp */,
+				C6A7373C1ED6AC9F0065B501 /* BlocklyAppTests */,
+				C6A737471ED6AC9F0065B501 /* BlocklyAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C6A737831ED6AEA10065B501 /* Blockly.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Blockly.framework;
+			remoteRef = C6A737821ED6AEA10065B501 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C6A737851ED6AEA10065B501 /* BlocklyTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BlocklyTests.xctest;
+			remoteRef = C6A737841ED6AEA10065B501 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C6A737911ED6AEB40065B501 /* AEXML.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AEXML.framework;
+			remoteRef = C6A737901ED6AEB40065B501 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C6A737931ED6AEB40065B501 /* AEXML.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AEXML.framework;
+			remoteRef = C6A737921ED6AEB40065B501 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C6A737951ED6AEB40065B501 /* AEXML iOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "AEXML iOS Tests.xctest";
+			remoteRef = C6A737941ED6AEB40065B501 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C6A737971ED6AEB40065B501 /* AEXML.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AEXML.framework;
+			remoteRef = C6A737961ED6AEB40065B501 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C6A737991ED6AEB40065B501 /* AEXML tvOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "AEXML tvOS Tests.xctest";
+			remoteRef = C6A737981ED6AEB40065B501 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C6A7379B1ED6AEB40065B501 /* AEXML.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AEXML.framework;
+			remoteRef = C6A7379A1ED6AEB40065B501 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C6A7379D1ED6AEB40065B501 /* AEXML OSX Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "AEXML OSX Tests.xctest";
+			remoteRef = C6A7379C1ED6AEB40065B501 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C6A737221ED6AC9F0065B501 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6E8529A1F2869C100F371E3 /* port_control_blocks.json in Resources */,
+				C687DBD51F02A876001E6219 /* ValueView.xib in Resources */,
+				C666B2361EF25B2C00D621A6 /* typename.plist in Resources */,
+				C6A737B41ED6B1F40065B501 /* BlockVC.h in Resources */,
+				C6E8529C1F2869C100F371E3 /* start_blocks.json in Resources */,
+				C6A737C81ED6B2E90065B501 /* toolBox1.xml in Resources */,
+				C6250A031F189D6D005E66DE /* sirui.bin in Resources */,
+				C6E852671F25E72A00F371E3 /* type_point.plist in Resources */,
+				C6A737B51ED6B1F40065B501 /* BlockVC.m in Resources */,
+				C6E852971F2869C100F371E3 /* light_blocks.json in Resources */,
+				C6A737B61ED6B1F40065B501 /* BlocklyToolBoxHealper.h in Resources */,
+				C6E8529E1F2869C100F371E3 /* variable_blocks.json in Resources */,
+				C6A737B71ED6B1F40065B501 /* BlocklyToolBoxHealper.m in Resources */,
+				C6E852961F2869C100F371E3 /* control_blocks.json in Resources */,
+				C687DBCE1F025AFF001E6219 /* toolBox0.xml in Resources */,
+				C6A737371ED6AC9F0065B501 /* LaunchScreen.storyboard in Resources */,
+				C65B98FB1F467EAC005DDB59 /* event_blocks.json in Resources */,
+				C6E852991F2869C100F371E3 /* math_blocks.json in Resources */,
+				C6E852981F2869C100F371E3 /* machine_blocks.json in Resources */,
+				C6E8529B1F2869C100F371E3 /* sound_blocks.json in Resources */,
+				C6A737341ED6AC9F0065B501 /* Assets.xcassets in Resources */,
+				C6E8529D1F2869C100F371E3 /* timer_blocks.json in Resources */,
+				C6A737321ED6AC9F0065B501 /* Main.storyboard in Resources */,
+				C67EEACE1F2594E800A4198E /* animateColor.plist in Resources */,
+				C6FE28CB1EFF8C260069CF1B /* InputNameView.xib in Resources */,
+				C6A737C91ED6B2E90065B501 /* bl_sanjiao.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6A7373B1ED6AC9F0065B501 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6A737461ED6AC9F0065B501 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		75AA1B0F35072D7E17A5F572 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BlocklyApp/Pods-BlocklyApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B697D64055D5FC81A631705F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BlocklyApp/Pods-BlocklyApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B83BED4862C9EF2056799C1E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C6A737201ED6AC9F0065B501 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6E560301EE50E04000FE9EF /* APPControll.m in Sources */,
+				C6E5605A1EE56CDE000FE9EF /* SetTableCell.m in Sources */,
+				C6E560881EE91D1F000FE9EF /* CurrentBlock.m in Sources */,
+				C6E560341EE53053000FE9EF /* ChackBlocklyVC.m in Sources */,
+				C6E5608C1EE9242C000FE9EF /* BlocklyControl.m in Sources */,
+				C6E560421EE53EAC000FE9EF /* CustomHUD.m in Sources */,
+				C6A737B31ED6B19D0065B501 /* BlocklyToolBoxHealper.m in Sources */,
+				C6E5606B1EE7915C000FE9EF /* HTTPRequest.m in Sources */,
+				C6A7372F1ED6AC9F0065B501 /* BlockVC.m in Sources */,
+				C67725581F009CA80031A73D /* PersonalWorksModel.m in Sources */,
+				C6E560611EE68E13000FE9EF /* SetModel.m in Sources */,
+				C6E560B31EE987DD000FE9EF /* BluetoothCell.m in Sources */,
+				C677254D1F003CB70031A73D /* ValueModel.m in Sources */,
+				C6E560851EE84436000FE9EF /* PersonalWorksCell.m in Sources */,
+				C6E560B01EE96912000FE9EF /* BluetoothVC.m in Sources */,
+				C6E5602D1EE4F4D4000FE9EF /* LoginVC.m in Sources */,
+				C6FE28C21EFF8C0D0069CF1B /* InputNameView.m in Sources */,
+				C6A7372C1ED6AC9F0065B501 /* AppDelegate.m in Sources */,
+				C687DBD11F02A7AF001E6219 /* ValueView.m in Sources */,
+				C6A737291ED6AC9F0065B501 /* main.m in Sources */,
+				C6E5607B1EE83F00000FE9EF /* PersonalWorksVC.m in Sources */,
+				C6E560491EE54F57000FE9EF /* SelfVC.m in Sources */,
+				C687DC2D1F0381B0001E6219 /* SuperViewController.m in Sources */,
+				C6E560C41EEAA44F000FE9EF /* CustomNotificationCenter.m in Sources */,
+				C6E560501EE564E1000FE9EF /* SetVC.m in Sources */,
+				C6E560461EE5470E000FE9EF /* NavigationVC.m in Sources */,
+				C6E560C11EEA75A3000FE9EF /* NSData+Healper.m in Sources */,
+				C666B2341EF2261F00D621A6 /* RGBLightModel.m in Sources */,
+				C6E5608F1EE9280A000FE9EF /* BLEControl.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6A737391ED6AC9F0065B501 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6A737421ED6AC9F0065B501 /* BlocklyAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6A737441ED6AC9F0065B501 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6A7374D1ED6AC9F0065B501 /* BlocklyAppUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C6A7373F1ED6AC9F0065B501 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C6A737231ED6AC9F0065B501 /* BlocklyApp */;
+			targetProxy = C6A7373E1ED6AC9F0065B501 /* PBXContainerItemProxy */;
+		};
+		C6A7374A1ED6AC9F0065B501 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C6A737231ED6AC9F0065B501 /* BlocklyApp */;
+			targetProxy = C6A737491ED6AC9F0065B501 /* PBXContainerItemProxy */;
+		};
+		C6A737AB1ED6AF1F0065B501 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "AEXML iOS";
+			targetProxy = C6A737AA1ED6AF1F0065B501 /* PBXContainerItemProxy */;
+		};
+		C6A737B01ED6AF2A0065B501 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Blockly;
+			targetProxy = C6A737AF1ED6AF2A0065B501 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C6A737301ED6AC9F0065B501 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C6A737311ED6AC9F0065B501 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C6A737351ED6AC9F0065B501 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C6A737361ED6AC9F0065B501 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C6A7374F1ED6AC9F0065B501 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C6A737501ED6AC9F0065B501 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C6A737521ED6AC9F0065B501 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4CA5ABC16FF2A6F1201CFACA /* Pods-BlocklyApp.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMPRESS_PNG_FILES = NO;
+				DEVELOPMENT_TEAM = 74C5QH84T8;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PRODUCT_NAME)/control.pch";
+				INFOPLIST_FILE = BlocklyApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Guangzhao.BlocklyApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C6A737531ED6AC9F0065B501 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04B913E2B23CC65AB8BFE6ED /* Pods-BlocklyApp.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMPRESS_PNG_FILES = NO;
+				DEVELOPMENT_TEAM = 74C5QH84T8;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PRODUCT_NAME)/control.pch";
+				INFOPLIST_FILE = BlocklyApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Guangzhao.BlocklyApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C6A737551ED6AC9F0065B501 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 74C5QH84T8;
+				INFOPLIST_FILE = BlocklyAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Guangzhao.BlocklyAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BlocklyApp.app/BlocklyApp";
+			};
+			name = Debug;
+		};
+		C6A737561ED6AC9F0065B501 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 74C5QH84T8;
+				INFOPLIST_FILE = BlocklyAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Guangzhao.BlocklyAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BlocklyApp.app/BlocklyApp";
+			};
+			name = Release;
+		};
+		C6A737581ED6AC9F0065B501 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 74C5QH84T8;
+				INFOPLIST_FILE = BlocklyAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Guangzhao.BlocklyAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = BlocklyApp;
+			};
+			name = Debug;
+		};
+		C6A737591ED6AC9F0065B501 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 74C5QH84T8;
+				INFOPLIST_FILE = BlocklyAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Guangzhao.BlocklyAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = BlocklyApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C6A7371F1ED6AC9F0065B501 /* Build configuration list for PBXProject "BlocklyApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6A7374F1ED6AC9F0065B501 /* Debug */,
+				C6A737501ED6AC9F0065B501 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C6A737511ED6AC9F0065B501 /* Build configuration list for PBXNativeTarget "BlocklyApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6A737521ED6AC9F0065B501 /* Debug */,
+				C6A737531ED6AC9F0065B501 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C6A737541ED6AC9F0065B501 /* Build configuration list for PBXNativeTarget "BlocklyAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6A737551ED6AC9F0065B501 /* Debug */,
+				C6A737561ED6AC9F0065B501 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C6A737571ED6AC9F0065B501 /* Build configuration list for PBXNativeTarget "BlocklyAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6A737581ED6AC9F0065B501 /* Debug */,
+				C6A737591ED6AC9F0065B501 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C6A7371C1ED6AC9F0065B501 /* Project object */;
+}

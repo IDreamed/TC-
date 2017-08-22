@@ -1,0 +1,312 @@
+[
+  {
+    "type": "always_repeat",
+    "message0": "一直重复",
+    "message1": " %1",
+    "args1": [
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 311,
+    "tooltip": "If a value is true, then do the first block of statements. Otherwise, do the second block of statements.",
+    "helpUrl": "https://github.com/google/blockly/wiki/IfElse"
+  },
+  {
+    "type": "repetition_num",
+    "message0": "重复 %1 次",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "repetition_num",
+        "check": "number"
+      }
+    ],
+    "message1": " %1",
+    "args1": [
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
+    ],
+ "inputsInline":true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 311,
+    "tooltip": "If a value is true, then do the first block of statements. Otherwise, do the second block of statements.",
+    "helpUrl": "https://github.com/google/blockly/wiki/IfElse"
+  },
+  {
+    "type": "repetition_until1",
+    "message0": " 重复直到 %1",
+    "args0": [
+           {
+           "type": "input_value",
+           "name": "repetition_until1",
+           "check": "bool"
+           }
+           ],
+ "inputsInline": true,
+ "message1": "%1",
+    "args1": [
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 311
+  },
+ {
+ "type": "repetition_for",
+ "message0": " 将 %1 从 %2 到 %3 %4 %5",
+ "args0": [
+           {
+           "type": "input_value",
+           "name": "repetition_for",
+           "check": "number",
+           },
+           {
+           "type": "input_value",
+           "name": "repetition_for1",
+           "check": "number",
+           },
+           {
+           "type": "input_value",
+           "name": "repetition_for2",
+           "check": "number",
+           },
+           {
+           "type": "field_dropdown",
+           "name": "repetition_for3",
+           "options": [
+                       [
+                        "+",
+                        "+"
+                        ],
+                       [
+                        "-",
+                        "-"
+                        ],
+                       [
+                        "x",
+                        "x"
+                        ],
+                       [
+                        "÷",
+                        "÷"
+                        ]
+                       ]
+           },
+           {
+           "type": "input_value",
+           "name": "repetition_for4",
+           "check": "number",
+           }
+           ],
+ "inputsInline": true,
+ "message1": "%1",
+ "args1": [
+           {
+           "type": "input_statement",
+           "name": "DO"
+           }
+           ],
+ "previousStatement": null,
+ "nextStatement": null,
+ "colour": 311
+
+ },
+ {
+ "type": "bool_value",
+ "message0": "%1",
+ "args0": [
+           {
+           "type": "field_dropdown",
+           "name": "bool_value",
+           "options": [
+                       [
+                        "true",
+                        "true"
+                        ],
+                       [
+                        "false",
+                        "false"
+                        ]
+                       ]
+           }
+           ],
+ "inputsInline": true,
+ "output": "bool",
+ "colour": 311,
+ "tooltip": "",
+ "helpUrl": ""
+ },
+  {
+    "type": "not_value",
+    "message0": "非 %1",
+    "args0": [
+              {
+              "type": "input_value",
+              "name": "not_value",
+              "check": "bool",
+              }
+    ],
+    "inputsInline":true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 311
+  },
+  {
+    "type": "if",
+    "message0": "如果 %1",
+    "args0": [
+              {
+              "type": "input_value",
+              "name": "if",
+              "check": "bool",
+              }
+    ],
+    "message1": " %1",
+    "args1": [
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
+    ],
+ "inputsInline":true,
+
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 311,
+    "tooltip": "If a value is true, then do the first block of statements. Otherwise, do the second block of statements.",
+    "helpUrl": "https://github.com/google/blockly/wiki/IfElse"
+  },
+  {
+    "type": "if_else",
+    "message0": "如果 %1",
+    "args0": [
+              {
+              "type": "input_value",
+              "name": "if_else",
+              "check": "bool",
+              }
+    ],
+    "message1": " %1",
+    "args1": [
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
+    ],
+    "message2": "否则",
+    "message3": "%1",
+    "args3": [
+      {
+        "type": "input_statement",
+        "name": "ELSE"
+      }
+    ],
+ "inputsInline":true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 311,
+    "tooltip": "If a value is true, then do the first block of statements. Otherwise, do the second block of statements.",
+    "helpUrl": "https://github.com/google/blockly/wiki/IfElse"
+  },
+  {
+    "type": "control_compare",
+    "message0": "%1 %2 %3",
+    "args0": [
+              {
+              "type": "input_value",
+              "name": "control_compare",
+              "check": "number",
+              },
+              {
+              "type": "field_dropdown",
+              "name": "control_compare1",
+              "options": [
+                          [
+                           "=",
+                           "="
+                           ],
+                          [
+                           "≠",
+                           "≠"
+                           ],
+                          [
+                           ">",
+                           ">"
+                           ],
+                          [
+                           "≥",
+                           "≥"
+                           ],
+                          [
+                           "<",
+                           "<"
+                           ],
+                          [
+                           "≤",
+                           "≤"
+                           ]
+                          ]
+              },
+              {
+              "type": "input_value",
+              "name": "control_compare2",
+              "check": "number",
+              }
+    ],
+    "inputsInline":true,
+    "output":"bool",
+    "colour": 311
+  },
+  {
+    "type": "and_or",
+    "message0": "%1 %2 %3",
+    "args0": [
+              {
+              "type": "input_value",
+              "name": "and_or",
+              "check": "bool",
+              },
+              {
+              "type": "field_dropdown",
+              "name": "and_or1",
+              "options": [
+                          [
+                           "and",
+                           "and"
+                           ],
+                          [
+                           "or",
+                           "or"
+                           ]
+                         
+                          ]
+              },
+              {
+              "type": "input_value",
+              "name": "and_or2",
+              "check": "bool",
+              }
+    ],
+    "inputsInline":true,
+    "output":"bool",
+    "colour": 311
+  },
+  {
+    "type": "break",
+    "message0": "break跳出循环",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 311
+  }
+
+]

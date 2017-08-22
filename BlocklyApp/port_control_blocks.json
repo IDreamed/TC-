@@ -1,0 +1,143 @@
+[
+ {
+ "type": "port_in",
+ "message0": "获取端口 %1 值",
+ "args0": [
+           {
+           "type": "field_dropdown",
+           "name": "port_in",
+           "options": [
+                       [
+                        "IN1",
+                        "IN1"
+                        ],
+                       [
+                        "IN2",
+                        "IN2"
+                        ],
+                       [
+                        "IN3",
+                        "IN3"
+                        ]
+                       ]
+           }
+           ],
+ "output": "number",
+ "colour": 200
+ },
+  {
+    "type": "port_get_type",
+    "message0": "获取端口 %1 是否为 %2",
+    "args0": [
+              {
+              "type": "field_dropdown",
+              "name": "port_get_type",
+              "options": [
+                          [
+                           "IN1",
+                           "IN1"
+                           ],
+                          [
+                           "IN2",
+                           "IN2"
+                           ],
+                          [
+                           "IN3",
+                           "IN3"
+                           ]
+                          ]
+              },
+              {
+              "type": "field_dropdown",
+              "name": "port_get_type1",
+              "options": [
+                          [
+                           "开",
+                           "开"
+                           ],
+                          [
+                           "关",
+                           "关"
+                           ]
+                          ]
+              }
+    ],
+    "output": "bool",
+
+    "colour": 200
+  },
+  {
+    "type": "port_out",
+    "message0": "设置端口 %1 输出 %2 %",
+    "args0": [
+              {
+              "type": "field_dropdown",
+              "name": "port_out",
+              "options": [
+                          [
+                           "OUT1",
+                           "OUT1"
+                           ],
+                          [
+                           "OUT2",
+                           "OUT2"
+                           ],
+                          [
+                           "OUT3",
+                           "OUT3"
+                           ]
+                          ]
+              },
+      {
+        "type": "input_value",
+        "name": "port_out1",
+        "check": "number"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 200
+  },
+ {
+ "type": "port_on_off",
+ "message0": "设置端口 %1 %2",
+ "args0": [
+           {
+           "type": "field_dropdown",
+           "name": "port_on_off",
+           "options": [
+                       [
+                        "OUT1",
+                        "OUT1"
+                        ],
+                       [
+                        "OUT2",
+                        "OUT2"
+                        ],
+                       [
+                        "OUT3",
+                        "OUT3"
+                        ]
+                       ]
+           },
+           {
+           "type": "field_dropdown",
+           "name": "port_on_off1",
+           "options": [
+                       [
+                        "开",
+                        "开"
+                        ],
+                       [
+                        "关",
+                        "关"
+                        ]
+                       ]
+           }
+           ],
+ "previousStatement": null,
+ "nextStatement": null,
+ "colour": 200
+ }
+]

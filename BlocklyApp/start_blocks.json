@@ -1,0 +1,69 @@
+[
+ 
+  {
+    "type": "while_start",
+    "message0": "      当开始",
+    "nextStatement": null,
+    "colour": 36,
+    "tooltip": "start status."
+  },
+  {
+    "type": "while",
+    "message0": "       当 %1 ",
+    "args0": [
+              {
+              "type": "input_value",
+              "name": "while",
+              "check": "bool",
+              }
+              
+              ],
+    "inputsInline": true,
+    "nextStatement": null,
+    "colour": 36,
+    "tooltip": "While a thing is happen, then do some statements."
+  },
+  {
+    "type": "return_status",
+    "message0": "      返回开始状态",
+    "previousStatement": null,
+    "colour": 36,
+    "tooltip": "Return start status."
+  },
+  {
+    "type": "function",
+    "message0": "     函数 %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "function",
+        "text": ""
+      }
+    ],
+    "message1": "%1",
+    "args1": [
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
+    ],
+    "colour": 36,
+    "tooltip": "Return start status."
+  },
+  {
+    "type": "do_function",
+    "message0": "      调用 %1",
+    "args0": [
+              {
+              "type": "field_dropdown",
+              "name": "doFunction",
+              "options": [
+                          ]
+              }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 36,
+    "tooltip": "Do function."
+  }
+]

@@ -1,0 +1,493 @@
+ [
+  {
+  "type": "animal_sound",
+  "message0": "%1 动物 %2  %3 %4",
+  "args0": [
+            {
+            "type": "field_dropdown",
+            "name": "animal_sound",
+            "options": [
+                        [
+                         "OUT1",
+                         "OUT1"
+                         ],
+                        [
+                         "OUT2",
+                         "OUT2"
+                         ],
+                        [
+                         "OUT3",
+                         "OUT3"
+                         ]
+                        ]
+            },
+            {
+            "type": "field_dropdown",
+            "name": "animal_sound1",
+            "options": [
+                        [
+                         "狗啃骨头",
+                         "狗啃骨头"
+                         ],
+                        [
+                         "狗狂吠",
+                         "狗狂吠"
+                         ],
+                        [
+                         "恐龙",
+                         "恐龙"
+                         ],
+                        [
+                         "猫叫",
+                         "猫叫"
+                         ],
+                        [
+                         "鸟叫",
+                         "鸟叫"
+                         ],
+                        [
+                         "青蛙叫",
+                         "青蛙叫"
+                         ]
+                        ]
+            },
+            {
+            "type": "input_value",
+            "name": "animal_sound2",
+            "check":"number"
+            },
+            {
+            "type": "field_dropdown",
+            "name": "animal_sound3",
+            "options": [
+                        [
+                         "ms",
+                         "ms"
+                         ],
+                        [
+                         "s",
+                         "s"
+                         ]
+                        ]
+            }
+            ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 209
+  },
+  {
+  "type": "transport_sound",
+  "message0":  "%1 交通工具 %2  %3 %4",
+  "args0": [
+            {
+            "type": "field_dropdown",
+            "name": "transport_sound",
+            "options": [
+                        [
+                         "OUT1",
+                         "OUT1"
+                         ],
+                        [
+                         "OUT2",
+                         "OUT2"
+                         ],
+                        [
+                         "OUT3",
+                         "OUT3"
+                         ]
+                        ]
+            },
+            {
+            "type": "field_dropdown",
+            "name": "transport_sound1",
+            "options": [
+                        [
+                         "车鸣笛",
+                         "车鸣笛"
+                         ],
+                        [
+                         "船鸣笛",
+                         "船鸣笛"
+                         ],
+                        [
+                         "飞机起飞",
+                         "飞机起飞"
+                         ],
+                        [
+                         "火车鸣笛",
+                         "火车鸣笛"
+                         ],
+                        [
+                         "警车鸣笛",
+                         "警车鸣笛"
+                         ],
+                        [
+                         "拖拉机",
+                         "拖拉机"
+                         ]
+                        ]
+            },
+            {
+            "type": "input_value",
+            "name": "transport_sound2",
+            "check":"number"
+            },
+            {
+            "type": "field_dropdown",
+            "name": "transport_sound3",
+            "options": [
+                        [
+                         "ms",
+                         "ms"
+                         ],
+                        [
+                         "s",
+                         "s"
+                         ]
+                        ]
+            }
+            ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 209
+  },
+  {
+  "type": "daily_words",
+  "message0": "%1 生活 %2  %3 %4",
+  "args0": [
+            {
+            "type": "field_dropdown",
+            "name": "daily_words",
+            "options": [
+                        [
+                         "OUT1",
+                         "OUT1"
+                         ],
+                        [
+                         "OUT2",
+                         "OUT2"
+                         ],
+                        [
+                         "OUT3",
+                         "OUT3"
+                         ]
+                        ]
+            },
+            {
+            "type": "field_dropdown",
+            "name": "daily_words1",
+            "options": [
+                        [
+                         "wuwuwu",
+                         "wuwuwu"
+                         ],
+                        [
+                         "打呼噜",
+                         "打呼噜"
+                         ],
+                        [
+                         "打雷",
+                         "打雷"
+                         ],
+                        [
+                         "东西掉地上",
+                         "东西掉地上"
+                         ],
+                        [
+                         "欢呼",
+                         "欢呼"
+                         ],
+                        [
+                         "口哨",
+                         "口哨"
+                         ],
+                        [
+                         "冒泡",
+                         "冒泡"
+                         ],
+                        [
+                         "亲吻",
+                         "亲吻"
+                         ],
+                        [
+                         "跳水",
+                         "跳水"
+                         ]
+                        ]
+            },
+            {
+            "type": "input_value",
+            "name": "daily_words2",
+            "check":"number"
+            },
+            {
+            "type": "field_dropdown",
+            "name": "daily_words3",
+            "options": [
+                        [
+                         "ms",
+                         "ms"
+                         ],
+                        [
+                         "s",
+                         "s"
+                         ]
+                        ]
+            }
+            ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 209
+  },
+  {
+  "type": "music_sound",
+  "message0": "%1 音乐 %2  %3 %4",
+  "args0": [
+            {
+            "type": "field_dropdown",
+            "name": "music_sound",
+            "options": [
+                        [
+                         "OUT1",
+                         "OUT1"
+                         ],
+                        [
+                         "OUT2",
+                         "OUT2"
+                         ],
+                        [
+                         "OUT3",
+                         "OUT3"
+                         ]
+                        ]
+            },
+            {
+            "type": "field_dropdown",
+            "name": "music_sound1",
+            "options": [
+                        [
+                         "bibibibibi",
+                         "bibibibibi"
+                         ],
+                        [
+                         "bling",
+                         "bling"
+                         ],
+                        [
+                         "duang",
+                         "duang"
+                         ],
+                        [
+                         "生日歌",
+                         "生日歌"
+                         ],
+                        [
+                         "数码声",
+                         "数码声"
+                         ],
+                        [
+                         "小号声",
+                         "小号声"
+                         ],
+                        [
+                         "旋律",
+                         "旋律"
+                         ]
+                        ]
+            },
+            {
+            "type": "input_value",
+            "name": "music_sound2",
+            "check":"number"
+            },
+            {
+            "type": "field_dropdown",
+            "name": "music_sound3",
+            "options": [
+                        [
+                         "ms",
+                         "ms"
+                         ],
+                        [
+                         "s",
+                         "s"
+                         ]
+                        ]
+            }
+            ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 209
+  },
+  {
+  "type": "sound_level",
+  "message0": "音量 %1",
+  "args0": [
+            {
+            "type": "field_input",
+            "name": "sound_level",
+            "text": "    "
+            }
+            ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 209
+  },
+  {
+  "type": "buzzer_on_off",
+  "message0": "蜂鸣器 %1",
+  "args0": [
+            {
+            "type": "field_image",
+            "src": "gj_yousheng_1",
+            "name": "buzzer_on_off",
+            "width": 26,
+            "height":  26,
+            "alt": "*"
+            }
+            ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 209
+  },
+  {
+  "type": "buzzer_level",
+  "message0": " %1 音阶 %2 音调 %3 时间 %4 %5",
+  "args0": [
+            {
+            "type": "field_dropdown",
+            "name": "buzzer_level",
+            "options": [
+                        [
+                         "OUT1",
+                         "OUT1"
+                         ],
+                        [
+                         "OUT2",
+                         "OUT2"
+                         ],
+                        [
+                         "OUT3",
+                         "OUT3"
+                         ]
+                        ]
+            },
+            {
+            "type": "field_dropdown",
+            "name": "buzzer_level1",
+            "options": [
+                        [
+                         "do",
+                         "do"
+                         ],
+                        [
+                         "re",
+                         "re"
+                         ],
+                        [
+                         "mi",
+                         "mi"
+                         ],
+                        [
+                         "fa",
+                         "fa"
+                         ],
+                        [
+                         "so",
+                         "so"
+                         ],
+                        [
+                         "la",
+                         "la"
+                         ],
+                        [
+                         "si",
+                         "si"
+                         ],
+                        [
+                         "Do",
+                         "Do"
+                         ]
+                        ]
+            },
+            {
+            "type": "field_dropdown",
+            "name": "buzzer_level2",
+            "options": [
+                        [
+                         "-3",
+                         "-3"
+                         ],
+                        [
+                         "-2",
+                         "-2"
+                         ],
+                        [
+                         "-1",
+                         "-1"
+                         ],
+                        [
+                         "0",
+                         "0"
+                         ],
+                        [
+                         "1",
+                         "1"
+                         ],
+                        [
+                         "2",
+                         "2"
+                         ],
+                        [
+                         "3",
+                         "3"
+                         ]
+                        ]
+            },
+            {
+            "type": "input_value",
+            "name": "buzzer_level3",
+            "check":"number"
+            },
+            {
+            "type": "field_dropdown",
+            "name": "buzzer_level4",
+            "options": [
+                        [
+                         "ms",
+                         "ms"
+                         ],
+                        [
+                         "s",
+                         "s"
+                         ]
+                        ]
+            }
+            ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 209
+  },
+  {
+  "type": "own_sound",
+  "message0": "我的声音 %1",
+  "args0": [
+            {
+            "type": "field_input",
+            "name": "own_sound",
+            "text": "【1】"
+            }
+            ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 209
+  }
+  
+  
+  
+  ]

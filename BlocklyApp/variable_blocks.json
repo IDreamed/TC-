@@ -1,0 +1,43 @@
+[
+  {
+  "type": "set_value",
+  "message0": "设置 %1 = %2",
+  "args0": [
+            {
+            "type": "field_dropdown",
+            "name": "set_value",
+            "options": []
+            },
+    {
+      "type": "input_value",
+      "name": "set_value1",
+      "check": "number"
+    }
+  ],
+ "inputsInline":true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 235
+},
+ {
+ "type": "get_value",
+ "message0": "选择 %1",
+ "args0": [
+           {
+           "type": "field_dropdown",
+           "name": "get_value",
+           "options": []
+           }
+           ],
+ "inputsInline":true,
+ "output":"number",
+  "colour": 235
+ },
+ {
+ "type": "create_value",
+ "message0": "创建新的变量",
+"inputsInline":true,
+ "colour": 235
+ }
+ 
+]

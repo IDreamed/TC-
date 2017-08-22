@@ -1,0 +1,171 @@
+[
+ {
+ "type": "sound_action",
+ "message0": "声音 端口%1 返回值大于 %2",
+ "args0": [
+           {
+           "type": "field_dropdown",
+           "name": "sound_action",
+           "options": [
+                       [
+                        "IN1",
+                        "IN1"
+                        ],
+                       [
+                        "IN2",
+                        "IN2"
+                        ],
+                       [
+                        "IN3",
+                        "IN3"
+                        ]
+                       ]
+           },
+           {
+           "type": "input_value",
+           "name": "sound_action1",
+           "check": "number",
+           },
+           ],
+ "inputsInline": true,
+ "output": "bool",
+ "colour": 26,
+ "tooltip": "",
+ "helpUrl": ""
+ },
+ {
+ "type": "redline_action",
+ "message0": "红外线 端口%1 返回值大于 %2",
+ "args0": [
+           {
+           "type": "field_dropdown",
+           "name": "redline_action",
+           "options": [
+                       [
+                        "IN1",
+                        "IN1"
+                        ],
+                       [
+                        "IN2",
+                        "IN2"
+                        ],
+                       [
+                        "IN3",
+                        "IN3"
+                        ]
+                       ]
+           },
+           {
+           "type": "input_value",
+           "name": "redline_action1",
+           "check": "number",
+           },
+           ],
+ "inputsInline": true,
+ "output": "bool",
+ "colour": 26,
+ "tooltip": "",
+ "helpUrl": ""
+ },
+ {
+ "type": "waves_action",
+ "message0": "超声波 端口%1 返回值大于 %2",
+ "args0": [
+           {
+           "type": "field_dropdown",
+           "name": "waves_action",
+           "options": [
+                       [
+                        "IN1",
+                        "IN1"
+                        ],
+                       [
+                        "IN2",
+                        "IN2"
+                        ],
+                       [
+                        "IN3",
+                        "IN3"
+                        ]
+                       ]
+           },
+           {
+           "type": "input_value",
+           "name": "waves_action1",
+           "check": "number",
+           },
+           ], "inputsInline": true,
+ "output": "bool",
+ "colour": 26,
+ "tooltip": "",
+ "helpUrl": ""
+ },
+ {
+ "type": "light_action",
+ "message0": "亮度 端口%1 返回值大于 %2",
+ "args0": [
+           {
+           "type": "field_dropdown",
+           "name": "light_action",
+           "options": [
+                       [
+                        "IN1",
+                        "IN1"
+                        ],
+                       [
+                        "IN2",
+                        "IN2"
+                        ],
+                       [
+                        "IN3",
+                        "IN3"
+                        ]
+                       ]
+           },
+           {
+           "type": "input_value",
+           "name": "light_action1",
+           "check": "number",
+           },
+           ],
+ "inputsInline": true,
+ "output": "bool",
+ "colour": 26,
+ "tooltip": "",
+ "helpUrl": ""
+ },
+ {
+ "type": "pressure_action",
+ "message0": "压力 端口%1 返回值大于 %2",
+ "args0": [
+           {
+           "type": "field_dropdown",
+           "name": "pressure_action",
+           "options": [
+                       [
+                        "IN1",
+                        "IN1"
+                        ],
+                       [
+                        "IN2",
+                        "IN2"
+                        ],
+                       [
+                        "IN3",
+                        "IN3"
+                        ]
+                       ]
+           },
+           {
+           "type": "input_value",
+           "name": "pressure_action1",
+           "check": "number",
+           },
+           ],
+ "inputsInline": true,
+ "output": "bool",
+ "colour": 26,
+ "tooltip": "",
+ "helpUrl": ""
+ }
+]

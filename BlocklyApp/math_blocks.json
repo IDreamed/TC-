@@ -1,0 +1,174 @@
+[
+  {
+    "type": "number_value",
+    "message0": "%1",
+    "args0": [
+           {
+        "type": "field_input",
+        "name": "number_value",
+        "text": "0"
+      }
+    ],
+    "inputsInline": true,
+    "output":"number",
+    "colour": 209
+  },
+  {
+    "type": "math_calculator",
+    "message0": "%1 %2 %3",
+    "args0": [
+              {
+              "type": "input_value",
+              "name": "math_calculator",
+              "check": "number"
+              },
+              {
+              "type": "field_dropdown",
+              "name": "math_calculator1",
+              "options": [
+                          [
+                           "+",
+                           "+"
+                           ],
+                          [
+                           "-",
+                           "-"
+                           ],
+                          [
+                           "x",
+                           "x"
+                           ],
+                          [
+                           "÷",
+                           "÷"
+                           ],
+                          ]
+              },
+              {
+              "type": "input_value",
+              "name": "math_calculator2",
+              "check": "number"
+              }
+    ],
+    "inputsInline": true,
+    "output":"number",
+    "colour": 209
+  },
+  {
+    "type": "math_odevity",
+    "message0": "判断 %1 为 %2",
+    "args0": [
+              {
+              "type": "input_value",
+              "name": "math_odevity",
+              "check": "number"
+              },
+              {
+              "type": "field_dropdown",
+              "name": "math_odevity1",
+              "options": [
+                          [
+                           "奇数",
+                           "奇数"
+                           ],
+                          [
+                           "偶数",
+                           "偶数"
+                           ]
+                          
+                          ]
+                          
+              }
+    ],
+    "inputsInline":true,
+    "output":"bool",
+    "colour": 209
+  },
+  {
+    "type": "math_intger",
+    "message0": "取整 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "math_intger",
+        "check": "number"
+      }
+    ],
+ "inputsInline":true,
+ "output":"number",
+    "colour": 209
+  },
+  {
+    "type": "math_cover_to",
+    "message0": "将 %1 按比例 %2 - %3 变换为  %4 - %5",
+    "args0": [
+              {
+              "type": "input_value",
+              "name": "math_cover_to",
+              "check": "number"
+              },
+              {
+              "type": "input_value",
+              "name": "math_cover_to1",
+              "check": "number"
+              },
+              {
+              "type": "input_value",
+              "name": "math_cover_to2",
+              "check": "number"
+              },
+              {
+              "type": "input_value",
+              "name": "math_cover_to3",
+              "check": "number"
+              },
+              {
+              "type": "input_value",
+              "name": "math_cover_to4",
+              "check": "number"
+              }
+    ],
+ "inputsInline":true,
+ "output":"number",
+    "colour": 209
+  },
+ {
+ "type": "math_cover_proportion",
+ "message0": "将 %1 转化为 %2 - %3 中的比例",
+ "args0": [
+           {
+           "type": "field_dropdown",
+           "name": "math_cover_proportion",
+           "options": [
+                       [
+                        "IN1",
+                        "IN1"
+                        ],
+                       [
+                        "IN2",
+                        "IN2"
+                        ],
+                       [
+                        "IN3",
+                        "IN3"
+                        ]
+                       ]
+           },
+           {
+           "type": "input_value",
+           "name": "math_cover_proportion1",
+           "check": "number"
+           },
+           {
+           "type": "input_value",
+           "name": "math_cover_proportion2",
+           "check": "number"
+           }
+           ],
+ "inputsInline":true,
+ "output":"number",
+ "colour": 209
+ }
+
+
+]

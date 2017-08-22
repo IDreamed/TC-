@@ -1,0 +1,103 @@
+<toolbox>
+    <category name="开始" colour="36" icon="z1_kaiqi">
+        
+        <!--    <block type="while_start"></block>-->
+        <block type="while"></block>
+        <block type="return_status"></block>
+        <block type="function"></block>
+        <block type="do_function"></block>
+        
+        
+        
+    </category>
+    
+    <category name="电机" colour="340" icon="z1_dianji">
+        <block type="machine_speed_direction"></block>
+        <!--    <block type="machine_speed"></block>-->
+        <block type="machine_stop"></block>
+        <block type="machine_two_stop"></block>
+        <block type="fan_stop"></block>
+        <block type="fan_speed"></block>
+        <block type="machine_swing"></block>
+    </category>
+    <category name="灯阵" colour="170" icon="dengzhen">
+        
+        <!--        <block type="set_light_image"></block>-->
+        <!--        <block type="set_light_color"></block>-->
+        <!--        <block type="set_light_animate"></block>-->
+        <!--        <block type="set_light_text"></block>-->
+        <!--        <block type="set_light_text_color"></block>-->
+        <!--        <block type="set_light_speed"></block>-->
+        
+        <block type="light_on_off"></block>
+        <block type="light_caution_on_off"></block>
+        <block type="light_color"></block>
+        <block type="highlight_level"></block>
+        <block type="highlight_on_off"></block>
+        <block type="light1"></block>
+        <block type="light2"></block>
+        
+        
+    </category>
+    
+    <category name="声音" colour="209" icon="z1_shengyin">
+        <block type="animal_sound"></block>
+        <block type="transport_sound"></block>
+        <block type="daily_words"></block>
+        <block type="music_sound"></block>
+        <block type="buzzer_level"></block>
+    </category>
+    <category name="端口" colour="200" icon="duankou">
+        <block type="port_on_off"></block>
+        <block type="port_type"></block>
+        <block type="port_in"></block>
+        <block type="port_out"></block>
+        
+    </category>
+    
+    <category name="时间" colour="105" icon="shijian">
+        <block type="long_time"></block>
+        <block type="start_timer"></block>
+        <block type="end_timer"></block>
+        <block type="reset_timer"></block>
+        <block type="set_timer_unit"></block>
+        <!--    <block type="wait_port_open"></block>-->
+        <block type="wait_do"></block>
+        <block type="random_time"></block>
+        
+    </category>
+    
+    <!--<category name="数学" colour="276" icon="shuxue">-->
+    <!--    <block type="math_operator"></block>-->
+    <!--    <block type="math_even"></block>-->
+    <!--    <block type="math_integer"></block>-->
+    <!--    <block type="math_trans"></block>-->
+    <!--    <block type="math_random"></block>-->
+    <!--    -->
+    <!--</category>-->
+    
+    <category name="控制" colour="311" icon="z1_kongzhi">
+        <block type="always_repeat"></block>
+        <block type="repetition_num"></block>
+        <block type="repetition_until1"></block>
+        <block type="repetition_until2"></block>
+        <block type="if"></block>
+        <block type="if2"></block>
+        <block type="if_else"></block>
+        <block type="if_else2"></block>
+        <block type="break"></block>
+        
+    </category>
+    
+    <category name="变量" colour="235" icon="gj_bianliang">
+        <block type="set_value"></block>
+        <block type="use_change"></block>
+        <block type="variable_repetition_num"></block>
+        <!--    <block type="set_machine_value"></block>-->
+        <block type="variable_repetition"></block>
+        <block type="variable_if"></block>
+        <block type="variable_if_else"></block>
+        
+    </category>
+    
+</toolbox>

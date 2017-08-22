@@ -1,0 +1,259 @@
+//
+//  Control.pch
+//  BlocklyApp
+//
+//  Created by 张 on 2017/6/15.
+//  Copyright © 2017年 text. All rights reserved.
+//
+
+#ifndef Control_pch
+#define Control_pch
+
+
+#ifdef __OBJC__
+
+#import <Blockly/Blockly.h>
+#import <Blockly/Blockly-Swift.h>
+#import "APPControll.h"
+#import "CustomHUD.h"
+#import "SuperViewController.h"
+
+
+#pragma mark nslog debug 定义
+
+#ifdef DEBUG
+#define NSLog(...) NSLog(__VA_ARGS__)
+#else
+#define NSLog(...)
+#endif
+
+#pragma mark 发送指令宏定义
+///通知名称的前缀 后面跟端口号
+#define NAME_HEAD @"Point%02x"
+
+
+///关于通知和typename之间的宏
+///停止全部端口输出
+#define ALL_STOP_CMD @"c56a0006110003ff0100"
+
+///端口设置
+#define SET_POINT @"c56a0009030006%02lx00%02lx000000"
+
+#define SHUZI 0x0a
+#define MONI 0x03
+
+
+///电机指令相关
+/*
+    - 电机指令头
+    -参数为:   
+            端口: 一字节 04 05 09 0a
+            转向: 一字节 01正转 02反转
+            速度: 一字节 14最慢  28慢  3C正常  50快  64最快 十六进制
+            分钟: 一字节 0-59十进制
+            秒:  一字节 0-59十进制
+            毫秒: 二字节 0-999 十进制
+ */
+#define MACHINE_HEAD @"c56a000c050009%02x0708%02x%02x%02x%02x%04x"
+///电机A端口
+#define POINT_MACHINE_A @"04";
+///电机B端口
+#define POINT_MACHINE_B @"05";
+///电机C端口
+#define POINT_MACHINE_C @"09";
+///电机D端口
+#define POINT_MACHINE_D @"0a";
+
+///RGB灯
+
+/*
+ - RGBD灯颜色设置
+ -参数为:
+ 端口: 一字节 03
+ 红: 一字节 00-ff 十六进制
+ 绿: 一字节 00-ff 十六进制
+ 蓝: 一字节 00-ff 十六进制
+  */
+#define RGBLight @"c56a0009050006%@020d%02x%02x%02x"
+
+/*
+ - 灯光亮度设置
+ -参数为:
+ 端口: 一字节 03
+ 亮度等级: 00-64
+ */
+
+#define LIGHT_LIVE @"c56a0008050005%02lx010a%02lx00"
+///RGB灯端口
+#define POINT_RGB @"06"
+///高亮灯端口
+#define POINT_HIGHTLIGHT @"06"
+///灯格端口
+#define POINT_LIGHT @"06"
+
+
+///播放声音
+
+//播放文件 参数文件序号 00-ff
+#define PLAY_SOUND @"c56a00060f00031901%02x"
+///蜂鸣器  参数 端口号 音阶  时间为软件控制
+#define PLAY_BUZZER @"c56a0008050005%02lx010B%02x00"
+///蜂鸣器端口
+#define POINT_BUZZER @"03"
+
+/////动画 端口号 上报类型 0连续上报 1单次上报 255禁止上报 上报参数 连续上报有效0默认1S 表示时间间隔 单位0.1s
+//#define ANIMENTION @"c56a00080d0005%02x0101%02x%02x"
+/////动画端口号
+//#define POINT_ANIMENTION @"01"
+
+///声控传感器 端口号 ///模拟值 00-ff
+#define SOUND @"c56a00080d0005020101000a"
+///声控传感器端口号
+#define POINT_SOUND @"02"
+///声控关闭
+#define SOUND_OF @"c56a00080d0005020101ff00"
+
+///颜色传感器  端口号 ///颜色值 1~6；0 - 无色；1-白色；2-黑色；3-红；4-绿色；5-蓝色；6-黄色
+////颜色传感器 //0 - 连续上报；1 - 单次上报；255 - 禁止上报；
+#define COLOR @"c56a00080d00050%02lx01040002"
+///颜色端口号
+//#define POINT_IFRARED @"08"
+///颜色关闭
+#define COLOR_OF @"c56a00080d000508010cff00"
+
+////超声波传感器 //0 - 连续上报；1 - 单次上报；255 - 禁止上报；
+#define WAVES @"c56a00080d0005%02lx0104000a"
+///超声波端口号
+//#define POINT_IFRARED @"08"
+///超声波关闭
+#define WAVES_OF @"c56a00080d0005080104ff00"
+
+///红外线亮度传感器 //0 - 连续上报；1 - 单次上报；255 - 禁止上报；
+#define INFRARED @"c56a00080d00050101010002"
+///红外线亮度端口号
+//#define POINT_IFRARED @"01"
+///红外线关闭
+#define INFRARED_OF @"c56a00080d0005010101ff00"
+
+#pragma mark 颜色宏
+
+#define COLOR_WHITE @"ffffff"
+#define COLOR_RED @"ff0000"
+#define COLOR_ORANGE @"FF7F00"
+#define COLOR_BLUE @"0000FF"
+#define COLOR_GREEN @"00ff00"
+#define COLOR_PURPLE @"7F007F"
+#define COLOR_CYAN @"00ffff"
+
+
+#pragma mark 接收指令结构体
+
+typedef struct {
+    
+    ///开始位1
+    UInt8 startBit1;
+    ///开始位2
+    UInt8 startBit2;
+    ///后边指令长度1
+    UInt8 lenth1;
+    ///后边指令长度2
+    UInt8 lenth2;
+    ///输入输出类型
+    UInt8 input;
+    ///后边命令长度1
+    UInt8 CMDLenth1;
+    ///后边命令长度2
+    UInt8 CMDLenth2;
+    ///端口号
+    UInt8  point;
+    ///引脚1
+    UInt8 type1;
+    ///引脚2
+    UInt8 typy2;
+    ///按下松开 00 按下 01 松开
+    UInt8 value1;
+    ///引脚或补位
+    UInt8 value2;
+    
+} ButtonCallback;
+
+typedef struct {
+    
+    ///开始位1
+    UInt8 startBit1;
+    ///开始位2
+    UInt8 startBit2;
+    ///后边指令长度1
+    UInt8 lenth1;
+    ///后边指令长度2
+    UInt8 lenth2;
+    ///输入输出类型
+    UInt8 input;
+    ///后边命令长度1
+    UInt8 CMDLenth1;
+    ///后边命令长度2
+    UInt8 CMDLenth2;
+    ///成功失败 01 FF
+    UInt8 success;
+    //端口
+    UInt8 point;
+    
+} FiveLenthCallback;
+
+typedef struct {
+    ///开始位1
+    UInt8 startBit1;
+    ///开始位2
+    UInt8 startBit2;
+    ///后边指令长度1
+    UInt8 lenth1;
+    ///后边指令长度2
+    UInt8 lenth2;
+    ///输入输出类型
+    UInt8 input;
+    ///后边命令长度1
+    UInt8 CMDLenth1;
+    ///后边命令长度2
+    UInt8 CMDLenth2;
+    ///成功失败 01 FF
+    UInt8  success;
+    //端口
+    UInt8 point;
+    ///可能是补位
+    UInt8 type;
+    
+} SixLenthCallback;
+
+typedef struct {
+    
+    ///开始位1
+    UInt8 startBit1;
+    ///开始位2
+    UInt8 startBit2;
+    ///后边指令长度1
+    UInt8 lenth1;
+    ///后边指令长度2
+    UInt8 lenth2;
+    ///输入输出类型
+    UInt8 input;
+    ///后边命令长度1
+    UInt8 CMDLenth1;
+    ///后边命令长度2    ///成功
+    UInt8  success;
+    ///端口号
+    UInt8 point;
+    ///引脚1
+    UInt8 type1;
+    ///引脚2
+    UInt8 typy2;
+    ///引脚3
+    UInt8 type3;
+    
+} eightLenthCallback;
+
+#endif
+
+
+
+
+#endif /* Control_pch */

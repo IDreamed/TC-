@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "FieldInputView.(refreshView(forFlags : LayoutFlag, animated : Bool) -&gt; ()).(closure #1):FieldInputView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "AlertViewControl.updateTitle(model : RectModel, index : Int) -&gt; ():ExtensionAlertControl.swift">
+      </ContextState>
+      <ContextState
+         contextName = "static FieldImageView.measureLayout(FieldLayout, scale : CGFloat) -&gt; CGSize:FieldImageView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "AlertViewControl.updateWhileValue(index : Int) -&gt; ():ExtensionAlertControl.swift">
+      </ContextState>
+      <ContextState
+         contextName = "AlertViewControl.getWhileAttStringWith(value : String) -&gt; ():ExtensionAlertControl.swift">
+      </ContextState>
+      <ContextState
+         contextName = "AlertViewControl.(createWhileView() -&gt; ()).(closure #2):ExtensionAlertControl.swift">
+      </ContextState>
+      <ContextState
+         contextName = "RectCollectionView.modelArray.didset:RectCollectionView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SetPointView.touchClink(sender : UIButton) -&gt; ():SetPointView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "WorkbenchViewController.loadToolbox(Toolbox) throws -&gt; ():WorkbenchViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SoundView.coffSubView(level : String) -&gt; ():SoundView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RectCollectionCell.configSubView() -&gt; ():RectCollectionView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "AlertViewControl.createFanSpeed() -&gt; ():ExtensionAlertControl.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

@@ -1,0 +1,294 @@
+[
+ {
+ "type": "machine_speed_direction",
+ "message0": "设置电机 %1 %2 %3 %4 %5",
+ "args0": [
+           {
+           "type": "field_dropdown",
+           "name": "machine_speed_direction",
+           "options": [
+                       [
+                        "OUT1",
+                        "OUT1"
+                        ],
+                       [
+                        "OUT2",
+                        "OUT2"
+                        ],
+                       [
+                        "OUT3",
+                        "OUT3"
+                        ]
+                       ]
+           },
+           {
+           "type": "field_input",
+           "name": "machine_speed_direction1",
+           "text": "0%"
+           },
+           {
+           "type": "field_dropdown",
+           "name": "machine_speed_direction2",
+           "options": [
+                       [
+                        "顺时针",
+                        "顺时针"
+                        ],
+                       [
+                        "逆时针",
+                        "逆时针"
+                        ]
+                       ]
+           },
+           {
+           "type": "input_value",
+           "name": "machine_speed_direction3",
+           "check": "number",
+           },
+           {
+           "type": "field_dropdown",
+           "name": "machine_speed_direction4",
+           "options": [
+                       [
+                        "ms",
+                        "ms"
+                        ],
+                       [
+                        "s",
+                        "s"
+                        ]
+                       ]
+           }
+           ],
+ "inputsInline": true,
+ "previousStatement": null,
+ "nextStatement": null,
+ "colour": 340
+ },
+ {
+ "type": "machine_angle_direction",
+ "message0": "设置电机 %1 %2 %3",
+ "args0": [
+           {
+           "type": "field_input",
+           "name": "machine_angle_direction",
+           "text": "OUT1"
+           },
+           {
+           "type": "field_input",
+           "name": "machine_angle_direction1",
+           "text": "0°"
+           },
+           {
+           "type": "field_image",
+           "name":"machine_angle_direction2",
+           "src": "direction",
+           "width": 26,
+           "height":  26,
+           "alt": "*"
+           }
+           ],
+ "inputsInline": true,
+ "previousStatement": null,
+ "nextStatement": null,
+ "colour": 340
+ },
+ {
+ "type": "machine_stop",
+ "message0": "停止电机 %1",
+ "args0": [
+           {
+           "type": "field_dropdown",
+           "name": "machine_stop",
+           "options": [
+                       [
+                        "OUT1",
+                        "OUT1"
+                        ],
+                       [
+                        "OUT2",
+                        "OUT2"
+                        ],
+                       [
+                        "OUT3",
+                        "OUT3"
+                        ]
+                       ]
+           }
+           ],
+ "previousStatement": null,
+ "nextStatement": null,
+ "colour": 340
+ },
+ {
+ "type": "machine_two_stop",
+ "message0": "停止电机 %1 %2",
+ "args0": [
+           {
+           "type": "field_dropdown",
+           "name": "machine_two_stop",
+           "options": [
+                       [
+                        "OUT1",
+                        "OUT1"
+                        ],
+                       [
+                        "OUT2",
+                        "OUT2"
+                        ],
+                       [
+                        "OUT3",
+                        "OUT3"
+                        ]
+                       ]
+           },
+           {
+           "type": "field_dropdown",
+           "name": "machine_two_stop",
+           "options": [
+                       [
+                        "OUT1",
+                        "OUT1"
+                        ],
+                       [
+                        "OUT2",
+                        "OUT2"
+                        ],
+                       [
+                        "OUT3",
+                        "OUT3"
+                        ]
+                       ]
+           }
+           ],
+ "previousStatement": null,
+ "nextStatement": null,
+ "colour": 340
+ },
+ {
+ "type": "fan_stop",
+ "message0": "停止风扇 %1 ",
+ "args0": [
+           {
+           "type": "field_dropdown",
+           "name": "fan_stop",
+           "options": [
+                       [
+                        "OUT2",
+                        "OUT2"
+                        ],
+                       [
+                        "OUT3",
+                        "OUT3"
+                        ]
+                       ]
+           }
+           
+           ],
+ "previousStatement": null,
+ "nextStatement": null,
+ "colour": 340
+ },
+ {
+ "type": "fan_speed",
+ "message0": "风扇速度 %1 %2",
+ "args0": [
+           {
+           "type": "field_dropdown",
+           "name": "fan_speed",
+           "options": [
+                       [
+                        "OUT2",
+                        "OUT2"
+                        ],
+                       [
+                        "OUT3",
+                        "OUT3"
+                        ]
+                       ]
+           },
+           {
+           "type": "field_input",
+           "name": "fan_speed1",
+           "text": "0%"
+           }
+           ],
+ "previousStatement": null,
+ "nextStatement": null,
+ "colour": 340
+ },
+ {
+ "type": "machine_swing",
+ "message0": "振动电机振幅 %1  %2",
+ "args0": [
+           {
+           "type": "field_dropdown",
+           "name": "machine_swing",
+           "options": [
+                       [
+                        "OUT1",
+                        "OUT1"
+                        ],
+                       [
+                        "OUT2",
+                        "OUT2"
+                        ],
+                       [
+                        "OUT3",
+                        "OUT3"
+                        ]
+                       ]
+           },
+           {
+           "type": "field_dropdown",
+           "name": "machine_swing1",
+           "options": [
+                       [
+                        "1级",
+                        "1级"
+                        ],
+                       [
+                        "2级",
+                        "2级"
+                        ],
+                       [
+                        "3级",
+                        "3级"
+                        ],
+                       [
+                        "4级",
+                        "4级"
+                        ],
+                       [
+                        "5级",
+                        "5级"
+                        ],
+                       [
+                        "6级",
+                        "6级"
+                        ],
+                       [
+                        "7级",
+                        "7级"
+                        ],
+                       [
+                        "8级",
+                        "8级"
+                        ],
+                       [
+                        "9级",
+                        "9级"
+                        ],
+                       [
+                        "10级",
+                        "10级"
+                        ]
+                       ]
+           }
+           ],
+ "previousStatement": null,
+ "nextStatement": null,
+ "colour": 340
+ }
+ 
+ ]
