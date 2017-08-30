@@ -497,7 +497,7 @@
             "type": "field_input",
             "name": "text",
             "text":""
-            },
+            }
             ],
   "inputsInline": true,
   "output": "text",

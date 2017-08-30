@@ -1,32 +1,31 @@
 <toolbox>
     <category name="开始" colour="36" icon="z1_kaiqi">
-        
+
         <!--    <block type="while_start"></block>-->
         <block type="while">
             <value name = "while">
                 <block type="sound_action">
-                   <value name = "sound_action1">
-                   <shadow type="number_value">
-                    
-                    </shadow>
-                   
-                   </value>
+                    <value name = "sound_action1">
+                        <shadow type="number_value">
+
+                        </shadow>
+
+                    </value>
                 </block>
             </value>
         </block>
         <block type="return_status"></block>
         <block type="function"></block>
         <block type="do_function"></block>
-        <block type="sound_action"></block>
-        
+
     </category>
-    
+
     <category name="电机" colour="340" icon="z1_dianji">
-        
+
         <block type="machine_speed_direction">
             <value name = "machine_speed_direction3">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
         </block>
         <block type="machine_stop"></block>
@@ -36,7 +35,7 @@
         <block type="machine_swing"></block>
     </category>
     <category name="灯阵" colour="170" icon="dengzhen">
-        
+
         <block type="animation_image">
             <value name = "animation_image">
                 <block type="animate_light">
@@ -45,63 +44,63 @@
         </block>
         <block type="animate_light"></block>
         <block type="animation_color">
-            
+
             <value name = "animation_color">
-                <block type="colour_value">
-                    
-                </block>
+                <shadow type="colour_value">
+
+                </shadow>
             </value>
-            
+
         </block>
         <block type="animation_rotation"></block>
         <block type="animation_move">
             <value name = "animation_move1">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
         </block>
         <block type="animation_set_XY">
             <value name = "animation_set_XY1">
-                <block type="colour_value">
-                    
-                </block>
+                <shadow type="colour_value">
+
+                </shadow>
             </value>
         </block>
         <block type="colour_value"></block>
         <block type="get_colour"></block>
         <block type="RGB_colour">
             <value name = "RGB_colour">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
             <value name = "RGB_colour1">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
             <value name = "RGB_colour2">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
         </block>
         <!--        <block type="animation_animate"></block>-->
         <block type="animation_text">
             <value name = "animation_text">
-                <block type="text">
-                </block>
+                <shadow type="text">
+                </shadow>
             </value>
-            
+
         </block>
         <block type="animation_text_color">
-            
+
             <value name = "animation_text_color">
-                <block type="colour_value">
-                </block>
+                <shadow type="colour_value">
+                </shadow>
             </value>
-            
+
         </block>
         <block type="animation_speed"></block>
         <block type="text"></block>
-        
+
         <!--    <block type="light_on_off"></block>-->
         <!--    <block type="light_caution_on_off"></block>-->
         <!--    <block type="light_color"></block>-->
@@ -109,36 +108,36 @@
         <!--    <block type="highlight_on_off"></block>-->
         <!--    <block type="light1"></block>-->
         <!--    <block type="light2"></block>-->
-        
-        
+
+
     </category>
-    
+
     <category name="声音" colour="209" icon="z1_shengyin">
         <block type="animal_sound">
             <value name = "animal_sound2">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
         </block>
         <block type="transport_sound">
             <value name = "transport_sound2">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value></block>
         <block type="daily_words">
             <value name = "daily_words2">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value></block>
         <block type="music_sound">
             <value name = "music_sound2">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value></block>
         <block type="buzzer_level">
             <value name = "buzzer_level3">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value></block>
     </category>
     <category name="端口" colour="200" icon="duankou">
@@ -146,144 +145,194 @@
         <block type="port_get_type"></block>
         <block type="port_out">
             <value name = "port_out1">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
         </block>
         <block type="port_on_off"></block>
-        
-        
+
+
     </category>
-    
+
     <category name="时间" colour="105" icon="shijian">
         <block type="long_time">
             <value name = "long_time">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
         </block>
         <block type="start_timer"></block>
         <block type="end_timer"></block>
         <block type="reset_timer"></block>
-        <block type="set_timer_unit"></block>
+        <block type="get_timer"></block>
         <block type="wait_port_open"></block>
         <block type="wait_do">
             <value name = "wait_do2">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
         </block>
-        
+
     </category>
-    
+
     <category name="控制" colour="311" icon="z1_kongzhi">
         <block type="always_repeat">
         </block>
         <block type="repetition_num">
             <value name = "repetition_num">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
-            
+
         </block>
         <block type="repetition_until1">
-            
+
         </block>
         <block type ="repetition_for">
             <value name = "repetition_for">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
             <value name = "repetition_for1">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
             <value name = "repetition_for2">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
             <value name = "repetition_for4">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
         </block>
         <block type="bool_value"></block>
         <block type="not_value"></block>
         <block type="if"></block>
         <block type="if_else"></block>
-        <block type="control_compare"></block>
+        <block type="control_compare">
+            <value name = "control_compare">
+                <shadow type="number_value">
+                </shadow>
+            </value>
+            <value name = "control_compare2">
+                <shadow type="number_value">
+                </shadow>
+            </value>
+        </block>
         <block type="and_or"></block>
         <block type="break"></block>
-        
+
     </category>
-    
+
     <category name="事件" colour="36" icon="z1_kaiqi">
-        
+
         <block type="redline_action">
             <value name = "redline_action1">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
         </block>
         <block type="sound_action">
             <value name = "sound_action1">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
         </block>
         <block type="waves_action">
             <value name = "waves_action1">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
         </block>
         <block type="light_action">
             <value name = "light_action1">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
         </block>
         <block type="pressure_action">
             <value name = "pressure_action1">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
         </block>
-        
+
     </category>
     <category name="数学" colour="209" icon="shijian">
         <block type="number_value"></block>
         <block type="math_calculator">
-            
+
             <value name = "math_calculator">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
             <value name = "math_calculator2">
-                <block type="number_value">
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
-            
-            
+
+
         </block>
         <block type="math_odevity">
             <value name = "math_odevity">
-                <block type="number_value">
-                    <field name="number_value">3.1</field>
-                </block>
+                <shadow type="number_value">
+                </shadow>
             </value>
         </block>
-        <block type="math_intger"></block>
-        <block type="math_cover_to"></block>
-        <block type="math_cover_proportion"></block>
+        <block type="math_intger">
+            <value name = "math_intger">
+                <shadow type="number_value">
+                </shadow>
+            </value>
+        </block>
+        <block type="math_cover_to">
+            <value name = "math_cover_to">
+                <shadow type="number_value">
+                </shadow>
+            </value>
+            <value name = "math_cover_to1">
+                <shadow type="number_value">
+                </shadow>
+            </value>
+            <value name = "math_cover_to2">
+                <shadow type="number_value">
+                </shadow>
+            </value>
+            <value name = "math_cover_to3">
+                <shadow type="number_value">
+                </shadow>
+            </value>
+            <value name = "math_cover_to4">
+                <shadow type="number_value">
+                </shadow>
+            </value>
+
+        </block>
+        <block type="math_cover_proportion">
+            <value name = "math_cover_proportion1">
+                <shadow type="number_value">
+                </shadow>
+            </value>
+            <value name = "math_cover_proportion2">
+                <shadow type="number_value">
+                </shadow>
+            </value>
+        </block>
     </category>
-    
+
     <category name="变量" colour="235" icon="gj_bianliang">
         <block type="create_value"></block>
-        <block type="set_value"></block>
+        <block type="set_value">
+            <value name = "set_value1">
+                <shadow type="number_value">
+                </shadow>
+            </value>
+
+        </block>
         <block type="get_value"></block>
     </category>
-    
-    
-    
+
+
+
 </toolbox>

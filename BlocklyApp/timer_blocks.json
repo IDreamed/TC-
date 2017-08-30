@@ -51,8 +51,8 @@
     "colour": 105
   },
   {
-    "type": "set_timer_unit",
-    "message0": "设置计时器单位  %1 ",
+    "type": "get_timer",
+    "message0": "获取计时器时间 %1 ",
     "args0": [
               {
               "type": "field_dropdown",
@@ -69,8 +69,7 @@
                           ]
               }
     ],
-    "previousStatement": null,
-    "nextStatement": null,
+    "output":"number",
     "colour": 105
   },
   {

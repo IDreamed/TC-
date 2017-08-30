@@ -626,7 +626,7 @@ extension Block {
         return self.name;
     }
     
-    //获取block参数
+    ///2017 07 17 获取block参数
     open func getBlockValues() -> [String] {
         
         var values: [String] = Array();
@@ -658,13 +658,41 @@ extension Block {
                 
                 values.append(str!!);
             }
+            if field.isMember(of: FieldDropdown.self) {
+            
+                let dropDpwn = field as! FieldDropdown;
+                
+                values.append(dropDpwn.options[dropDpwn.selectedIndex].value);
+                
+            }
+            
+            if field.isMember(of: FieldColor.self) {
+            
+                let colour = field as! FieldColor;
+                let str = try? colour.serializedText();
+                values.append(str as! String);
+            }
 
         }
         
         return values;
     }
     
+    ///2017 08 22 获取内部input的block
+   public func allBlockInSelf() -> [Block] {
+    var blocks:[Block] = Array();
+    // Follow input connections
+    for input in self.inputs {
+        if let connectedBlock = input.connectedBlock {
+            blocks.append(connectedBlock)
+        }
+        if let connectedShadowBlock = input.connectedShadowBlock {
+            blocks.append(connectedShadowBlock)
+        }
+    }
     
+    return blocks;
+    }
 //    open func changeBlockFields(block:Block, values:[String]) {
 //        
 //        let input = block.inputs[0];

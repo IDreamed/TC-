@@ -53,12 +53,12 @@ open class FieldImageView: FieldView {
     
     open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         
-//        let isRespon = self.isResponst(view: self);
-//        
-//        if imageView.point(inside: point, with: event) && isRespon {
-//            
-//            return imageView;
-//        }
+        let isRespon = self.isResponst(view: self);
+        
+        if animateView.point(inside: point, with: event) && isRespon {
+            
+            return animateView;
+        }
         
         return super.hitTest(point, with: event);
     
@@ -159,6 +159,7 @@ extension FieldImageView: FieldLayoutMeasurer {
 
     return layout.engine.viewSizeFromWorkspaceSize(fieldImageLayout.size)
   }
+    
 }
 
 

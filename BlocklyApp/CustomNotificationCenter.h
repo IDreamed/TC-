@@ -29,6 +29,8 @@ typedef void (^SuccessBlock)(BOOL);
 
 - (void)addObserver:(id)observer name:(NSString *)name callback:(SEL)blueBlock;
 
+- (void)removeAllNotifitionWithObserver:(id)observer;
+
 //- (NSString *)getNotifationNameWith:(NSString *)typeName;
 
 @end

@@ -24,8 +24,8 @@
            {
            "type": "input_value",
            "name": "sound_action1",
-           "check": "number",
-           },
+           "check": "number"
+           }
            ],
  "inputsInline": true,
  "output": "bool",
@@ -58,8 +58,8 @@
            {
            "type": "input_value",
            "name": "redline_action1",
-           "check": "number",
-           },
+           "check": "number"
+           }
            ],
  "inputsInline": true,
  "output": "bool",
@@ -92,8 +92,8 @@
            {
            "type": "input_value",
            "name": "waves_action1",
-           "check": "number",
-           },
+           "check": "number"
+           }
            ], "inputsInline": true,
  "output": "bool",
  "colour": 26,
@@ -125,8 +125,8 @@
            {
            "type": "input_value",
            "name": "light_action1",
-           "check": "number",
-           },
+           "check": "number"
+           }
            ],
  "inputsInline": true,
  "output": "bool",
@@ -159,8 +159,8 @@
            {
            "type": "input_value",
            "name": "pressure_action1",
-           "check": "number",
-           },
+           "check": "number"
+           }
            ],
  "inputsInline": true,
  "output": "bool",

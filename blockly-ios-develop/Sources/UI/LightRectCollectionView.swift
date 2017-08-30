@@ -13,7 +13,7 @@ class LightRectCollectionView: UIView {
     let selfRuntimeKey = "selfColorKey";
     
     var dataArray: [Int] = Array();
-    let panding: CGFloat = 1.0 / 41.0;
+    let panding: CGFloat = 1.0 / 41.5;
 
     let cellKey: String = "lightRectCell";
     var dataString: String? {
@@ -49,6 +49,8 @@ class LightRectCollectionView: UIView {
                 dataArray.append(Int(indexStr)!);
             }
         }
+        
+        self.collecton.reloadData();
     }
     
     override init(frame: CGRect) {
@@ -67,10 +69,12 @@ class LightRectCollectionView: UIView {
         collecton.frame = self.bounds;
         collecton.dataSource = self;
         collecton.delegate = self;
-        collecton.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellKey);
-        self.addSubview(collecton);
-        self.backgroundColor = UIColor.init(red: 0.133, green: 0.133, blue: 0.133, alpha: 1);
         
+        collecton.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellKey);
+        collecton.backgroundColor = UIColor.init(red: 0.133, green: 0.133, blue: 0.133, alpha: 1);
+        self.backgroundColor = UIColor.white;
+        self.addSubview(collecton);
+
     }
 
 }
@@ -92,8 +96,11 @@ extension LightRectCollectionView : UICollectionViewDelegateFlowLayout, UICollec
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
+        collecton.frame = self.bounds;
+
         return dataArray.count;
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -110,31 +117,32 @@ extension LightRectCollectionView : UICollectionViewDelegateFlowLayout, UICollec
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let top = panding * self.bounds.width;
+        let top = panding * collectionView.bounds.width;
         return CGSize.init(width: top*4, height: top*4);
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
-        let top = panding * self.bounds.width;
+        let top = panding * collectionView.bounds.width;
         return top;
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        let top = panding * self.bounds.width;
+        let top = panding * collectionView.bounds.width;
         return top;
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        let top = panding * self.bounds.width;
+        let top = panding * collectionView.bounds.width;
         
         return UIEdgeInsetsMake(top, top, top, top);
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        
+        NSLog("tap %d", indexPath.item);
     }
+    
 }

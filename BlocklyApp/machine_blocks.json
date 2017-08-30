@@ -22,9 +22,50 @@
                        ]
            },
            {
-           "type": "field_input",
-           "name": "machine_speed_direction1",
-           "text": "0%"
+           "type": "field_dropdown",
+           "name": "machine_speed_direction2",
+           "options": [
+                       [
+                        "10%",
+                        "10%"
+                        ],
+                       [
+                        "20%",
+                        "20%"
+                        ],
+                       [
+                        "30%",
+                        "30%"
+                        ],
+                       [
+                        "40%",
+                        "40%"
+                        ],
+                       [
+                        "50%",
+                        "50%"
+                        ],
+                       [
+                        "60%",
+                        "60%"
+                        ],
+                       [
+                        "70%",
+                        "70%"
+                        ],
+                       [
+                        "80%",
+                        "80%"
+                        ],
+                       [
+                        "90%",
+                        "90%"
+                        ],
+                       [
+                       "100%",
+                        "100%"
+                       ]
+                       ]
            },
            {
            "type": "field_dropdown",
@@ -43,7 +84,7 @@
            {
            "type": "input_value",
            "name": "machine_speed_direction3",
-           "check": "number",
+           "check": "number"
            },
            {
            "type": "field_dropdown",
@@ -208,10 +249,51 @@
                        ]
            },
            {
-           "type": "field_input",
+           "type": "field_dropdown",
            "name": "fan_speed1",
-           "text": "0%"
-           }
+           "options": [
+                       [
+                        "10%",
+                        "10%"
+                        ],
+                       [
+                        "20%",
+                        "20%"
+                        ],
+                       [
+                        "30%",
+                        "30%"
+                        ],
+                       [
+                        "40%",
+                        "40%"
+                        ],
+                       [
+                        "50%",
+                        "50%"
+                        ],
+                       [
+                        "60%",
+                        "60%"
+                        ],
+                       [
+                        "70%",
+                        "70%"
+                        ],
+                       [
+                        "80%",
+                        "80%"
+                        ],
+                       [
+                        "90%",
+                        "90%"
+                        ],
+                       [
+                        "100%",
+                        "100%"
+                        ]
+                       ]
+           },
            ],
  "previousStatement": null,
  "nextStatement": null,

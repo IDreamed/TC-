@@ -127,6 +127,13 @@ open class BlocklyPanGestureRecognizer: UIGestureRecognizer {
       let location = touch.location(in: view)
       // If the hit tested view is not an ancestor of a block, cancel the touch(es).
         
+        ////2017 08 30 修复编辑状态拖动程序崩溃
+        let touchView = touch.view;
+        if view != nil {
+            
+            view!.endEditing(true);
+        }
+        
       if let attachedView = view,
         let hitView = attachedView.hitTest(location, with: event),
         let block = owningBlockView(hitView)

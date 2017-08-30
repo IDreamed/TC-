@@ -89,10 +89,9 @@ static BlocklyControl * control;
 
 - (void)stopAllBlockTree {
     
-    [[BLEControl sharedControl] sendCMDToBluetooth:INFRARED_OF];
-    [[BLEControl sharedControl] sendCMDToBluetooth:SOUND_OF];
-    [[BLEControl sharedControl] sendCMDToBluetooth:WAVES_OF];
-    [[BLEControl sharedControl] sendCMDToBluetooth:COLOR_OF];
+    [[BLEControl sharedControl] sendCMDToBluetooth:[NSString stringWithFormat:DEFAULT_OF,1]];
+    [[BLEControl sharedControl] sendCMDToBluetooth:[NSString stringWithFormat:DEFAULT_OF,1]];
+    [[BLEControl sharedControl] sendCMDToBluetooth:[NSString stringWithFormat:DEFAULT_OF,1]];
 
     [self.mianTree endRun];
     self.mianTree = nil;

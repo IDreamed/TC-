@@ -2,22 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>while</key>
-	<string>c56a000608000301%02lx01  </string>
-	<key>红外线</key>
-	<string>c56a00080d00050101010002</string>
-	<key>超声波</key>
-	<string>c56a00080d0005080104ff00</string>
-	<key>声控</key>
-	<string>c56a00080d00050201010002</string>
-	<key>颜色</key>
-	<string>c56a00080d00050801040002</string>
-	<key>move_ahead</key>
-	<string>c56a000c050009%02lx070801%02x%02x%02x%04x</string>
-	<key>move_back</key>
-	<string>c56a000c050009%02lx070802%02x%02x%02x%04x</string>
-	<key>move_stop</key>
-	<string>c56a000c050009%02lx0708000000000000</string>
 	<key>machine_speed_direction</key>
 	<string>c56a000c050009%02lx0708%02x%02x%02x%02x%04x</string>
 	<key>machine_speed</key>
@@ -27,10 +11,28 @@
 	<key>machine_two_stop</key>
 	<string>c56a000c050009%02lx0708010000000000</string>
 	<key>fan_stop</key>
-	<string>c56a000c050009%02lx0708010000000000</string>
+	<string>c56a0008050005%02lx010a%02x00</string>
 	<key>fan_speed</key>
-	<string>c56a000c050009%02lx0708010000000000</string>
+	<string>c56a0008050005%02lx010a%02x00</string>
 	<key>machine_swing</key>
+	<string></string>
+	<key>animation_image</key>
+	<string></string>
+	<key>animation_color</key>
+	<string></string>
+	<key>animation_rotation</key>
+	<string></string>
+	<key>animation_move</key>
+	<string></string>
+	<key>animation_set_XY</key>
+	<string></string>
+	<key>animation_animate</key>
+	<string></string>
+	<key>animation_text</key>
+	<string></string>
+	<key>animation_text_color</key>
+	<string></string>
+	<key>animation_speed</key>
 	<string></string>
 	<key>light_on_off</key>
 	<string>c56a0009050006%02lx020d%02lx</string>
@@ -54,11 +56,15 @@
 	<string>c56a00060f0003%02lx01%02x</string>
 	<key>transport_sound</key>
 	<string>c56a00060f0003%02lx01%02x</string>
-	<key>buzzer_on_off</key>
-	<string>c56a0008050005%02lx010B%02x00</string>
 	<key>buzzer_level</key>
 	<string>c56a0008050005%02lx010B%02x00</string>
-	<key>own_sound</key>
+	<key>port_out</key>
+	<string></string>
+	<key>port_on_off</key>
+	<string></string>
+	<key>wait_port_open</key>
+	<string></string>
+	<key>wait_do</key>
 	<string></string>
 	<key>function</key>
 	<string></string>

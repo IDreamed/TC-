@@ -38,6 +38,11 @@
 
 @property (strong, nonatomic) SetModel * model;
 
+///计时器开始时间
+@property (strong, nonatomic) NSDate * beginTime;
+///计时器结束时间
+@property (strong, nonatomic) NSDate * endTime;
+
 
 
 + (instancetype)shardControl;

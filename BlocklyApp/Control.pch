@@ -29,7 +29,7 @@
 
 #pragma mark 发送指令宏定义
 ///通知名称的前缀 后面跟端口号
-#define NAME_HEAD @"Point%02x"
+#define NAME_HEAD(a) ((a)>3) ? [NSString stringWithFormat:@"OUT%02x",(a-3)] : [NSString stringWithFormat:@"IN%02x",(a)]
 
 
 ///关于通知和typename之间的宏
@@ -47,7 +47,7 @@
 /*
     - 电机指令头
     -参数为:   
-            端口: 一字节 04 05 09 0a
+            端口: 一字节
             转向: 一字节 01正转 02反转
             速度: 一字节 14最慢  28慢  3C正常  50快  64最快 十六进制
             分钟: 一字节 0-59十进制
@@ -55,14 +55,7 @@
             毫秒: 二字节 0-999 十进制
  */
 #define MACHINE_HEAD @"c56a000c050009%02x0708%02x%02x%02x%02x%04x"
-///电机A端口
-#define POINT_MACHINE_A @"04";
-///电机B端口
-#define POINT_MACHINE_B @"05";
-///电机C端口
-#define POINT_MACHINE_C @"09";
-///电机D端口
-#define POINT_MACHINE_D @"0a";
+
 
 ///RGB灯
 
@@ -106,34 +99,17 @@
 /////动画端口号
 //#define POINT_ANIMENTION @"01"
 
-///声控传感器 端口号 ///模拟值 00-ff
-#define SOUND @"c56a00080d0005020101000a"
-///声控传感器端口号
-#define POINT_SOUND @"02"
+
+
+///普通传感器  端口号
+/*///颜色值 1~6；0 - 无色；1-白色；2-黑色；3-红；4-绿色；5-蓝色；6-黄色*/
+////普通传感器 //0 - 连续上报；1 - 单次上报；255 - 禁止上报；
+#define DEFAULT @"c56a00080d00050%02lx01040002"
+////声控传感器 //0 - 连续上报；1 - 单次上报；255 - 禁止上报；
+#define SOUND @"c56a00080d0005%02lx0104000a"
 ///声控关闭
-#define SOUND_OF @"c56a00080d0005020101ff00"
+#define DEFAULT_OF @"c56a00080d0005%02lx0101ff00"
 
-///颜色传感器  端口号 ///颜色值 1~6；0 - 无色；1-白色；2-黑色；3-红；4-绿色；5-蓝色；6-黄色
-////颜色传感器 //0 - 连续上报；1 - 单次上报；255 - 禁止上报；
-#define COLOR @"c56a00080d00050%02lx01040002"
-///颜色端口号
-//#define POINT_IFRARED @"08"
-///颜色关闭
-#define COLOR_OF @"c56a00080d000508010cff00"
-
-////超声波传感器 //0 - 连续上报；1 - 单次上报；255 - 禁止上报；
-#define WAVES @"c56a00080d0005%02lx0104000a"
-///超声波端口号
-//#define POINT_IFRARED @"08"
-///超声波关闭
-#define WAVES_OF @"c56a00080d0005080104ff00"
-
-///红外线亮度传感器 //0 - 连续上报；1 - 单次上报；255 - 禁止上报；
-#define INFRARED @"c56a00080d00050101010002"
-///红外线亮度端口号
-//#define POINT_IFRARED @"01"
-///红外线关闭
-#define INFRARED_OF @"c56a00080d0005010101ff00"
 
 #pragma mark 颜色宏
 

@@ -504,19 +504,14 @@ static BLEControl * control;
 
 
 
-- (void)sendBluetoothWithCurrentBlock:(BKYBlock *)block {
+- (void)sendCMDToBluetooth:(NSArray *)values withBlockName:(NSString *)blockName {
     
     
+    //根据type name和参数拼接蓝牙的发送数据
     
-    //根据type name和参数拼接蓝牙的发送数据  并添加监听
-    NSArray * tyArray = @[@"repetition_until1",@"repetition_until2",@"if",@"if2",@"if_else",@"if_else2",@"wait_do"];
     
-    NSDictionary * keys = [self returnOnRobot:block.name blockValues:[block getBlockValues]];
+    NSDictionary * keys = [self returnOnRobot:blockName blockValues:values];
 
-    if ([tyArray containsObject:block.name]) {
-        
-        keys = [self returnOnRobot:@"while" blockValues:[block getBlockValues]];
-    }
     
     for (NSNumber * key in keys.allKeys) {
         
@@ -525,7 +520,7 @@ static BLEControl * control;
             NSInteger point = [key integerValue] /10;
             NSInteger value = [key integerValue] % 10 ? MONI: SHUZI;
             NSString * send = [NSString stringWithFormat:SET_POINT,(long)point,(long)value];
-            NSString * name = [NSString stringWithFormat:NAME_HEAD,(int)point];
+            NSString * name = NAME_HEAD(point);
             [self.portSource setObject:keys[key] forKey:name];
             [[CustomNotificationCenter sharedCenter] addObserver:self name:name callback:@selector(setPointCallback:)];
             [self.peripheral writeValue:[BLEControl convertHexStrToData:send] forCharacteristic:self.ch type:CBCharacteristicWriteWithoutResponse];
@@ -586,42 +581,32 @@ static BLEControl * control;
         return dict;
     }
     
-    if ([blockName isEqualToString:@"while"]) {
-        
-        if (newValues.count < 3) {
-            
-            NSString * value = [NSString stringWithFormat:@"%@%@",blockValues[0],blockValues[1]];
-            [newValues replaceObjectAtIndex:0 withObject:value];
-        }
-        
-        for (int i=0; i<newValues.count; i+=2) {
-            
-            NSString * value = newValues[i];
-            NSInteger point = [[value componentsSeparatedByString:@"IN"].lastObject integerValue];
-            
-            if ([value containsString:@"yanse"]) {
-                
-                sendKey = [NSString stringWithFormat:COLOR,point];
-            } else {
-                sendKey = [NSString stringWithFormat:WAVES,point];
-            }
-
-            [dict setObject:sendKey forKey:@(point)];
-        }
-    }
-    
     if ([blockName isEqualToString:@"machine_speed_direction"]) {
         
         NSInteger point = [[blockValues[0] componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
         
-        NSInteger fangxiang = [blockValues[2] isEqualToString:@"dj_shunshizhen_1"];
+        NSInteger fangxiang = [blockValues[2] isEqualToString:@"逆时针"];
         NSInteger sudu = [blockValues[1] integerValue]-1;
-        NSInteger min = 0;
-        NSArray * times = [blockValues[3] componentsSeparatedByString:@"."];
-        NSInteger s = [times[0] integerValue];
-        NSInteger ms = [times[1] integerValue];
+        NSInteger time = [blockValues[3] integerValue];
+            NSInteger ms = 0;
+                NSInteger s = 0;
+                NSInteger m = 0;
+                if ([blockValues.lastObject isEqualToString:@"ms"]) {
         
-        sendKey = [NSString stringWithFormat:MACHINE_HEAD,point,fangxiang,sudu,min,s,ms];
+                     ms = time % 1000;
+                     s = ms /1000;
+                     m = s / 60;
+                    s = s % 60;
+        
+        
+                } else {
+                
+                     m = time / 60;
+                     s = time % 60;
+                }
+
+        
+        sendKey = [NSString stringWithFormat:MACHINE_HEAD,point,fangxiang,sudu,m,s,ms];
         
         if (point == 5 || point == 6 || point == 4) {
             point = point * 10 + 1;///数字信号
@@ -673,7 +658,7 @@ static BLEControl * control;
     }
     if ([blockName isEqualToString:@"fan_speed"]) {
         
-        NSInteger speed = [blockValues.lastObject integerValue] > 0? [blockValues.lastObject integerValue] : [blockValues.lastObject integerValue] + 1;
+        NSInteger speed = [blockValues.lastObject integerValue];
         NSInteger point = [[blockValues.firstObject componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
 
         sendKey = [NSString stringWithFormat:LIGHT_LIVE,point,speed];
@@ -842,40 +827,6 @@ static BLEControl * control;
         [dict setObject:sendKey forKey:@(point)];
     }
     
-    if ([blockName isEqualToString:@"buzzer_on_off"]) {
-        
-
-        if ([blockValues.firstObject isEqualToString:@"kaishi_yousheng7"]) {
-            NSInteger point = [[blockValues.firstObject componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
-
-            if ([[BlocklyControl shardControl].buzzerLevel integerValue] !=0 ) {
-                
-                sendKey = [NSString stringWithFormat:sendKey,point,[[BlocklyControl shardControl].buzzerLevel integerValue]];
-            } else {
-                
-                sendKey = [NSString stringWithFormat:sendKey,point,1];
-            }
-            if (point == 5 || point == 6) {
-                point = point * 10 + 1;///数字信号
-                //            point = point * 10;  ///模拟信号
-            }
-            [dict setObject:sendKey forKey:@(point)];
-
-            
-        } else {
-            
-            NSInteger point = [[blockValues.firstObject componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
-
-            sendKey = [NSString stringWithFormat:sendKey,point,0];
-            if (point == 5 || point == 6) {
-                point = point * 10 + 1;///数字信号
-                //            point = point * 10;  ///模拟信号
-            }
-            [dict setObject:sendKey forKey:@(point)];
-        }
-        
-    }
-    
     if ([blockName isEqualToString:@"buzzer_level"]) {
         
         NSInteger point = [[blockValues.firstObject componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
@@ -897,7 +848,7 @@ static BLEControl * control;
         
     }
     
-    if ([blockName isEqualToString:@"port_type"]) {
+    if ([blockName isEqualToString:@"port_on_off"]) {
         
         NSInteger point = [[blockValues.firstObject componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
         
@@ -913,10 +864,7 @@ static BLEControl * control;
          NSInteger point = [[blockValues.firstObject componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
     }
     
-    if ([blockName isEqualToString:@"port_in"]) {
-        
-        
-    }
+         
     
     return dict;
 }

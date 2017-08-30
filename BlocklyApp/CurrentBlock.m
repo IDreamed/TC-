@@ -11,6 +11,7 @@
 #import "BlocklyControl.h"
 #import "BLEControl.h"
 #import "ValueModel.h"
+#import "GetValueModle.h"
 
 @interface CurrentBlock ()
 
@@ -23,12 +24,6 @@
 @property (assign, nonatomic) BOOL threadEnd;
 
 
-//判断辅助 判断第一个条件是否满足 0 未收到通知 1 fales 2 true
-@property (assign, nonatomic) NSInteger firstTrue;
-//判断辅助 第二个条件是否满足
-@property (assign, nonatomic) NSInteger sectionTrue;
-//判断辅助 yes = and  no = or
-@property (assign, nonatomic) BOOL isAnd;
 
 //延迟时间和传感器数据判断
 ///blockly延迟时间
@@ -41,13 +36,24 @@
 @property (assign, nonatomic) NSInteger infrared;
 ///超声波触发条件
 @property (assign, nonatomic) NSInteger waves;
-
+///选中的颜色
 @property (assign, nonatomic) NSInteger color;
-
+///传感器颜色
 @property (assign, nonatomic) NSInteger colorTwo;
 
 @property (copy, nonatomic) NSMutableArray * stopTwo;
 
+
+///while是否成功
+@property (assign, nonatomic) BOOL isTrue;
+///重复直到 是否触发
+@property (assign, nonatomic) BOOL isStopRepeat;
+///传感器In1的值
+@property (assign, atomic) CGFloat IN1;
+///传感器In2的值
+@property (assign, atomic) CGFloat IN2;
+///传感器In3的值
+@property (assign, atomic) CGFloat IN3;
 
 
 @end
@@ -56,6 +62,7 @@
 
 - (void)dealloc {
     
+    [[CustomNotificationCenter sharedCenter] removeAllNotifitionWithObserver:self];
 }
 
 - (instancetype)init {
@@ -105,6 +112,25 @@
     }
 }
 
+- (void)setIsTrue:(BOOL)isTrue {
+    _isTrue = isTrue;
+    
+    if (_isTrue && [self.rootBlock.name isEqualToString:@"while"]) {
+        
+        [self runWhileBlock];
+    }
+}
+
+- (void)setIsStopRepeat:(BOOL)isStopRepeat {
+    _isStopRepeat = isStopRepeat;
+    
+    if (_isStopRepeat && [self.rootBlock.name isEqualToString:@"repetition_until1"]) {
+        
+        self.loopCount = 0;
+        
+    }
+}
+
 - (NSCondition *)condition {
     
     if (!_condition) {
@@ -123,28 +149,32 @@
     return _threadCon;
 }
 
-- (CurrentBlock *)DOCurrent {
-    
-    if (!_DOCurrent) {
-        _DOCurrent = [[CurrentBlock alloc] init];
-    }
-    return _DOCurrent;
-}
-- (CurrentBlock *)ELSECurrent {
-    
-    if (!_ELSECurrent) {
-        _ELSECurrent = [[CurrentBlock alloc] init];
-    }
-    return _ELSECurrent;
-}
+//- (CurrentBlock *)DOCurrent {
+//    
+//    if (!_DOCurrent) {
+//        _DOCurrent = [[CurrentBlock alloc] init];
+//    }
+//    return _DOCurrent;
+//}
+//- (CurrentBlock *)ELSECurrent {
+//    
+//    if (!_ELSECurrent) {
+//        _ELSECurrent = [[CurrentBlock alloc] init];
+//    }
+//    return _ELSECurrent;
+//}
 
 - (void)coffBlock {
-    self.firstTrue = 1;
-    self.sectionTrue = 1;
+    self.IN1 = 0;
+    self.IN2 = 0;
+    self.IN3 = 0;
     self.currentName = self.currentBlock.name;
+    self.DOCurrent = nil;
+    self.ELSECurrent = nil;
+    self.isTrue = NO;
     if (self.currentBlock.inputs.count > 1) {
         
-        for (int i=1; i<self.currentBlock.inputs.count; i+=2) {
+        for (int i=1; i<self.currentBlock.inputs.count; i++) {
             
             BKYInput * input = self.currentBlock.inputs[i];
             
@@ -189,7 +219,7 @@
 
 - (void)selfCoffLoopBlock {
     
-    NSArray * array = @[@"always_repeat",@"repetition_num",@"repetition_until1",@"repetition_until2",@"variable_repetition_num",@"variable_repetition"];
+    NSArray * array = @[@"always_repeat",@"repetition_num",@"repetition_until1",@"repetition_for"];
     
     NSInteger index = [array indexOfObject:self.currentBlock.name];
     
@@ -202,7 +232,8 @@
         }
         case 1: {
             
-            self.DOCurrent.loopCount = [[self.currentBlock getBlockValues].firstObject integerValue];
+            NSInteger count = [self getValueWithOutPutBlock:[self.currentBlock allBlockInSelf].firstObject].numberValue;
+            self.DOCurrent.loopCount = count;
             
             break;
         }
@@ -216,24 +247,30 @@
         case 3: {
             self.DOCurrent.loopCount = 10000;
             
+            NSString * str = [self.currentBlock getBlockValues].firstObject;
+            NSArray * inputArray = self.currentBlock.allBlockInSelf;
+            CGFloat rangeDown = [self getValueWithOutPutBlock:inputArray[1]].numberValue;
+            CGFloat rangeUp = [self getValueWithOutPutBlock:inputArray[2]].numberValue;
+            
+            BOOL up = rangeUp > rangeDown;
+            BOOL down = rangeDown > rangeUp;
+            
+            if ([@[@"+",@"x"] containsObject:str]) {
+                
+                if (!up && down) {
+                    
+                    self.DOCurrent.loopCount = 0;
+                }
+                
+            } else if ([@[@"-",@"÷"] containsObject:str]) {
+                if (up && !down) {
+                    
+                    self.DOCurrent.loopCount = 0;
+                }
+            }
             break;
         }
-        case 4: {
-            
-            NSArray * values = [self.currentBlock getBlockValues];
-            NSString * key = values.firstObject;
-            
-            ValueModel * model = [BlocklyControl shardControl].values[key];
-            self.DOCurrent.loopCount = (int)model.value;
-            
-            break;
-        }case 5: {
-            
-            self.DOCurrent.loopCount = 10000;
-            break;
-        }
-        default:
-            break;
+       
     }
     
     
@@ -242,11 +279,380 @@
 - (void)coffNotifition {
     
     ///查看block具体数据注册相对的通知
+    NSArray * blocks = [self.rootBlock allBlockInSelf];
+    if (blocks.count) {
+        
+        NSString * key = DEFAULT;
+        BKYBlock * block = blocks.firstObject;
+        [self getValueWithOutPutBlock:block];
+    }
     
-    [[CustomNotificationCenter sharedCenter] addObserver:self block:self.rootBlock callback:@selector(whileBegin:)];
+    //    [[CustomNotificationCenter sharedCenter] addObserver:self block:self.rootBlock callback:@selector(whileBegin:)];
+    //
+    //    [[BLEControl sharedControl] sendBluetoothWithCurrentBlock:self.rootBlock];
     
-    [[BLEControl sharedControl] sendBluetoothWithCurrentBlock:self.rootBlock];
+}
+///遍历output的Block 得到最终的值
+- (GetValueModle *)getValueWithOutPutBlock:(BKYBlock *)block {
     
+    GetValueModle * model = [[GetValueModle alloc] init];
+        
+    if ([block.name containsString:@"action"]) {
+        
+        NSString * point = [block getBlockValues].firstObject;
+        GetValueModle * valueModel = [self getValueWithOutPutBlock:[block allBlockInSelf].firstObject];
+        NSString * key = DEFAULT;
+        if ([block.name containsString:@"sound"]) {
+            
+            key = SOUND;
+            
+        }
+        NSInteger port = [point componentsSeparatedByString:@"IN"].lastObject.floatValue;
+        key = [NSString stringWithFormat:key,port];
+        
+        BKYBlock * inputBlock = block.outputConnection.targetBlock;
+        if ([inputBlock.name isEqualToString:@"while"]) {
+            self.sound = valueModel.numberValue;
+            [[CustomNotificationCenter sharedCenter] addObserver:self name:point callback:@selector(getWhileOutputCallback:)];
+            [[BLEControl sharedControl] sendCMDToBluetooth: key];
+            
+        } else {
+            
+            [[CustomNotificationCenter sharedCenter] addObserver:self name:point callback:@selector(getOutputCallback:)];
+            [[BLEControl sharedControl] sendCMDToBluetooth:key];
+            [NSThread sleepForTimeInterval:1];
+    
+            model.boolValue = [[self valueForKey:[block getBlockValues].firstObject] doubleValue] > valueModel.numberValue;
+        }
+        
+       
+        
+        return nil;
+    }
+    
+    NSArray * typeNames = @[@"number_value",@"bool_value",@"colour_value",@"string_value"];
+    NSInteger index = [typeNames indexOfObject:block.name];
+    switch (index) {
+        case 0:{
+            
+            model.numberValue = [[block getBlockValues].firstObject doubleValue];
+            
+            break;
+            
+        }
+        case 1:{
+            
+            model.boolValue = [[block getBlockValues].firstObject isEqualToString:@"true"];
+            
+            break;
+            
+        }
+            
+        case 2:{
+            
+            break;
+            
+        }
+        case 3:{
+            model.colourValue = [block getBlockValues].firstObject;
+            
+            
+            break;
+        }
+            
+    }
+    
+    if ([block.name isEqualToString:@"animate_light"]) {
+        
+        /// 暂时不写
+    }
+    
+    if ([block.name isEqualToString:@"port_in"]) {
+        
+        NSString * port = [block getBlockValues].firstObject;
+        NSString * key = [NSString stringWithFormat:SOUND,[[port componentsSeparatedByString:@"IN"].lastObject integerValue]];
+        
+        [[CustomNotificationCenter sharedCenter] addObserver:self name:port callback:@selector(getOutputCallback:)];
+        [[BLEControl sharedControl] sendCMDToBluetooth:key];
+        
+        [NSThread sleepForTimeInterval:1];
+        
+        model.numberValue = [[self valueForKey:[block getBlockValues].firstObject] doubleValue];
+    }
+    
+    if ([block.name isEqualToString:@"port_get_type"]) {
+        
+#warning 先不写
+    }
+    if ([block.name isEqualToString:@"get_timer"]) {
+        
+        NSString * unit = [block getBlockValues].firstObject;
+        NSDate * beginTime = [BlocklyControl shardControl].beginTime;
+        NSDate * endTime = [BlocklyControl shardControl].endTime;
+        NSTimeInterval interval = 0;
+        
+        if (beginTime && endTime) {
+            
+            interval = [endTime timeIntervalSinceDate:beginTime];
+            
+        } else if (beginTime) {
+            
+            interval = [beginTime timeIntervalSinceNow];
+        }
+        model.numberValue = (int)interval;
+        if ([unit isEqualToString:@"ms"]) {
+            
+            model.numberValue = (int)(interval * 1000);
+        }
+        
+    }
+    if ([block.name isEqualToString:@"not_value"]) {
+        
+        GetValueModle * smodel = [self getValueWithOutPutBlock:block.allBlockInSelf.firstObject];
+        model.boolValue = !smodel.boolValue;
+    }
+    
+    if ([block.name isEqualToString:@"control_compare"]) {
+        
+        CGFloat number1 = [self getValueWithOutPutBlock:block.allBlockInSelf.firstObject].numberValue;
+        CGFloat number2 = [self getValueWithOutPutBlock:block.allBlockInSelf.lastObject].numberValue;
+        NSString * str = [block getBlockValues].firstObject;
+        NSArray * strs = @[@"=",@"≠",@">",@"≥",@"<",@"≤"];
+        NSInteger sindex = [strs indexOfObject:str];
+        switch (sindex) {
+                
+            case 0: {
+                
+                model.boolValue = (number1 == number2)?YES:NO;
+                
+                break;
+            }
+            case 1: {
+                model.boolValue = (number1 != number2)?YES:NO;
+                
+                break;
+            }
+            case 2: {
+                model.boolValue = (number1 > number2)?YES:NO;
+                
+                break;
+            }
+            case 3: {
+                model.boolValue = (number1 >= number2)?YES:NO;
+                
+                break;
+            }
+            case 4: {
+                model.boolValue = (number1 < number2)?YES:NO;
+                
+                break;
+            }
+            case 5: {
+                
+                model.boolValue = (number1 <= number2)?YES:NO;
+                
+                
+                break;
+            }
+        }
+    }
+    
+    if ([block.name isEqualToString:@"and_or"]) {
+        
+        BOOL bool1 = [self getValueWithOutPutBlock:block.allBlockInSelf.firstObject].boolValue;
+        bool bool2= [self getValueWithOutPutBlock:block.allBlockInSelf.lastObject].boolValue;
+        
+        NSString * str = [block getBlockValues].firstObject;
+        if ([str isEqualToString:@"and"]) {
+            
+            model.boolValue = (bool1 && bool2)?YES:NO;
+            
+        } else {
+            
+            model.boolValue = (bool1 || bool2)?YES:NO;
+        }
+    }
+    
+    if ([block.name isEqualToString:@"math_calculator"]) {
+        
+        CGFloat number1 = [self getValueWithOutPutBlock:block.allBlockInSelf.firstObject].numberValue;
+        CGFloat number2 = [self getValueWithOutPutBlock:block.allBlockInSelf.lastObject].numberValue;
+        NSString * str = [block getBlockValues].firstObject;
+        NSArray * strs = @[@"+",@"-",@"x",@"÷"];
+        NSInteger index = [strs indexOfObject:str];
+        switch (index) {
+            case 0: {
+                model.numberValue = number1 + number2;
+                break;
+            }
+            case 1: {
+                
+                model.numberValue = number1 - number2;
+                
+                break;
+            }
+            case 2: {
+                
+                model.numberValue = number1 * number2;
+                
+                break;
+            }
+            case 3: {
+                
+                model.numberValue = number2 == 0?0:number1/number2;
+                break;
+            }
+        }
+    }
+    
+    if ([block.name isEqualToString:@"math_odevity"]) {
+        
+        CGFloat number = [self getValueWithOutPutBlock:[block allBlockInSelf].firstObject].numberValue;
+        NSInteger intVale = number;
+        
+        NSInteger i = intVale % 2;
+        NSString * str = [block getBlockValues].firstObject;
+        if ([str isEqualToString:@"奇数"]) {
+            
+            model.boolValue = i==1;
+        } else {
+            model.boolValue = i==0;
+            
+        }
+    }
+    
+    if ([block.name isEqualToString:@"math_intger"]) {
+        
+        CGFloat number = [self getValueWithOutPutBlock:[block allBlockInSelf].firstObject].numberValue;
+        NSInteger interValue = round(number);
+        
+        model.numberValue = interValue;
+    }
+    if ([block.name isEqualToString:@"math_cover_to"]) {
+        
+        CGFloat number = [self getValueWithOutPutBlock:[block allBlockInSelf].firstObject].numberValue;
+        
+        CGFloat rangeDown = [self getValueWithOutPutBlock:[block allBlockInSelf][1]].numberValue;
+        CGFloat rangeUp = [self getValueWithOutPutBlock:[block allBlockInSelf][2]].numberValue;
+        
+        CGFloat rangeDown1 = [self getValueWithOutPutBlock:[block allBlockInSelf][3]].numberValue;
+        CGFloat rangeUp1 = [self getValueWithOutPutBlock:[block allBlockInSelf][4]].numberValue;
+        ///y = A*x +B
+        CGFloat lenth1 = rangeUp1 - rangeDown1;
+        CGFloat lenth = rangeUp - rangeDown;
+        CGFloat A = lenth1 / lenth;
+        CGFloat B = (rangeDown1 + lenth1/2) - (rangeDown + lenth/2) * A;
+        
+        CGFloat newNumber = number * A + B;
+        model.numberValue = newNumber;
+    }
+    
+    if ([block.name isEqualToString:@"math_cover_proportion"]) {
+        
+        NSString * port = [block getBlockValues].firstObject;
+        NSString * key = [NSString stringWithFormat:SOUND,[[port componentsSeparatedByString:@"IN"].lastObject integerValue]];
+        
+        [[CustomNotificationCenter sharedCenter] addObserver:self name:port callback:@selector(getOutputCallback:)];
+        [[BLEControl sharedControl] sendCMDToBluetooth:key];
+        
+        [NSThread sleepForTimeInterval:1];
+        
+        CGFloat number = [[self valueForKey:[block getBlockValues].firstObject] doubleValue];
+
+        
+        CGFloat rangeDown = [self getValueWithOutPutBlock:[block allBlockInSelf][1]].numberValue;
+        CGFloat rangeUp = [self getValueWithOutPutBlock:[block allBlockInSelf][2]].numberValue;
+        CGFloat lenth = rangeUp - rangeDown;
+        CGFloat proport = (number - rangeDown)/lenth;
+        model.numberValue = proport;
+    }
+    
+    if ([block.name isEqualToString:@"get_value"]) {
+    
+        
+    }
+    
+    return model;
+}
+
+///为了去除清楚IN的输入的辅助变量
+static BOOL isFirst = YES;
+- (void)getOutputCallback:(NSNotification *)noti {
+    
+    
+    NSDictionary * dict = noti.userInfo;
+    NSData * data = dict[@"callback"];
+    const char * bytes = data.bytes;
+    ButtonCallback  callback = *(ButtonCallback *)bytes;
+    NSInteger point = callback.point;
+    NSString * pointStr = NAME_HEAD(point);
+    if (![noti.name isEqualToString:pointStr]) {
+        
+        return ;
+    }
+    
+    NSInteger cvalue = callback.value1;
+    
+    NSNumber * num = [self valueForKey:noti.name];
+    
+    if (cvalue > num.floatValue) {
+        
+        [self setValue:@(cvalue) forKey:noti.name];
+    }
+    
+    if (isFirst) {
+        isFirst = NO;
+        [self performSelector:@selector(clearNotifitionWithName:) withObject:noti.name afterDelay:1];
+        [[BLEControl sharedControl] sendCMDToBluetooth:[NSString stringWithFormat:DEFAULT_OF,point]];
+    }
+    
+    
+}
+
+- (void)clearNotifitionWithName:(NSString *)name {
+    
+    [[CustomNotificationCenter sharedCenter] removeObserver:self blockName:name values:nil];
+    isFirst = YES;
+}
+
+- (void)getWhileOutputCallback:(NSNotification *)noti {
+    
+    //    [[CustomNotificationCenter sharedCenter] removeObserver:self blockName:noti.name];
+    NSDictionary * dict = noti.userInfo;
+    NSData * data = dict[@"callback"];
+    const char * bytes = data.bytes;
+    ButtonCallback  callback = *(ButtonCallback *)bytes;
+    NSInteger point = callback.point;
+    NSInteger cvalue = callback.value1;
+    
+    if (point != [noti.name componentsSeparatedByString:@"t"].lastObject.integerValue) {
+        
+        return ;
+    }
+    
+    if (cvalue > self.sound) {
+        
+        self.isTrue = YES;
+    }
+    
+    
+}
+
+- (NSInteger)stringToPort:(NSString *)port {
+    
+    NSInteger point;
+    
+    if ([port containsString:@"OUT"]) {
+        
+        point = [[port componentsSeparatedByString:@"OUT"].lastObject integerValue];
+
+        point += 3;
+    } else {
+    
+        point = [[port componentsSeparatedByString:@"IN"].lastObject integerValue];
+    }
+    
+    return point;
 }
 
 - (void)whileBegin:(NSNotification *)noti {
@@ -259,106 +665,16 @@
     ButtonCallback  callback = *(ButtonCallback *)bytes;
     NSInteger point = callback.point;
     NSInteger cvalue = callback.value1;
-    NSArray * values = [self.rootBlock getBlockValues];
     
-    
-    
-    if ([values[0] containsString:@"亮度"]) {
+    if (point != [noti.name componentsSeparatedByString:@"IN"].lastObject.integerValue) {
         
-        if (callback.lenth2 != 8) {
-            
-            return ;
-        }
-        
-        NSString * blockValue = [self.rootBlock getBlockValues].firstObject;
-        NSInteger rValue = [[blockValue componentsSeparatedByString:@"%"].lastObject integerValue];
-        rValue = rValue / 100.0 * 256;
-        
-        if (cvalue > rValue) {
-            
-            [self runWhileBlock];
-        }
-        
-        
-    }
-    if ([values[0] isEqualToString:@"红外线"]) {
-        
-        if (callback.lenth2 != 8) {
-            
-            return ;
-        }
-        
-        if (cvalue > self.infrared) {
-            
-            [self runWhileBlock];
-            
-        }
-        
+        return ;
     }
     
-    if ([values[0] isEqualToString:@"有压力"]) {
+    if (cvalue > self.sound) {
         
-        if (callback.lenth2 != 8) {
-            
-            return ;
-        }
-        
-        if (cvalue > self.infrared) {
-            
-            [self runWhileBlock];
-            
-        }
+        self.isTrue = YES;
     }
-    
-    
-    if (point == 3 && callback.value1 > 40) {
-        [self runWhileBlock];
-        
-    }
-    
-    if (point == 7 && callback.value1 == 1) {
-        
-        [self runWhileBlock];
-    }
-    
-    if (point == 8) {
-        
-        if (callback.lenth2 != 8) {
-            
-            return ;
-        }
-        if (callback.value2 == 00) {
-            
-            NSInteger value = callback.value1 * 16 + callback.value2;
-            
-            if (value < self.waves) {
-                
-                [self runWhileBlock];
-            }
-            
-#warning 判断距离是多少触发
-            
-        } else {
-            
-            NSInteger color = callback.value1;
-            NSString * colorStr = [self.currentBlock getBlockValues].firstObject;
-            NSArray * colors = @[@"|gj_yanse_bai_1",
-                                 @"|gj_yanse_hei_1",
-                                 @"|gj_yanse_hong_1",
-                                 @"|gj_yanse_lv_1",
-                                 @"|gj_yanse_lan_1",
-                                 @"|gj_yanse_cheng_1"];
-            NSInteger forcolor = [colors indexOfObject:colorStr];
-            if (color == forcolor) {
-                
-                [self runWhileBlock];
-            }
-            
-            
-#warning 对比颜色的值
-        }
-    }
-    
     
 }
 
@@ -469,20 +785,20 @@
                 return ;
             }
             
-            NSArray * valuesType = @[@"set_value",@"use_change",@"variable_repetition_num",@"variable_repetition",@"variable_if",@"variable_if_else"];
-            
+//            NSArray * valuesType = @[@"set_value",@"use_change",@"variable_repetition_num",@"variable_repetition",@"variable_if",@"variable_if_else"];
+//            
             self.isRun = NO;
             //执行过程中赋值保持current的最新
             BKYBlock * current = self.currentBlock;
-            
-            if ([valuesType containsObject:current.name]) {
-                
-                [[BlocklyControl shardControl] showVlaueView:YES];
-            }
+//
+//            if ([valuesType containsObject:current.name]) {
+//                
+//                [[BlocklyControl shardControl] showVlaueView:YES];
+//            }
             
             NSArray * typeNames = @[@"function",@"always_repeat",@"repetition_num"];
-            NSArray * ifTypeNames = @[@"if",@"if2",@"if_else",@"if_else2",@"variable_if",@"variable_if_else"];
-            NSArray * rapetType = @[@"repetition_until1",@"repetition_until2",@"variable_repetition_num",@"variable_repetition"];
+            NSArray * ifTypeNames = @[@"if",@"if_else",@"variable_if",@"variable_if_else"];
+            NSArray * rapetType = @[@"repetition_until1",@"repetition_for"];
             if ([typeNames containsObject:current.name]) {
                 
                 [self.DOCurrent runCurrent];
@@ -492,7 +808,6 @@
                 [self runLoopbBlock];
                 
             } else if ([ifTypeNames containsObject:current.name]) {
-                
                 [self runIfElseBlock];
                 
             } else {
@@ -539,12 +854,92 @@
     NSDictionary * types = [APPControll getTypeDic];
     
     NSString * sendKey = types[current.name];
+    NSArray * values = [current getBlockValues];
+    NSString * notifitionName = values[0];
+    NSArray * newValues;
     
-    if (sendKey.length > 0) {
+#pragma mark 电机
+    if ([current.name isEqualToString:@"machine_speed_direction"]) {
         
-        [[CustomNotificationCenter sharedCenter] addObserver:self block:current callback: @selector(bluetoothCallbcak:)];
         
-        [[BLEControl sharedControl] sendBluetoothWithCurrentBlock:current];
+        NSInteger time = [self getValueWithOutPutBlock:current.allBlockInSelf.firstObject].numberValue;
+        newValues = @[values[0],values[1],values[2],@(time),values[3]];
+
+    }
+    if ([current.name isEqualToString:@"machine_stop"]) {
+        
+        newValues = @[values[0]];
+    }
+    
+    if([current.name isEqualToString:@"machine_two_stop"]) {
+     
+        newValues = values;
+
+        [[CustomNotificationCenter sharedCenter] addObserver:self name:values[0] callback:@selector(bluetoothCallbcak:)];
+        notifitionName = values[1];
+        
+        }
+    
+    if ([@[@"fan_stop",@"fan_stop"] containsObject:current.name]) {
+        
+        NSInteger spead = 0;
+        
+        newValues = values.count > 1? values : @[values[0],@(spead)];
+        
+    }
+    
+    if ([current.name isEqualToString:@"machine_swing"]) {
+        
+        newValues = values;
+    }
+    
+#pragma mark 灯阵
+    if ([current.name isEqualToString:@"animation_image"]) {
+        
+    }
+    
+#pragma mark 声音
+    if ([@[@"daily_words",@"music_sound",@"animal_sound",@"transport_sound"] containsObject:current.name]) {
+        
+        NSInteger time = [self getValueWithOutPutBlock:current.allBlockInSelf.firstObject].numberValue;
+        newValues = @[values[0],values[1],@(time),values[2]];
+    }
+    
+    if ([current.name isEqualToString:@"buzzer_level"]) {
+     
+        NSInteger time = [self getValueWithOutPutBlock:current.allBlockInSelf.firstObject].numberValue;
+        newValues = @[values[0],values[1],values[2],@(time),values[3]];
+    }
+    
+#pragma mark 端口
+    if ([current.name isEqualToString:@"port_out"]) {
+        
+        NSString * point = values[0];
+        NSInteger value = [self getValueWithOutPutBlock:current.allBlockInSelf.firstObject].numberValue;
+        
+        newValues = @[point,@(value)];
+        
+    }
+    
+    if ([current.name isEqualToString:@"port_on_off"]) {
+        
+        newValues = values;
+    }
+    
+#pragma mark 时间
+    if ([current.name isEqualToString:@"wait_port_open"]) {
+        newValues = values;
+    }
+    if ([current.name isEqualToString:@"wait_do"]) {
+        
+    }
+
+    
+    if (newValues.count > 0) {
+        
+        [[CustomNotificationCenter sharedCenter] addObserver:self name:notifitionName callback:@selector(bluetoothCallbcak:)];
+        
+        [[BLEControl sharedControl] sendCMDToBluetooth:newValues withBlockName:current.name];
         
     } else {
         
@@ -561,133 +956,66 @@
         if ([current.name isEqualToString:@"long_time"]) {
             
             NSArray * values = [current getBlockValues];
-            NSInteger mi = [values.firstObject integerValue];
-            CGFloat sc = [values.lastObject floatValue];
-            NSTimeInterval sleepTime = mi * 60 + sc;
+            NSInteger time = [self getValueWithOutPutBlock:current.allBlockInSelf.firstObject].numberValue;
+            time = [values.firstObject isEqualToString:@"ms"]?time/1000:time;
             
-            [NSThread sleepForTimeInterval:sleepTime];
+            [NSThread sleepForTimeInterval:time];
             
         }
         
-        if ([current.name isEqualToString:@"random_time"]) {
+        if ([@[@"reset_timer",@"start_timer"] containsObject:current.name]) {
             
-            NSArray * value = [current getBlockValues];
-            NSInteger random = [value.lastObject integerValue];
-            NSInteger newTime = 0;
-            if (random != 0) {
-                
-                newTime = arc4random()%random +1;
-            }
+        
+            [BlocklyControl shardControl].beginTime = [NSDate date];
+            [NSThread sleepForTimeInterval:self.delay];
+        }
+        
+        if ([current.name isEqualToString:@"end_timer"]) {
             
-            NSLog(@"等待 %d",newTime );
-            [NSThread sleepForTimeInterval:newTime];
+            [BlocklyControl shardControl].endTime = [NSDate date];
+            [NSThread sleepForTimeInterval:self.delay];
         }
         
         if ([current.name isEqualToString:@"set_value"]) {
-            
-            [[BlocklyControl shardControl] showVlaueView:YES];
-            
-            NSArray * values = [current getBlockValues];
-            NSString * key = values.firstObject;
-            
-            ValueModel * model = [BlocklyControl shardControl].values[key];
-            
-            NSString * svalue = values.lastObject;
-            
-            if ([key containsString:@"bl"]) {
-                
-                NSString * svalue = values.lastObject;
-                
-                ValueModel * newModel = [BlocklyControl shardControl].values[svalue];
-                
-                model.value = newModel.value;
-            }
-            if ([self includeChinese:svalue]) {
-                ///读取传感器值
-                
-                NSArray * array = @[@"超声波传感器距离",@"体感倾斜角度",@"声音传感器分贝",@"光敏传感器亮度",@"压力传感器压力",@"电位机数值",@"滑动变阻器数值"];
-                NSInteger index = [array containsObject:values.lastObject];
-                
-                switch (index) {
-                    case 0:
-                        
-                        break;
-                    case 1:
-                        
-                        break;
-                    case 2:
-                        
-                        break;
-                    case 3:
-                        
-                        break;
-                    case 4:
-                        
-                        break;
-                    case 5:
-                        
-                        break;
-                    default:
-                        break;
-                }
-                
-            } else {
-                
-                model.value = [values.lastObject floatValue];
-                [NSThread sleepForTimeInterval:self.delay];
-            }
+         
+
+            ValueModel * newModel = [BlocklyControl shardControl].values[current.getBlockValues.firstObject];
+            CGFloat value = [self getValueWithOutPutBlock:current.allBlockInSelf.firstObject].numberValue;
+            newModel.value = value;
+            [NSThread sleepForTimeInterval:self.delay];
+
+
         }
-        
-        if ([current.name isEqualToString:@"use_change"]) {
-            
-            [[BlocklyControl shardControl] showVlaueView:YES];
-            
-            NSArray * values = [current getBlockValues];
-            NSString * key = values.lastObject;
-            NSArray * runs = @[@"+",@"-",@"x",@"÷"];
-            
-            NSString * run = values[0];
-            
-            ValueModel * model = [BlocklyControl shardControl].values[key];
-            
-            NSInteger index = [runs indexOfObject:run];
-            
-            switch (index) {
-                case 0:
-                    model.value += [values[1] floatValue];
-                    break;
-                    
-                case 1:
-                    model.value -= [values[1] floatValue];
-                    break;
-                case 2:
-                    model.value *= [values[1] floatValue];
-                    break;
-                case 3:
-                    if ([values[1] floatValue] != 0) {
-                        model.value /= [values[1] floatValue];
-                    } else {
-                        [CustomHUD showText:@"除数不能为0"];
-                        [[BlocklyControl shardControl] stopAllBlockTree];
-                    }
-                    break;
-                default:
-                    break;
-            }
-            if (model.value >= 10000000) {
-                model.value = 1000000;
-            }
+        if ([current.name isEqualToString:@"break"]) {
             
             [NSThread sleepForTimeInterval:self.delay];
+            [self didBreak];
         }
         
         [self.currentBlock.defaultBlockView setDisHighlight];
         self.currentBlock = self.currentBlock.nextBlock;
         self.isRun = YES;
-        
     }
     
     
+}
+
+///break传递
+- (void)didBreak {
+
+    if ([self.rootBlock.name containsString:@"repe"]) {
+        
+        [self endRun];
+        return ;
+        
+    } else {
+        
+        if (self.superBlock) {
+            [self.superBlock didBreak];
+        } else {
+            return ;
+        }
+    }
 }
 
 - (BOOL)includeChinese:(NSString *)string
@@ -704,447 +1032,36 @@
 
 - (void)runIfElseBlock {
     
-    self.firstTrue = 1;
-    self.sectionTrue = 1;
-    ///if else 判断
-    BKYBlock * current = self.currentBlock;
-    NSArray * ifTypeNames = @[@"if",@"if2",@"if_else",@"if_else2",@"variable_if",@"variable_if_else"];
-    NSInteger index = [ifTypeNames indexOfObject:current.name];
-    NSArray * values = [current getBlockValues];
-    switch (index) {
-        case 0: {
-            
-            [[CustomNotificationCenter sharedCenter] addObserver:self block:current callback: @selector(ifNotifitionCallback:)];
-            
-            [[BLEControl sharedControl] sendBluetoothWithCurrentBlock:current];
-            self.isRun = NO;
-            
-            [NSThread sleepForTimeInterval:self.ifDelay];
-            
-            if (self.superBlock.firstTrue == 1<<0) {
-                
-                self.currentBlock = self.currentBlock.nextBlock;
-                self.isRun = YES;
-                [self.condition signal];
-                [[CustomNotificationCenter sharedCenter] removeObserver:self blockName:current.name values:values];
-                
-            } else if (self.superBlock.firstTrue == 1<<1) {
-                
-                self.currentBlock = self.currentBlock.nextBlock;
-                self.isRun = YES;
-                [self.condition signal];
-                
-            } else if (self.superBlock.firstTrue == 1<<2) {
-                [self.DOCurrent runCurrent];
-                
-            }
-            
-            break;
-        }
-        case 1: {
-            
-            [[CustomNotificationCenter sharedCenter] addObserver:self block:current callback: @selector(ifNotifitionCallback:)];
-            
-            [[BLEControl sharedControl] sendBluetoothWithCurrentBlock:current];
-            
-            self.isRun = NO;
-            
-            self.isAnd = [values[1] isEqualToString:@"and"];
-            
-            [NSThread sleepForTimeInterval:self.ifDelay];
-            
-            NSInteger sum = self.superBlock.firstTrue + self.superBlock.sectionTrue;
-            
-            if (sum == 1<<0) {
-                self.currentBlock = self.currentBlock.nextBlock;
-                self.isRun = YES;
-                [self.condition signal];
-                
-                [[CustomNotificationCenter sharedCenter] removeObserver:self blockName:current.name values:values];
-                
-                break ;
-            } else if (self.isAnd && (sum == 8)) {
-                [self.DOCurrent runCurrent];
-                
-            } else if (self.isAnd && sum < 8) {
-                
-                self.currentBlock = self.currentBlock.nextBlock;
-                self.isRun = YES;
-                [self.condition signal];
-                
-                [[CustomNotificationCenter sharedCenter] removeObserver:self blockName:current.name values:values];
-                
-            } else if (!self.isAnd && sum > 4) {
-                
-                [self.DOCurrent runCurrent];
-            } else if (!self.isAnd && sum <=4) {
-                
-                self.currentBlock = self.currentBlock.nextBlock;
-                self.isRun = YES;
-                [self.condition signal];
-                
-                [[CustomNotificationCenter sharedCenter] removeObserver:self blockName:current.name values:values];
-                
-            }
-            
-            break;
-        }
-        case 2: {
-            [[CustomNotificationCenter sharedCenter] addObserver:self block:current callback: @selector(ifNotifitionCallback:)];
-            
-            [[BLEControl sharedControl] sendBluetoothWithCurrentBlock:current];
-            self.isRun = NO;
-            
-            [NSThread sleepForTimeInterval:self.ifDelay];
-            
-            if (self.superBlock.firstTrue == 1<<0) {
-                
-                [[CustomNotificationCenter sharedCenter] removeObserver:self blockName:current.name values:values];
-                
-                [self.ELSECurrent runCurrent];
-                
-                
-            } else if (self.superBlock.firstTrue == 1<<1) {
-                
-                [self.ELSECurrent runCurrent];
-            } else if (self.superBlock.firstTrue == 1<<2) {
-                [self.DOCurrent runCurrent];
-                
-            }
-            
-            
-            break;
-        }
-        case 3: {
-            
-            [[CustomNotificationCenter sharedCenter] addObserver:self block:current callback: @selector(ifNotifitionCallback:)];
-            
-            [[BLEControl sharedControl] sendBluetoothWithCurrentBlock:current];
-            
-            self.isRun = NO;
-            
-            self.isAnd = [values[1] isEqualToString:@"and"];
-            
-            [NSThread sleepForTimeInterval:self.ifDelay];
-            
-            NSInteger sum = self.superBlock.firstTrue + self.superBlock.sectionTrue;
-            
-            if (sum == 1<<0) {
-                [[CustomNotificationCenter sharedCenter] removeObserver:self blockName:current.name values:values];
-                [self.ELSECurrent runCurrent];
-                
-                break ;
-            } else if (self.isAnd && (sum == 8)) {
-                [self.DOCurrent runCurrent];
-                
-            } else if (self.isAnd && sum < 8) {
-                
-                [self.ELSECurrent runCurrent];
-            } else if (!self.isAnd && sum > 4) {
-                
-                [self.DOCurrent runCurrent];
-            } else if (!self.isAnd && sum <=4) {
-                
-                [self.ELSECurrent runCurrent];
-            }
-            
-            
-            break;
-        }
-        case 4: {
-            //判断全局变量进行控制
-            NSString * str = values[1];
-            NSArray * array = @[@">",@"<",@"=",@"≠"];
-            
-            NSString * key = values.firstObject;
-            
-            ValueModel * model = [BlocklyControl shardControl].values[key];
-            NSString * valueStr = values.lastObject;
-            BOOL isTrue = NO;
-            
-            if ([valueStr containsString:@"bl"]) {
-                
-                NSString * name = [valueStr componentsSeparatedByString:@"|"].lastObject;
-                ValueModel * smodel = [BlocklyControl shardControl].values[name];
-                
-                NSInteger index= [array indexOfObject:str];
-                CGFloat value = [values.lastObject floatValue];
-                switch (index) {
-                    case 0: {
-                        isTrue = model.value > smodel.value;
-                        break;
-                    }
-                    case 1: {
-                        isTrue = model.value < smodel.value;
-                        break;
-                    }
-                    case 2: {
-                        isTrue = model.value == smodel.value;
-                        
-                        break;
-                    }
-                    case 3: {
-                        isTrue = model.value != smodel.value;
-                        
-                        break;
-                    }
-                    default:
-                        break;
-                }
-                
-                
-            } else {
-                NSInteger index= [array indexOfObject:str];
-                CGFloat value = [values.lastObject floatValue];
-                switch (index) {
-                    case 0: {
-                        isTrue = model.value > value;
-                        break;
-                    }
-                    case 1: {
-                        isTrue = model.value < value;
-                        break;
-                    }
-                    case 2: {
-                        isTrue = model.value == value;
-                        
-                        break;
-                    }
-                    case 3: {
-                        isTrue = model.value != value;
-                        
-                        break;
-                    }
-                    default:
-                        break;
-                }
-            }
-            [NSThread sleepForTimeInterval:self.ifDelay];
-            if (isTrue) {
-                
-                [self.DOCurrent runCurrent];
-                
-            } else {
-                
-                self.currentBlock = self.currentBlock.nextBlock;
-                self.isRun = YES;
-                [self.condition signal];
-            }
-            
-            
-            break;
-        }
-        case 5: {
-            //判断全局变量进行控制
-            NSString * str = values[1];
-            NSArray * array = @[@">",@"<",@"=",@"≠"];
-            
-            NSString * key = values.firstObject;
-            
-            ValueModel * model = [BlocklyControl shardControl].values[key];
-            NSString * valueStr = values.lastObject;
-            BOOL isTrue = NO;
-            
-            if ([valueStr containsString:@"bl"]) {
-                
-                NSString * name = [valueStr componentsSeparatedByString:@"|"].lastObject;
-                ValueModel * smodel = [BlocklyControl shardControl].values[name];
-                
-                NSInteger index= [array indexOfObject:str];
-                CGFloat value = [values.lastObject floatValue];
-                switch (index) {
-                    case 0: {
-                        isTrue = model.value > smodel.value;
-                        break;
-                    }
-                    case 1: {
-                        isTrue = model.value < smodel.value;
-                        break;
-                    }
-                    case 2: {
-                        isTrue = model.value == smodel.value;
-                        
-                        break;
-                    }
-                    case 3: {
-                        isTrue = model.value != smodel.value;
-                        
-                        break;
-                    }
-                    default:
-                        break;
-                }
-                
-                
-            } else {
-                NSInteger index= [array indexOfObject:str];
-                CGFloat value = [values.lastObject floatValue];
-                switch (index) {
-                    case 0: {
-                        isTrue = model.value > value;
-                        break;
-                    }
-                    case 1: {
-                        isTrue = model.value < value;
-                        break;
-                    }
-                    case 2: {
-                        isTrue = model.value == value;
-                        
-                        break;
-                    }
-                    case 3: {
-                        isTrue = model.value != value;
-                        
-                        break;
-                    }
-                    default:
-                        break;
-                }
-            }
-            [NSThread sleepForTimeInterval:self.ifDelay];
-            if (isTrue) {
-                
-                [self.DOCurrent runCurrent];
-                
-            } else {
-                [self.ELSECurrent runCurrent];
-            }
-            
-            break;
-        }
-        default:
-            break;
+    NSArray * names = @[@"if",@"if_else"];
+    
+    BOOL isTrue = [self getValueWithOutPutBlock:self.currentBlock.allBlockInSelf.firstObject].boolValue;
+    
+    if (isTrue) {
+    
+        self.DOCurrent?[self.DOCurrent runCurrent]:self.runNext;
+    } else {
+    
+        self.ELSECurrent?[self.ELSECurrent runCurrent]:self.runNext;
+
     }
     
 }
 
+- (void)runNext {
+
+    self.currentBlock = self.currentBlock.nextBlock;
+    self.isRun = YES;
+    [self.condition signal];
+    
+}
 
 - (void)runLoopbBlock {
     
-    NSArray * rapetType = @[@"repetition_until1",@"repetition_until2",@"variable_repetition_num",@"variable_repetition"];
+    NSArray * rapetType = @[@"repetition_until1",@"repetition_for"];
     BKYBlock * block = self.currentBlock;
     NSArray * values = [block getBlockValues];
     NSInteger index = [rapetType indexOfObject:block.name];
-    switch (index) {
-        case 0: {
-            
-            [[CustomNotificationCenter sharedCenter] addObserver:self block:block callback: @selector(ifNotifitionCallback:)];
-            [[BLEControl sharedControl] sendBluetoothWithCurrentBlock:block];
-            self.isRun = NO;
-            [self.DOCurrent runCurrent];
-            
-            break;
-        }
-        case 1: {
-            
-            [[CustomNotificationCenter sharedCenter] addObserver:self block:block callback:@selector(ifNotifitionCallback:)];
-            [[BLEControl sharedControl] sendBluetoothWithCurrentBlock:block];
-            self.isRun = NO;
-            [self.DOCurrent runCurrent];
-            
-            break;
-        }
-        case 2: {
-            NSString * key = values.firstObject;
-            
-            ValueModel * model = [BlocklyControl shardControl].values[key];
-            
-            self.isRun = NO;
-            self.DOCurrent.loopCount = model.value;
-            [self.DOCurrent runCurrent];
-            
-            break;
-        }
-        case 3: {
-            
-            self.firstTrue = 1;
-            self.sectionTrue = 1;
-            ///根据全局变量判断 交给first和secondtrue辅助处理
-            
-            NSString * str = values[1];
-            NSArray * array = @[@">",@"<",@"=",@"≠"];
-            
-            NSString * key = values.firstObject;
-            
-            ValueModel * model = [BlocklyControl shardControl].values[key];
-            NSString * valueStr = values.lastObject;
-            BOOL isTrue = NO;
-            
-            if ([valueStr containsString:@"bl"]) {
-                
-                NSString * name = [valueStr componentsSeparatedByString:@"|"].lastObject;
-                ValueModel * smodel = [BlocklyControl shardControl].values[name];
-                
-                NSInteger index= [array indexOfObject:str];
-                CGFloat value = [values.lastObject floatValue];
-                switch (index) {
-                    case 0: {
-                        isTrue = model.value > smodel.value;
-                        break;
-                    }
-                    case 1: {
-                        isTrue = model.value < smodel.value;
-                        break;
-                    }
-                    case 2: {
-                        isTrue = model.value == smodel.value;
-                        
-                        break;
-                    }
-                    case 3: {
-                        isTrue = model.value != smodel.value;
-                        
-                        break;
-                    }
-                    default:
-                        break;
-                }
-                
-                
-            } else {
-                NSInteger index= [array indexOfObject:str];
-                CGFloat value = [values.lastObject floatValue];
-                switch (index) {
-                    case 0: {
-                        isTrue = model.value > value;
-                        break;
-                    }
-                    case 1: {
-                        isTrue = model.value < value;
-                        break;
-                    }
-                    case 2: {
-                        isTrue = model.value == value;
-                        
-                        break;
-                    }
-                    case 3: {
-                        isTrue = model.value != value;
-                        
-                        break;
-                    }
-                    default:
-                        break;
-                }
-            }
-            if (isTrue) {
-                
-                self.isRun = NO;
-                [self.DOCurrent runCurrent];
-                
-            } else {
-                self.DOCurrent.loopCount = 0;
-                [self.DOCurrent endRun];
-            }
-            
-            break;
-        }
-            
-        default:
-            break;
-    }
-    
+#warning 未完成
 }
 
 - (void)ifNotifitionCallback:(NSNotification *)noti {
@@ -1182,7 +1099,7 @@
             
             
             if (![self.rootBlock.name isEqualToString:@"while"]) {
-                [[BLEControl sharedControl] sendCMDToBluetooth:INFRARED_OF];
+                [[BLEControl sharedControl] sendCMDToBluetooth:DEFAULT_OF];
                 
             }
             NSInteger rValue = [[blockValue componentsSeparatedByString:@"%"].lastObject integerValue];
@@ -1199,7 +1116,7 @@
             if (callBack.value1 > self.infrared) {
                 
                 if (![self.rootBlock.name isEqualToString:@"while"]) {
-                    [[BLEControl sharedControl] sendCMDToBluetooth:INFRARED_OF];
+                    [[BLEControl sharedControl] sendCMDToBluetooth:DEFAULT_OF];
                     
                 }
                 success = 2;
@@ -1225,7 +1142,7 @@
         if (callBack.value1 > self.sound) {
             
             if (![self.rootBlock.name isEqualToString:@"while"]) {
-                [[BLEControl sharedControl] sendCMDToBluetooth:SOUND_OF];
+                [[BLEControl sharedControl] sendCMDToBluetooth:DEFAULT_OF];
                 
             }
             success = 2;
@@ -1291,7 +1208,7 @@
             NSInteger value = callBack.value1 * 16 + callBack.value2;
             
             if (![self.rootBlock.name isEqualToString:@"while"]) {
-                [[BLEControl sharedControl] sendCMDToBluetooth:WAVES_OF];
+                [[BLEControl sharedControl] sendCMDToBluetooth:DEFAULT_OF];
                 
             }
             if (value > self.waves) {
@@ -1308,7 +1225,7 @@
             colorStr = [colorStr componentsSeparatedByString:@"|"].lastObject;
             NSInteger forcolor = [colorStr integerValue];
             if (![self.rootBlock.name isEqualToString:@"while"]) {
-                [[BLEControl sharedControl] sendCMDToBluetooth:COLOR_OF];
+                [[BLEControl sharedControl] sendCMDToBluetooth:DEFAULT_OF];
                 
             }
             if (color == forcolor) {
@@ -1324,11 +1241,6 @@
     NSInteger news = success;
     if (news == 2) {
         
-        if (self.firstTrue == 1) {
-            self.firstTrue = 1 << news;
-        } else {
-            self.sectionTrue = 1 << news;
-        }
         
         if (success == 2) {
             [[CustomNotificationCenter sharedCenter].center removeObserver:self name:noti.name object:nil];
@@ -1347,6 +1259,7 @@
         return ;
     }
     BOOL isSuccess = NO;
+
     
     [[CustomNotificationCenter sharedCenter].center removeObserver:self name:noti.name object:nil];
     
@@ -1396,7 +1309,6 @@
             isSuccess = NO;
         }
         
-        
     }
     
     
@@ -1423,16 +1335,6 @@
         }
         default:
             break;
-    }
-    
-    if ([self.currentName isEqualToString:@"buzzer_on_off"]) {
-        
-        CGFloat time = [BlocklyControl shardControl].buzzerTime;
-        time = time==0?1:time;
-        [NSThread sleepForTimeInterval:time];
-        NSString * key = [NSString stringWithFormat:PLAY_BUZZER,[point integerValue],0];
-        [[BLEControl sharedControl] sendCMDToBluetooth:key];
-        
     }
     
     if ([self.currentName isEqualToString:@"buzzer_level"]) {
@@ -1462,9 +1364,14 @@
     if (isSuccess) {
         
         
-        if ([@[@"daily_words",@"action",@"animal_sound",@"transport_sound"] containsObject:self.currentName]) {
+        if ([@[@"daily_words",@"music_sound",@"animal_sound",@"transport_sound"] containsObject:self.currentName]) {
+
+            CGFloat time = [self getValueWithOutPutBlock:self.currentBlock.allBlockInSelf.firstObject].numberValue;
+            if ([self.currentBlock.getBlockValues.lastObject isEqualToString:@"ms"]) {
+                
+                time = time / 1000;
+            }
             
-            CGFloat time = [[self.currentBlock getBlockValues][1] floatValue];
             [NSThread sleepForTimeInterval:time];
         } else {
             [NSThread sleepForTimeInterval:self.delay];
@@ -1508,8 +1415,7 @@
     }
     
     
-    NSArray * blocks = @[self.DOCurrent, self.ELSECurrent];
-    if ([blocks containsObject:currentBlock]) {
+    if (self.DOCurrent == currentBlock || self.ELSECurrent == currentBlock) {
         //当分枝树走完
         NSArray * typeNames = @[@"if",@"if2",@"if_else",@"if_else2",@"variable_if",@"variable_if_else",@"always_repeat",@"repetition_num",@"repetition_until1",@"repetition_until2",@"variable_repetition_num",@"variable_repetition"];
         
@@ -1533,32 +1439,18 @@
         
         NSInteger index = [typeNames indexOfObject:self.rootBlock.name];
         NSArray * values = [self.rootBlock getBlockValues];
-        if (values.count > 2) {
-            self.isAnd = [values[1] isEqualToString:@"and"];
-        }
+        
         switch (index) {
             case 8: {
                 
-                if (self.superBlock.firstTrue == 1<<2) {
+                if (self.superBlock.isTrue) {
                     
                     self.loopCount = 0;
                     
                 }
                 break;
             }
-            case 9: {
                 
-                NSInteger sum = self.superBlock.firstTrue + self.superBlock.sectionTrue;
-                if (self.isAnd && sum == 8) {
-                    
-                    self.loopCount = 0;
-                } else if (!self.isAnd && sum > 4) {
-                    
-                    self.loopCount = 0;
-                }
-                
-                break;
-            }
             case 10: {
                 //根据全局变量控制
                 

@@ -91,10 +91,7 @@ static CustomNotificationCenter * center;
 
     }
     
-    if (keys.count == 0) {
-        
-        [self runNoBluetoothBlock:block observer:observer callback:blueBlock];
-    }
+   
     
 }
 
@@ -103,19 +100,20 @@ static CustomNotificationCenter * center;
     [self.center addObserver:observer selector:blueBlock name:name object:self];
 }
 
-///由软件控制执行的block
-- (void)runNoBluetoothBlock:(BKYBlock *)block observer:(id)observer callback:(SEL)callback {
+- (void)removeAllNotifitionWithObserver:(id)observer {
 
-    NSNumber * value = @(YES);
-    NSNotification * noti = [[NSNotification alloc] initWithName:@"defout" object:value userInfo:@{}];
-    
-    [observer performSelector:callback withObject:noti];
-    
-    
+    [self.center removeObserver:observer];
+
 }
 
 - (void)removeObserver:(id)observer blockName:(NSString *)name values:(NSArray *)values {
     
+    
+    if (values == nil) {
+        
+        [self.center removeObserver:observer name:name object:nil];
+        return ;
+    }
     
     if ([name isEqualToString:@"while"]) {
         
@@ -146,7 +144,9 @@ static CustomNotificationCenter * center;
         const void * bytes = data.bytes;
         FiveLenthCallback * six = (FiveLenthCallback *)bytes;
         
-        key = [NSString stringWithFormat:NAME_HEAD,six->point];
+        
+        key = NAME_HEAD(six->point);
+        
         
         if (six->point == 0x54) {
             
@@ -173,7 +173,7 @@ static CustomNotificationCenter * center;
         
         
         
-        key = [NSString stringWithFormat:NAME_HEAD,six.point];
+        key = NAME_HEAD(six.point);
     
         [self.center postNotificationName:key object:nil userInfo:@{@"callback":data}];
         
@@ -181,7 +181,7 @@ static CustomNotificationCenter * center;
         
         eightLenthCallback six;
         [data getBytes:&six length:sizeof(six)];
-        key = [NSString stringWithFormat:NAME_HEAD,six.point];
+        key = NAME_HEAD(six.point);
 
         
         
@@ -194,7 +194,7 @@ static CustomNotificationCenter * center;
         [data getBytes:&six length:sizeof(six)];
     
 
-        key = [NSString stringWithFormat:NAME_HEAD,six.point];
+        key = NAME_HEAD(six.point);
         
         [self.center postNotificationName:key object:nil userInfo:@{@"callback":data}];
     }
@@ -219,7 +219,7 @@ static CustomNotificationCenter * center;
         
         NSString * portStr = values[0];
         point = [[portStr componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
-
+        
         
     } else if ([@[@"daily_words",@"action",@"animal_sound",@"transport_sound",@"own_sound",@"buzzer_on_off",@"buzzer_level"] containsObject:name]) {
 

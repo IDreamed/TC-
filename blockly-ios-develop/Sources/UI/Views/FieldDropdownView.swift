@@ -132,16 +132,15 @@ extension FieldDropdownView: DropdownViewDelegate {
     guard let fieldDropdownLayout = self.fieldDropdownLayout else {
       return
     }
-    
+    var options:[(displayName: String, value: String)] = Array();
+    var currentIndex = 0;
+
     if (self.fieldDropdownLayout?.field.name == "doFunction") {
         
         ////2017 08 15 根据以定义函数生成数据源
         let functions = FunctionControl.functionControl.names;
         
-        var options:[(displayName: String, value: String)] = Array();
-        
         var index = 0;
-        var currentIndex = 0;
         for e in functions {
             
             let name = e.value;
@@ -162,7 +161,32 @@ extension FieldDropdownView: DropdownViewDelegate {
             return ;
         }
     }
-    
+    if (self.fieldDropdownLayout?.field.name == "doFunction") {
+        
+        ////2017 08 15 根据以定义函数生成数据源
+        let functions = FunctionControl.functionControl.names;
+        
+        
+        var index = 0;
+        for e in functions {
+            
+            let name = e.key;
+            options.append((displayName: name, value: name));
+            if self.dropDownView.text == e.value {
+                currentIndex = index;
+            }
+            index += 1;
+            
+        }
+        self.options = options;
+        self.fieldDropdownLayout?.fieldDropdown.options = self.options;
+        self.fieldDropdownLayout?.fieldDropdown.selectedIndex = currentIndex;
+        
+        if self.options.count == 0 {
+            
+            return ;
+        }
+    }
     
     
     let viewController = DropdownOptionsViewController()

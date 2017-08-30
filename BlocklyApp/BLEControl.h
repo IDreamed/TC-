@@ -31,8 +31,8 @@
 - (void)updateDevice;
 
 - (NSData *)returnUpdateDateWithCount:(NSInteger)count;
-///根据block发送相关蓝牙指令
-- (void)sendBluetoothWithCurrentBlock:(BKYBlock *)block;
+///根据point发送相关蓝牙指令
+- (void)sendCMDToBluetooth:(NSArray *)values withBlockName:(NSString *)blockName;
 ///直接发送蓝牙指令 用于停止传感器
 - (void)sendCMDToBluetooth:(NSString *)CMD;
 ///停止所有

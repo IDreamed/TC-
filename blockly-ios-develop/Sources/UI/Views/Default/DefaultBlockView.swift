@@ -28,7 +28,7 @@ public final class DefaultBlockView: BlockView {
     return self.layout as? DefaultBlockLayout
   }
 
-///2017 06 24 添加select涂层
+///2017 06 24 添加select图层
     public var _selectLayer = BezierPathLayer();
     
   /// Flag determining if layer changes should be animated
@@ -657,6 +657,5 @@ public final class DefaultBlockView: BlockView {
         return self.returnVCWith(view: view.superview!);
         
     }
-    
     
 }

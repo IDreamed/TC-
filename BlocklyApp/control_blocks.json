@@ -68,17 +68,17 @@
            {
            "type": "input_value",
            "name": "repetition_for",
-           "check": "number",
+           "check": "number"
            },
            {
            "type": "input_value",
            "name": "repetition_for1",
-           "check": "number",
+           "check": "number"
            },
            {
            "type": "input_value",
            "name": "repetition_for2",
-           "check": "number",
+           "check": "number"
            },
            {
            "type": "field_dropdown",
@@ -105,7 +105,7 @@
            {
            "type": "input_value",
            "name": "repetition_for4",
-           "check": "number",
+           "check": "number"
            }
            ],
  "inputsInline": true,
@@ -153,12 +153,11 @@
               {
               "type": "input_value",
               "name": "not_value",
-              "check": "bool",
+              "check": "bool"
               }
     ],
     "inputsInline":true,
-    "previousStatement": null,
-    "nextStatement": null,
+    "output":"bool",
     "colour": 311
   },
   {
@@ -168,7 +167,7 @@
               {
               "type": "input_value",
               "name": "if",
-              "check": "bool",
+              "check": "bool"
               }
     ],
     "message1": " %1",
@@ -193,7 +192,7 @@
               {
               "type": "input_value",
               "name": "if_else",
-              "check": "bool",
+              "check": "bool"
               }
     ],
     "message1": " %1",
@@ -225,7 +224,7 @@
               {
               "type": "input_value",
               "name": "control_compare",
-              "check": "number",
+              "check": "number"
               },
               {
               "type": "field_dropdown",
@@ -260,7 +259,7 @@
               {
               "type": "input_value",
               "name": "control_compare2",
-              "check": "number",
+              "check": "number"
               }
     ],
     "inputsInline":true,
@@ -274,7 +273,7 @@
               {
               "type": "input_value",
               "name": "and_or",
-              "check": "bool",
+              "check": "bool"
               },
               {
               "type": "field_dropdown",
@@ -294,7 +293,7 @@
               {
               "type": "input_value",
               "name": "and_or2",
-              "check": "bool",
+              "check": "bool"
               }
     ],
     "inputsInline":true,

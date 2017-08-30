@@ -425,9 +425,15 @@ class FunctionControl: NSObject {
     
     public var names: [String : String] = Dictionary();
     
+    public var values: [String : CGFloat] = Dictionary();
+    
      func clearFunction() {
         
        self.names.removeAll();
+    }
+    
+    func clearDictionary() {
+        self.values.removeAll();
     }
     
 }

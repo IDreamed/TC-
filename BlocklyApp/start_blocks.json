@@ -14,7 +14,7 @@
               {
               "type": "input_value",
               "name": "while",
-              "check": "bool",
+              "check": "bool"
               }
               
               ],
@@ -58,6 +58,14 @@
               "type": "field_dropdown",
               "name": "doFunction",
               "options": [
+                [
+                  "and",
+                  "and"
+                ],
+                [
+                  "or",
+                  "or"
+                ]
                           ]
               }
     ],

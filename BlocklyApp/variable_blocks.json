@@ -6,7 +6,16 @@
             {
             "type": "field_dropdown",
             "name": "set_value",
-            "options": []
+            "options": [
+              [
+                "and",
+                "and"
+              ],
+              [
+                "or",
+                "or"
+              ]
+            ]
             },
     {
       "type": "input_value",
@@ -26,7 +35,9 @@
            {
            "type": "field_dropdown",
            "name": "get_value",
-           "options": []
+           "options": [
+           
+           ]
            }
            ],
  "inputsInline":true,
