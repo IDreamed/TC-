@@ -27,8 +27,7 @@ typedef void (^SuccessBlock)(BOOL);
 
 - (void)postBluetoothValue:(NSData *)data;
 
-- (void)addObserver:(id)observer name:(NSString *)name callback:(SEL)blueBlock;
-
+- (void)addObserver:(id)observer name:(NSString *)name callback:(SEL)blueBlock object:(id)object;
 - (void)removeAllNotifitionWithObserver:(id)observer;
 
 //- (NSString *)getNotifationNameWith:(NSString *)typeName;

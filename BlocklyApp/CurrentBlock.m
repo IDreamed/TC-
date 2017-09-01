@@ -286,17 +286,12 @@
         BKYBlock * block = blocks.firstObject;
         [self getValueWithOutPutBlock:block];
     }
-    
-    //    [[CustomNotificationCenter sharedCenter] addObserver:self block:self.rootBlock callback:@selector(whileBegin:)];
-    //
-    //    [[BLEControl sharedControl] sendBluetoothWithCurrentBlock:self.rootBlock];
-    
 }
 ///遍历output的Block 得到最终的值
 - (GetValueModle *)getValueWithOutPutBlock:(BKYBlock *)block {
     
     GetValueModle * model = [[GetValueModle alloc] init];
-        
+    
     if ([block.name containsString:@"action"]) {
         
         NSString * point = [block getBlockValues].firstObject;
@@ -313,12 +308,13 @@
         BKYBlock * inputBlock = block.outputConnection.targetBlock;
         if ([inputBlock.name isEqualToString:@"while"]) {
             self.sound = valueModel.numberValue;
-            [[CustomNotificationCenter sharedCenter] addObserver:self name:point callback:@selector(getWhileOutputCallback:)];
+            [[CustomNotificationCenter sharedCenter] addObserver:self name:point callback:@selector(getWhileOutputCallback:) object:nil];
             [[BLEControl sharedControl] sendCMDToBluetooth: key];
-            
+            NSLog(@"%@",point);
+            model = nil;
         } else {
             
-            [[CustomNotificationCenter sharedCenter] addObserver:self name:point callback:@selector(getOutputCallback:)];
+            [[CustomNotificationCenter sharedCenter] addObserver:self name:point callback:@selector(getOutputCallback:) object:nil];
             [[BLEControl sharedControl] sendCMDToBluetooth:key];
             [NSThread sleepForTimeInterval:1];
     
@@ -327,7 +323,7 @@
         
        
         
-        return nil;
+        return model;
     }
     
     NSArray * typeNames = @[@"number_value",@"bool_value",@"colour_value",@"string_value"];
@@ -372,7 +368,7 @@
         NSString * port = [block getBlockValues].firstObject;
         NSString * key = [NSString stringWithFormat:SOUND,[[port componentsSeparatedByString:@"IN"].lastObject integerValue]];
         
-        [[CustomNotificationCenter sharedCenter] addObserver:self name:port callback:@selector(getOutputCallback:)];
+        [[CustomNotificationCenter sharedCenter] addObserver:self name:port callback:@selector(getOutputCallback:) object:nil];
         [[BLEControl sharedControl] sendCMDToBluetooth:key];
         
         [NSThread sleepForTimeInterval:1];
@@ -552,7 +548,7 @@
         NSString * port = [block getBlockValues].firstObject;
         NSString * key = [NSString stringWithFormat:SOUND,[[port componentsSeparatedByString:@"IN"].lastObject integerValue]];
         
-        [[CustomNotificationCenter sharedCenter] addObserver:self name:port callback:@selector(getOutputCallback:)];
+        [[CustomNotificationCenter sharedCenter] addObserver:self name:port callback:@selector(getOutputCallback:) object:nil];
         [[BLEControl sharedControl] sendCMDToBluetooth:key];
         
         [NSThread sleepForTimeInterval:1];
@@ -625,7 +621,7 @@ static BOOL isFirst = YES;
     NSInteger point = callback.point;
     NSInteger cvalue = callback.value1;
     
-    if (point != [noti.name componentsSeparatedByString:@"t"].lastObject.integerValue) {
+    if (point != [self stringToPort:noti.name]) {
         
         return ;
     }
@@ -666,7 +662,7 @@ static BOOL isFirst = YES;
     NSInteger point = callback.point;
     NSInteger cvalue = callback.value1;
     
-    if (point != [noti.name componentsSeparatedByString:@"IN"].lastObject.integerValue) {
+    if (point != [self stringToPort:noti.name]) {
         
         return ;
     }
@@ -855,7 +851,7 @@ static BOOL isFirst = YES;
     
     NSString * sendKey = types[current.name];
     NSArray * values = [current getBlockValues];
-    NSString * notifitionName = values[0];
+    NSString * notifitionName = values.count?values[0]:@"";
     NSArray * newValues;
     
 #pragma mark 电机
@@ -875,12 +871,12 @@ static BOOL isFirst = YES;
      
         newValues = values;
 
-        [[CustomNotificationCenter sharedCenter] addObserver:self name:values[0] callback:@selector(bluetoothCallbcak:)];
+        [[CustomNotificationCenter sharedCenter] addObserver:self name:values[0] callback:@selector(bluetoothCallbcak:) object:nil];
         notifitionName = values[1];
         
         }
     
-    if ([@[@"fan_stop",@"fan_stop"] containsObject:current.name]) {
+    if ([@[@"fan_stop",@"fan_speed"] containsObject:current.name]) {
         
         NSInteger spead = 0;
         
@@ -937,7 +933,7 @@ static BOOL isFirst = YES;
     
     if (newValues.count > 0) {
         
-        [[CustomNotificationCenter sharedCenter] addObserver:self name:notifitionName callback:@selector(bluetoothCallbcak:)];
+        [[CustomNotificationCenter sharedCenter] addObserver:self name:notifitionName callback:@selector(bluetoothCallbcak:) object:nil];
         
         [[BLEControl sharedControl] sendCMDToBluetooth:newValues withBlockName:current.name];
         
@@ -1258,8 +1254,17 @@ static BOOL isFirst = YES;
     if (noti.object) {
         return ;
     }
+    
     BOOL isSuccess = NO;
 
+    const void * bytes = data.bytes;
+    
+    SixLenthCallback * callback = (SixLenthCallback *)bytes;
+    
+    if (callback->point != [self stringToPort:noti.name]) {
+        
+        return ;
+    }
     
     [[CustomNotificationCenter sharedCenter].center removeObserver:self name:noti.name object:nil];
     
@@ -1267,10 +1272,8 @@ static BOOL isFirst = YES;
     
     if ([@[@"machine_speed_direction",@"machine_stop",@"fan_stop",@"fan_speed"] containsObject:self.currentName]) {
         
-        const void * bytes = data.bytes;
         
-        SixLenthCallback * callback = (SixLenthCallback *)bytes;
-        if (callback->success == 01) {
+        if (callback->success == 0x01) {
             
             isSuccess = YES;
             
@@ -1280,9 +1283,7 @@ static BOOL isFirst = YES;
         }
     } else if ([self.currentName isEqualToString:@"machine_two_stop"]) {
         
-        const void * bytes = data.bytes;
-        
-        SixLenthCallback * callback = (SixLenthCallback *)bytes;
+       
         BOOL success = callback->success == 01;
         
         [self.stopTwo addObject:@(success)];
@@ -1296,9 +1297,6 @@ static BOOL isFirst = YES;
         
     } else {
         
-        const void * bytes = data.bytes;
-        
-        SixLenthCallback * callback = (SixLenthCallback *)bytes;
         
         if (callback->success == 01) {
             
@@ -1348,9 +1346,6 @@ static BOOL isFirst = YES;
     }
     //            [BlocklyControl shardControl].light.RGBColor
     
-    const void * bytes = data.bytes;
-    
-    SixLenthCallback * callback = (SixLenthCallback *)bytes;
     
     if (callback->success == 01) {
         
@@ -1386,6 +1381,8 @@ static BOOL isFirst = YES;
         
     } else {
         
+        [self endRun];
+
         [[BlocklyControl shardControl] stopAllBlockTree];
     }
     

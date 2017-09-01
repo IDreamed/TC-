@@ -95,9 +95,9 @@ static CustomNotificationCenter * center;
     
 }
 
-- (void)addObserver:(id)observer name:(NSString *)name callback:(SEL)blueBlock {
-    
-    [self.center addObserver:observer selector:blueBlock name:name object:self];
+- (void)addObserver:(id)observer name:(NSString *)name callback:(SEL)blueBlock object:(id)object {
+
+    [self.center addObserver:observer selector:blueBlock name:name object:object];
 }
 
 - (void)removeAllNotifitionWithObserver:(id)observer {

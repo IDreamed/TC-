@@ -70,7 +70,7 @@ class LightRectCollectionView: UIView {
         collecton.dataSource = self;
         collecton.delegate = self;
         
-        collecton.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellKey);
+        collecton.register(LightRectCell.self, forCellWithReuseIdentifier: cellKey);
         collecton.backgroundColor = UIColor.init(red: 0.133, green: 0.133, blue: 0.133, alpha: 1);
         self.backgroundColor = UIColor.white;
         self.addSubview(collecton);
@@ -81,8 +81,7 @@ class LightRectCollectionView: UIView {
 
 extension LightRectCollectionView : UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
-    func getColorStringWithIndex(index: Int) -> UIColor {
+    open func getColorStringWithIndex(index: Int) -> UIColor {
         
         let path = Bundle.main.path(forResource: "animateColor", ofType: "plist");
         
@@ -104,13 +103,11 @@ extension LightRectCollectionView : UICollectionViewDelegateFlowLayout, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collecton.dequeueReusableCell(withReuseIdentifier: cellKey, for: indexPath);
+        let cell = collecton.dequeueReusableCell(withReuseIdentifier: cellKey, for: indexPath) as! LightRectCell;
         
         let index = dataArray[indexPath.item];
         
-        cell.backgroundColor = self.getColorStringWithIndex(index: index);
-        
-        objc_setAssociatedObject(cell, selfRuntimeKey, NSNumber.init(value: index), .OBJC_ASSOCIATION_RETAIN);
+        cell.color = self.getColorStringWithIndex(index: index);
         
         return cell;
     }
@@ -141,8 +138,44 @@ extension LightRectCollectionView : UICollectionViewDelegateFlowLayout, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        NSLog("tap %d", indexPath.item);
+        NSLog("select");
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        NSLog("点击了");
+    }
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        
+        if collecton.frame.contains(point) {
+            
+            return collecton;
+        }
+        return super.hitTest(point, with: event);
+    }
+}
+
+class LightRectCell: UICollectionViewCell {
     
+     var color = LightRectCollectionView().getColorStringWithIndex(index: 0) {
+        didSet {
+            let set = color.bky_rgba();
+            self.backgroundColor = color;
+            let str = String(format: "%02x%02x%02x", set.red,set.green,set.blue);
+            colorStr = str;
+        }
+    };
+    
+    var colorStr:String = {
+        let color = LightRectCollectionView().getColorStringWithIndex(index: 0);
+        let set = color.bky_rgba();
+        
+        let str = String(format: "%02x%02x%02x", set.red,set.green,set.blue);
+        
+        return str;
+    }();
+    
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        
+        return self;
+    }
 }

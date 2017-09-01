@@ -212,10 +212,6 @@
 - (void)runButtonClink:(UIButton *)button {
     
     button.selected = !button.selected;
-
-    NSArray<BKYBlock *> * blocks = [self.workbenchViewController getBlockTree];
-    [BlocklyControl shardControl].vc = self;
-    [[BlocklyControl shardControl] setBlocks:blocks];
     
     if (button.selected) {
     
@@ -225,9 +221,6 @@
             button.selected = !button.selected;
             return ;
         }
-        
-//        [[BLEControl sharedControl] updateDevice];
-//        return ;
         
         [CustomHUD showwithTextDailog:@"程序准备中，请稍等"];
     

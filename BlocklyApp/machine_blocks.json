@@ -23,7 +23,7 @@
            },
            {
            "type": "field_dropdown",
-           "name": "machine_speed_direction2",
+           "name": "machine_speed_direction1",
            "options": [
                        [
                         "10%",
@@ -208,12 +208,13 @@
  },
  {
  "type": "fan_stop",
- "message0": "停止风扇 %1 ",
+ "message0": "停止固定点击 %1 ",
  "args0": [
            {
            "type": "field_dropdown",
            "name": "fan_stop",
            "options": [
+                       
                        [
                         "OUT2",
                         "OUT2"

@@ -28,8 +28,10 @@
 #endif
 
 #pragma mark 发送指令宏定义
+
+#pragma mark 端口相关指令
 ///通知名称的前缀 后面跟端口号
-#define NAME_HEAD(a) ((a)>3) ? [NSString stringWithFormat:@"OUT%02x",(a-3)] : [NSString stringWithFormat:@"IN%02x",(a)]
+#define NAME_HEAD(a) ((a)>3) ? [NSString stringWithFormat:@"OUT%x",(a-3)] : [NSString stringWithFormat:@"IN%x",(a)]
 
 
 ///关于通知和typename之间的宏
@@ -43,7 +45,7 @@
 #define MONI 0x03
 
 
-///电机指令相关
+#pragma mark 电机指令相关
 /*
     - 电机指令头
     -参数为:   
@@ -56,8 +58,22 @@
  */
 #define MACHINE_HEAD @"c56a000c050009%02x0708%02x%02x%02x%02x%04x"
 
+#pragma mark 灯阵指令
+///显示字符
+// 20(端口号)  20(端口号 1-4灯阵 16所有) 00(显示字符) 00(字符数据 asic码) 00(红色亮度)00(绿色亮度)00(蓝色亮度)
+#define ANIMATION_STRING @"c56a000A1B0007%02x%02x00%02x%@"
+///上传图片
+//20(端口号) 01(灯阵序号) 8*8 后面是RGB颜色点 在之后追加 00(第1点红色亮度)00(第1点绿色亮度)00(第1点蓝色亮度)......00(第64点红色亮度)00(第64点绿色亮度)00(第64点蓝色亮度)
+#define POST_IMAGE @"c56a00C61B00C3%02x%02x01%@"
 
-///RGB灯
+///显示图片
+//20(端口号) 01(灯阵序号)
+#define SHOW_IMAGE @"c56a00061B0003%02x%02x02
+///显示单色图片
+//20(端口号) 01(灯阵序号) (03显示单色图片) 01(第一行数据) 01(第二行数据)...01(第八行数据) 00(红色亮度)00(绿色亮度)00(蓝色亮度)
+#define SHOW_ONE_IMAGE @"c56a00061B0003%02x%02x03%02x%02x%02x%02x%02x%02x%02x%02x%@"
+
+#pragma mark 灯指令
 
 /*
  - RGBD灯颜色设置
@@ -77,22 +93,29 @@
  */
 
 #define LIGHT_LIVE @"c56a0008050005%02lx010a%02lx00"
-///RGB灯端口
-#define POINT_RGB @"06"
-///高亮灯端口
-#define POINT_HIGHTLIGHT @"06"
-///灯格端口
-#define POINT_LIGHT @"06"
 
+#pragma mark 播放声音
 
-///播放声音
+//／播放文件 参数文件序号 00-ff
+//1F(端口号) 00(播放预置音频文件) 00(文件序号高位) 00(文件序号低位)
+#define PLAY_SOUND @"c56a0007190004%02x00%02x%02x"
+///上传录音
+//1F(端口号) 01(传输录音文件) A1(文件帧标志) 00(文件总长高位) 00(文件总长低位) 末尾拼接X-n(录音文件数据)
+//备注：文件帧标志：A1 - 表示帧头；A2 - 表示中间帧；A3 - 表示尾帧；每一帧传输512个字节，尾帧不足用00补齐
+#define POST_SOUND @"c56a0208190205%02x01%02x%02x%02x"
 
-//播放文件 参数文件序号 00-ff
-#define PLAY_SOUND @"c56a00060f00031901%02x"
+///播放录音
+//1F(端口号)  02(播放录音文件)
+#define PLAY_POST_SOUND @"c56a0005190002%02x02"
+///停止播放
+//1F(端口号)
+#define STOP_PLAY_SOUND @"c5 6a 0005 19 0002 %02x 03"
+
 ///蜂鸣器  参数 端口号 音阶  时间为软件控制
 #define PLAY_BUZZER @"c56a0008050005%02lx010B%02x00"
 ///蜂鸣器端口
 #define POINT_BUZZER @"03"
+
 
 /////动画 端口号 上报类型 0连续上报 1单次上报 255禁止上报 上报参数 连续上报有效0默认1S 表示时间间隔 单位0.1s
 //#define ANIMENTION @"c56a00080d0005%02x0101%02x%02x"
@@ -100,13 +123,13 @@
 //#define POINT_ANIMENTION @"01"
 
 
-
+#pragma mark 传感器指令
 ///普通传感器  端口号
 /*///颜色值 1~6；0 - 无色；1-白色；2-黑色；3-红；4-绿色；5-蓝色；6-黄色*/
 ////普通传感器 //0 - 连续上报；1 - 单次上报；255 - 禁止上报；
-#define DEFAULT @"c56a00080d00050%02lx01040002"
+#define DEFAULT @"c56a00080d00050%02lx01010002"
 ////声控传感器 //0 - 连续上报；1 - 单次上报；255 - 禁止上报；
-#define SOUND @"c56a00080d0005%02lx0104000a"
+#define SOUND @"c56a00080d0005%02lx0101000a"
 ///声控关闭
 #define DEFAULT_OF @"c56a00080d0005%02lx0101ff00"
 

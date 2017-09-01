@@ -42,7 +42,7 @@
             "alt": "*",
             "height": 120,
             "name": "animate_light",
-            "src": "dangao",
+            "src": "#image",
             "type": "field_image",
             "width": 120
             }

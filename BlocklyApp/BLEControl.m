@@ -225,7 +225,7 @@ static BLEControl * control;
     NSString * str = [BLEControl convertDataToHexStr:self.callbackData];
     NSRange range = [str rangeOfString:@"c56a"];
     
-    if (range.location != NSNotFound && range.length != 0 && str.length > range.location+4) {
+    if (range.location != NSNotFound && range.length != 0 && str.length > range.location+8) {
         
         NSString * lenthChar = [str substringWithRange:NSMakeRange(range.location+4, 4)];
         const char * buffer = [lenthChar UTF8String];
@@ -518,12 +518,13 @@ static BLEControl * control;
         if ([key integerValue] >= 40) {
             
             NSInteger point = [key integerValue] /10;
-            NSInteger value = [key integerValue] % 10 ? MONI: SHUZI;
+            NSInteger value = [key integerValue] % 10 ? SHUZI: MONI;
             NSString * send = [NSString stringWithFormat:SET_POINT,(long)point,(long)value];
             NSString * name = NAME_HEAD(point);
             [self.portSource setObject:keys[key] forKey:name];
-            [[CustomNotificationCenter sharedCenter] addObserver:self name:name callback:@selector(setPointCallback:)];
+            [[CustomNotificationCenter sharedCenter] addObserver:self name:name callback:@selector(setPointCallback:) object:[CustomNotificationCenter sharedCenter]];
             [self.peripheral writeValue:[BLEControl convertHexStrToData:send] forCharacteristic:self.ch type:CBCharacteristicWriteWithoutResponse];
+            NSLog(@"port %@   key%@",name,send);
             
         } else {
                 
@@ -644,19 +645,7 @@ static BLEControl * control;
         
     }
     
-    if ([blockName isEqualToString:@"fan_stop"]) {
-        
-        NSInteger point = [[blockValues.firstObject componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
-        
-        sendKey = [NSString stringWithFormat:LIGHT_LIVE,point,0];
-        if (point == 5 || point == 6) {
-//            point = point * 10 + 1;///数字信号
-            point = point * 10;  ///模拟信号
-        }
-        [dict setObject:sendKey forKey:@(point)];
-        
-    }
-    if ([blockName isEqualToString:@"fan_speed"]) {
+    if ([@[@"fan_stop",@"fan_speed"] containsObject:blockName]) {
         
         NSInteger speed = [blockValues.lastObject integerValue];
         NSInteger point = [[blockValues.firstObject componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
@@ -929,7 +918,8 @@ static BLEControl * control;
 - (void)sendCMDToBluetooth:(NSString *)CMD {
     
     if (self.peripheral && self.ch) {
-        
+        NSLog(@"sendkey%@",CMD);
+
         [self.peripheral writeValue:[BLEControl convertHexStrToData:CMD] forCharacteristic:self.ch type:CBCharacteristicWriteWithResponse];
     }
 }
