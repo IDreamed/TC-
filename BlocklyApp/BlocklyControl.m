@@ -11,6 +11,7 @@
 #import "CustomNotificationCenter.h"
 #import "ValueModel.h"
 #import "BlockVC.h"
+#import "UpdateValueModel.h"
 @implementation BlocklyControl
 
 static BlocklyControl * control;
@@ -83,6 +84,9 @@ static BlocklyControl * control;
     [self.whileBlocks makeObjectsPerformSelector:@selector(setSuperBlock:) withObject:self.mianTree];
     
     self.whileIsRun = NO;
+    
+    [UpdateValueModel beginGetValue];
+    
     [self.mianTree runCurrent];
     [CustomHUD hidenHUD];
 }
@@ -92,8 +96,11 @@ static BlocklyControl * control;
 //    [[BLEControl sharedControl] sendCMDToBluetooth:[NSString stringWithFormat:DEFAULT_OF,1]];
 //    [[BLEControl sharedControl] sendCMDToBluetooth:[NSString stringWithFormat:DEFAULT_OF,2]];
 //    [[BLEControl sharedControl] sendCMDToBluetooth:[NSString stringWithFormat:DEFAULT_OF,3]];
+    
     [self.mianTree endRun];
     self.mianTree = nil;
+    
+    [UpdateValueModel endGetValue];
     
     for (CurrentBlock * block in self.whileBlocks) {
         

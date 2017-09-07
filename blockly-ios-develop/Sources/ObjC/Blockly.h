@@ -26,4 +26,4 @@ FOUNDATION_EXPORT const unsigned char BlocklyVersionString[];
 #import "BKYLayoutConfigStructs.h"
 #import "BKYWorkbenchViewController.h"
 #import "BKYWorkspaceUnits.h"
-
+#import "Blockly-swift.h"

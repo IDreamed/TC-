@@ -58,9 +58,6 @@ static MBProgressHUD * HUD;
         });
         
     }
-    
-    
-    
 }
 
 + (void)setShowText:(NSString *)string {

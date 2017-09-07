@@ -25,6 +25,8 @@
 
 @property (nonatomic, assign) CGFloat numberValue;
 
+@property (nonatomic, copy) NSString * valueName;
+
 
 - (void)getvalueForSelf;
 

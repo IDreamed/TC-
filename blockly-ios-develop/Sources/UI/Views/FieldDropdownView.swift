@@ -77,6 +77,11 @@ open class FieldDropdownView: FieldView {
         dropDownView.textFont = fieldDropdownLayout.config.font(for: LayoutConfig.GlobalFont)
         dropDownView.textColor =
           fieldDropdownLayout.config.color(for: LayoutConfig.FieldEditableTextColor)
+        
+        let scale: CGFloat = self.layout!.engine.scale;
+        
+        ////2017 0905  更新下拉框图标
+        dropDownView.updateConstraintsWhenUpdate(scale: scale);
       }
     }
   }
@@ -161,10 +166,10 @@ extension FieldDropdownView: DropdownViewDelegate {
             return ;
         }
     }
-    if (self.fieldDropdownLayout?.field.name == "doFunction") {
+    if (self.fieldDropdownLayout?.field.name == "get_value") {
         
         ////2017 08 15 根据以定义函数生成数据源
-        let functions = FunctionControl.functionControl.names;
+        let functions = FunctionControl.functionControl.values;
         
         
         var index = 0;
@@ -172,7 +177,7 @@ extension FieldDropdownView: DropdownViewDelegate {
             
             let name = e.key;
             options.append((displayName: name, value: name));
-            if self.dropDownView.text == e.value {
+            if self.dropDownView.text == e.key {
                 currentIndex = index;
             }
             index += 1;

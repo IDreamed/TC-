@@ -29,9 +29,9 @@ open class LayoutConfig: NSObject {
         let model = UIDevice.current.model;
         
         if model.contains("iPad") {
-            return 0.5;
+            return 0.7;
         } else {
-            return 0.5;
+            return 0.47;
         }
         
     }();
@@ -45,7 +45,7 @@ open class LayoutConfig: NSObject {
             return 2.5
         } else {
             
-            return 0.5;
+            return 1.5;
         }
         
     }();

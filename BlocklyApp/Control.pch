@@ -41,8 +41,8 @@
 ///端口设置
 #define SET_POINT @"c56a0009030006%02lx00%02lx000000"
 
-#define SHUZI 0x0a
-#define MONI 0x03
+#define SHUZI 0x03
+#define MONI 0x0a
 
 
 #pragma mark 电机指令相关
@@ -128,11 +128,17 @@
 /*///颜色值 1~6；0 - 无色；1-白色；2-黑色；3-红；4-绿色；5-蓝色；6-黄色*/
 ////普通传感器 //0 - 连续上报；1 - 单次上报；255 - 禁止上报；
 #define DEFAULT @"c56a00080d00050%02lx01010002"
+
 ////声控传感器 //0 - 连续上报；1 - 单次上报；255 - 禁止上报；
 #define SOUND @"c56a00080d0005%02lx0101000a"
 ///声控关闭
 #define DEFAULT_OF @"c56a00080d0005%02lx0101ff00"
-
+///传感器的操控指令
+////端口
+////0连续上报 1 单次上报 2 连续有效上报 3 单次有效上报
+#define GET_IN_VALUE @"c56a00080d0005%02x0101%02x%02x"
+///更新数值的事件 00为默认1s
+#define UPDATE_TIME 70
 
 #pragma mark 颜色宏
 

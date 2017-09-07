@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>machine_speed_direction</key>
-	<string>c56a000c050009%02lx0708%02x%02x%02x%02x%04x</string>
+	<string>c56a000c050009%02x0708%02x%02x%02x%02x%04x</string>
 	<key>machine_speed</key>
 	<string>c56a000c050009%02lx0708%02x%02xffffffff</string>
 	<key>machine_stop</key>
@@ -11,9 +11,9 @@
 	<key>machine_two_stop</key>
 	<string>c56a000c050009%02lx0708010000000000</string>
 	<key>fan_stop</key>
-	<string>c56a0008050005%02lx010a%02x00</string>
+	<string>c56a0008050005%02lx010a%02lx00</string>
 	<key>fan_speed</key>
-	<string>c56a0008050005%02lx010a%02x00</string>
+	<string>c56a0008050005%02lx010a%02lx00</string>
 	<key>machine_swing</key>
 	<string></string>
 	<key>animation_image</key>
@@ -49,17 +49,17 @@
 	<key>light2</key>
 	<string>c56a0008050005%02lx010a%02x00</string>
 	<key>daily_words</key>
-	<string>c56a00060f0003%02lx01%02x</string>
+	<string>c56a0007190004%02x00%02x%02x</string>
 	<key>music_sound</key>
-	<string>c56a00060f0003%02lx01%02x</string>
+	<string>c56a0007190004%02x00%02x%02x</string>
 	<key>animal_sound</key>
-	<string>c56a00060f0003%02lx01%02x</string>
+	<string>c56a0007190004%02x00%02x%02x</string>
 	<key>transport_sound</key>
-	<string>c56a00060f0003%02lx01%02x</string>
+	<string>c56a0007190004%02x00%02x%02x</string>
 	<key>buzzer_level</key>
 	<string>c56a0008050005%02lx010B%02x00</string>
 	<key>port_out</key>
-	<string></string>
+	<string>c56a0008050005%02lx010a%02lx00</string>
 	<key>port_on_off</key>
 	<string></string>
 	<key>wait_port_open</key>

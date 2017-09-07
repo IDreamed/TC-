@@ -72,7 +72,18 @@ open class FieldColorPickerViewController: UICollectionViewController {
   open var preferredColorsPerRow = 7
 
   /// The size of each color button
-  open var buttonSize: CGSize = CGSize(width: 44, height: 44) {
+    ////2017 09 01 手机上选择颜色大小
+//    CGSize(width: 44, height: 44)
+    open var buttonSize: CGSize = {
+        
+        let model = UIDevice.current.model;
+        var width:CGFloat = 20;
+        if model.contains("iPad") {
+            width = 44;
+        }
+        
+        return CGSize(width:width,height:width);
+    }()  {
     didSet {
       _flowLayout.itemSize = self.buttonSize
     }
@@ -115,6 +126,10 @@ open class FieldColorPickerViewController: UICollectionViewController {
   open override func viewDidLoad() {
     super.viewDidLoad()
 
+    let path = Bundle.main.path(forResource: "animateColor", ofType: "plist");
+    
+    let array: [String] = NSArray.init(contentsOfFile: path!) as! [String];
+    self.colors = array;
     self.collectionView?.backgroundColor = UIColor.clear
     self.collectionView?.register(FieldColorPickerViewCell.self,
       forCellWithReuseIdentifier: _reusableCellIdentifier)
@@ -235,4 +250,9 @@ private class FieldColorPickerViewCell: UICollectionViewCell {
     self.setNeedsDisplay()
     self.layer.setNeedsDisplay()
   }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        NSLog("move")
+    }
 }

@@ -10,11 +10,17 @@ import UIKit
 
 class LightRectCollectionView: UIView {
 
+    var selectCallback: (LightRectCell,IndexPath)->Void = {
+        (cell, indexPath) in
+        
+        NSLog("未定义返回闭包");
+    };
     let selfRuntimeKey = "selfColorKey";
     
     var dataArray: [Int] = Array();
     let panding: CGFloat = 1.0 / 41.5;
-
+    var currentCell:LightRectCell?;
+    
     let cellKey: String = "lightRectCell";
     var dataString: String? {
         didSet {
@@ -75,6 +81,12 @@ class LightRectCollectionView: UIView {
         self.backgroundColor = UIColor.white;
         self.addSubview(collecton);
 
+    }
+    
+    func updateColor(color:UIColor) {
+        
+        self.currentCell!.color = color;
+        
     }
 
 }
@@ -137,13 +149,29 @@ extension LightRectCollectionView : UICollectionViewDelegateFlowLayout, UICollec
         return UIEdgeInsetsMake(top, top, top, top);
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        NSLog("select");
-    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        NSLog("点击了");
+        let point = touches.first?.location(in: self);
+        
+        let indexPath = self.collecton.indexPathForItem(at: point!);
+        
+        if indexPath != nil {
+            
+            if let cell = self.collecton.cellForItem(at: indexPath!) {
+            
+                self.select(cell: cell as! LightRectCell, indexPath: indexPath!);
+            }
+        }
+        
+        self.next?.touchesEnded(touches, with: event);
     }
+    
+    func select(cell:LightRectCell, indexPath:IndexPath) {
+        
+        self.currentCell = cell;
+        self.selectCallback(cell,indexPath);
+    }
+    
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         
         if collecton.frame.contains(point) {

@@ -695,6 +695,23 @@ extension Block {
         
         return blocks;
     }
+    ///获取创建的变量
+    open func getTheValueWith(name:String) -> CreateValueModel? {
+        
+        let dic = FunctionControl.functionControl.values;
+        
+        if dic.keys.contains(name) {
+        
+            return dic[name]!;
+        }
+        return nil;
+    }
+    ///将更改后的变量保存
+    open func setValueWith(name: String, value:CreateValueModel) {
+        
+        FunctionControl.functionControl.values[name] = value;
+    }
+    
     //    open func changeBlockFields(block:Block, values:[String]) {
     //        
     //        let input = block.inputs[0];

@@ -47,6 +47,16 @@ open class FieldImageView: FieldView {
         let animateView = LightRectCollectionView.init(frame: self.bounds);
         animateView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         animateView.isHidden = true;
+        
+        weak var weakSelf = self;
+        animateView.selectCallback = {
+            
+            (cell,indexPath) in
+            
+            weakSelf?.showColorView(cell:cell,indexPath:indexPath);
+
+        };
+        
         return animateView;
     }();
     
@@ -63,7 +73,18 @@ open class FieldImageView: FieldView {
         return super.hitTest(point, with: event);
     
     }
-
+    
+    //弹出颜色选择器
+    func showColorView(cell:LightRectCell,indexPath:IndexPath) {
+        
+        let viewController = FieldColorPickerViewController()
+        viewController.color = cell.color
+        viewController.delegate = self
+        popoverDelegate?
+            .layoutView(self, requestedToPresentPopoverViewController: viewController, fromView: self)
+        
+        NSLog("颜色选择");
+    }
     //2017 07 24 判断是否在WorkbenchViewController上
     private func isResponst(view:UIView) -> Bool {
     
@@ -160,7 +181,14 @@ extension FieldImageView: FieldLayoutMeasurer {
     return layout.engine.viewSizeFromWorkspaceSize(fieldImageLayout.size)
   }
     
+    
 }
 
-
+extension FieldImageView: FieldColorPickerViewControllerDelegate {
+    public func fieldColorPickerViewController(
+        _ viewController: FieldColorPickerViewController, didPickColor color: UIColor)
+{
+    self.animateView.updateColor(color:color);
+}
+}
 

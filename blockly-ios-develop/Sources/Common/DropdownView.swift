@@ -93,7 +93,11 @@ public final class DropdownView: UIView {
   }
   /// Delegate for receiving events that occur on this dropdown
   public weak var delegate: DropdownViewDelegate?
-
+    
+    ///测试变量
+    public var scale = LayoutConfig().defaultScale;
+    
+    
   /// The text field to render
   fileprivate let _label = UILabel(frame: CGRect.zero)
 
@@ -126,7 +130,7 @@ public final class DropdownView: UIView {
     self.dropDownArrowImage = dropDownArrowImage ?? DropdownView.defaultDropDownArrowImage()
     borderColor = UIColor.gray.cgColor
     dropDownBackgroundColor = UIColor.white.cgColor
-
+    
     configureSubviews()
   }
 
@@ -162,6 +166,7 @@ public final class DropdownView: UIView {
     // Measure drop down arrow image size
     let imageSize = (dropDownArrowImage?.size ?? CGSize.zero)
 
+    
     // Return size required
     return CGSize(
       width: ceil(textSize.width + horizontalSpacing * 3 + imageSize.width + borderWidth * 2),
@@ -177,9 +182,15 @@ public final class DropdownView: UIView {
     return ImageLoader.loadImage(named: "arrow_dropdown", forClass: DropdownView.self)
   }
 
+    ////2017 0905 修复下拉框图标不会缩放的问题
+    public func updateConstraintsWhenUpdate(scale: CGFloat) {
+        
+        _dropDownArrow.transform = transform.scaledBy(x: scale, y: scale);
+    }
+    
   // MARK: - Private
 
-  private func configureSubviews() {
+    private func configureSubviews() {
     let views = [
       "label": _label,
       "dropDownArrow": _dropDownArrow,
@@ -188,23 +199,53 @@ public final class DropdownView: UIView {
     let metrics = [
       "xSpacing": horizontalSpacing,
       "ySpacing": verticalSpacing,
+//      "imageWidth": dropDownArrowImage!.size.width * scale
       ]
     let constraints = [
-      "H:|-(xSpacing)-[label]-(xSpacing)-[dropDownArrow]-(xSpacing)-|",
-      "H:|[button]|",
-      "V:|-(ySpacing)-[label]-(ySpacing)-|",
-      "V:|[dropDownArrow]|",
-      "V:|[button]|",
+        "H:|-(xSpacing)-[label]-(>=0)-[dropDownArrow]-(xSpacing)-|",
+        "H:|[button]|",
+        "V:|-(ySpacing)-[label]-(ySpacing)-|",
+        "V:|-(ySpacing)-[dropDownArrow]-(ySpacing)-|",
+        "V:|[button]|",
       ]
 
     // Re-add all views
     views.forEach({ $1.removeFromSuperview()})
     bky_addSubviews(Array(views.values))
     sendSubview(toBack: _button)
-
+        
     // Add constraints
     bky_addVisualFormatConstraints(constraints, metrics: metrics, views: views)
   }
+    
+    func updateNewConstraints() {
+        
+        let views = [
+            "label": _label,
+            "dropDownArrow": _dropDownArrow,
+            "button": _button,
+            ]
+        let metrics = [
+            "xSpacing": horizontalSpacing,
+            "ySpacing": verticalSpacing,
+            "imageWidth": dropDownArrowImage!.size.width * scale
+        ]
+        let constraints = [
+            "H:|-(xSpacing)-[label]-(xSpacing)-[dropDownArrow]-(>=0)-|",
+            "H:|[button]|",
+            "V:|-(ySpacing)-[label]-(ySpacing)-|",
+            "V:|-(ySpacing)-[dropDownArrow]-(ySpacing)-|",
+            "V:|[button]|",
+            ]
+        
+        // Re-add all views
+        views.forEach({ $1.removeFromSuperview()})
+        bky_addSubviews(Array(views.values))
+        sendSubview(toBack: _button)
+        
+        // Add constraints
+        bky_addVisualFormatConstraints(constraints, metrics: metrics, views: views)
+    }
 
   private dynamic func didTapButton(_ sender: UIButton) {
     delegate?.dropDownDidReceiveTap()

@@ -398,8 +398,40 @@ class NewLabel : UILabel {
     
 }
 
-@objc(FunctionControl)
-class FunctionControl: NSObject {
+open class CreateValueModel: NSObject {
+    
+   public var typeName: NSString = "string";
+    
+   public var floatValue: CGFloat = 0 {
+        didSet {
+            
+            typeName = "number";
+        }
+    }
+    
+   public var stringValue: String = "" {
+        didSet {
+            
+            typeName = "string"
+        }
+    }
+   public var boolValue: Bool = false {
+        didSet {
+            
+            typeName = "bool"
+        }
+    }
+    
+   public var colorValue: String = "" {
+        didSet {
+            
+            typeName = "color"
+        }
+    }
+    
+}
+
+open class FunctionControl: NSObject {
     
     static let functionControl = { () -> FunctionControl in 
     
@@ -425,8 +457,8 @@ class FunctionControl: NSObject {
     
     public var names: [String : String] = Dictionary();
     
-    public var values: [String : CGFloat] = Dictionary();
-    
+    public var values: [String : CreateValueModel] = Dictionary();
+    public var model: CreateValueModel = CreateValueModel();
      func clearFunction() {
         
        self.names.removeAll();
@@ -435,7 +467,4 @@ class FunctionControl: NSObject {
     func clearDictionary() {
         self.values.removeAll();
     }
-    
 }
-
-

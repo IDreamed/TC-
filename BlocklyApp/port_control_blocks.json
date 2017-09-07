@@ -75,10 +75,6 @@
               "name": "port_out",
               "options": [
                           [
-                           "OUT1",
-                           "OUT1"
-                           ],
-                          [
                            "OUT2",
                            "OUT2"
                            ],

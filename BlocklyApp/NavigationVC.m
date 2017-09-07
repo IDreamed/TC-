@@ -7,6 +7,7 @@
 //
 
 #import "NavigationVC.h"
+#import <objc/runtime.h>
 
 @interface NavigationVC ()
 
@@ -23,6 +24,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+//#error 事件拦截 过滤viewController的dismiss事件
 
 //- (BOOL)shouldAutorotate {
 //    

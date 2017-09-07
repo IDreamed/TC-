@@ -44,7 +44,6 @@
 @property (strong, nonatomic) NSDate * endTime;
 
 
-
 + (instancetype)shardControl;
 
 - (void)setBlocks:(NSArray<BKYBlock *>*)blocks;

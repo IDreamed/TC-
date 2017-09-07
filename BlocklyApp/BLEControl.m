@@ -250,8 +250,8 @@ static BLEControl * control;
     
         NSRange dataRange = NSMakeRange(range.location/2, 4+lenth);
         NSData * subData = [self.callbackData subdataWithRange:dataRange];
-        NSLog(@"post %@",[BLEControl convertDataToHexStr:subData]);
-        
+//        NSLog(@"post %@",[BLEControl convertDataToHexStr:subData]);
+    
         [self.callbackData replaceBytesInRange:NSMakeRange(0, range.location/2+lenth+4) withBytes:NULL length:0];
         
         if (subData.length == 14) {
@@ -524,13 +524,13 @@ static BLEControl * control;
             [self.portSource setObject:keys[key] forKey:name];
             [[CustomNotificationCenter sharedCenter] addObserver:self name:name callback:@selector(setPointCallback:) object:[CustomNotificationCenter sharedCenter]];
             [self.peripheral writeValue:[BLEControl convertHexStrToData:send] forCharacteristic:self.ch type:CBCharacteristicWriteWithoutResponse];
-            NSLog(@"port %@   key%@",name,send);
+//            NSLog(@"port %@   key%@",name,send);
             
         } else {
                 
                 [self.peripheral writeValue:[BLEControl convertHexStrToData:keys[key]] forCharacteristic:self.ch type:CBCharacteristicWriteWithResponse];
-                NSLog(@"thread:%@ send: %@", key,[NSThread currentThread]);
-                
+//                NSLog(@"thread:%@ send: %@", key,[NSThread currentThread]);
+            
             }
             
     }
@@ -556,6 +556,7 @@ static BLEControl * control;
 
         ///只设置端口
         if (send.length > 0) {
+//            NSLog(@"send%@",send);
             [self.peripheral writeValue:[BLEControl convertHexStrToData:send] forCharacteristic:self.ch type:CBCharacteristicWriteWithoutResponse];
             
         }
@@ -570,8 +571,6 @@ static BLEControl * control;
 
 /// 获取要打开的传感器指令
 - (NSDictionary *)returnOnRobot:(NSString *)blockName blockValues:(NSArray *)blockValues {
-    
-    NSMutableArray * newValues = [NSMutableArray arrayWithArray:blockValues];
     
     NSMutableDictionary * dict = [NSMutableDictionary dictionary];
 
@@ -834,25 +833,42 @@ static BLEControl * control;
     
     if ([blockName isEqualToString:@"port_on_off"]) {
         
-        
-    }
-    
-    if ([blockName isEqualToString:@"port_on_off"]) {
-        
         NSInteger point = [[blockValues.firstObject componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
         
         BOOL isShuzi = [blockValues[1] isEqualToString:@"数字"];
         
         point = point * 10 + isShuzi;
         
-        [dict setObject:@"" forKey:@(point)];
+//        [dict setObject:@"" forKey:@(point)];
     }
     
     if ([blockName isEqualToString:@"port_out"]) {
      
          NSInteger point = [[blockValues.firstObject componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
+        
+        NSInteger value = [blockValues[1] integerValue];
+        value = value > 99?99:value;
+        sendKey = [NSString stringWithFormat:LIGHT_LIVE,point,value];
+        if (point == 5 || point == 6) {
+//            point = point * 10 + 1;///数字信号
+            point = point * 10;  ///模拟信号
+        }
+        
+        [dict setObject:sendKey forKey:@(point)];
     }
     
+    if ([blockName isEqualToString:@"wait_port_open"]) {
+        
+        
+    }
+    if ([blockName isEqualToString:@"wait_do"]) {
+        
+        NSInteger point = [[blockValues[0] componentsSeparatedByString:@"IN"].lastObject integerValue];
+        sendKey = [NSString stringWithFormat:DEFAULT,point];
+        
+        [dict setObject:sendKey forKey:@(point)];
+    }
+
          
     
     return dict;
@@ -918,7 +934,7 @@ static BLEControl * control;
 - (void)sendCMDToBluetooth:(NSString *)CMD {
     
     if (self.peripheral && self.ch) {
-        NSLog(@"sendkey%@",CMD);
+//        NSLog(@"sendkey%@",CMD);
 
         [self.peripheral writeValue:[BLEControl convertHexStrToData:CMD] forCharacteristic:self.ch type:CBCharacteristicWriteWithResponse];
     }

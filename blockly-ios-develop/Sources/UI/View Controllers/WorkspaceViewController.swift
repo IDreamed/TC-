@@ -234,9 +234,10 @@ extension WorkspaceViewController: LayoutPopoverDelegate {
     animated: Bool) {
     viewController.presentingViewController?.dismiss(animated: animated, completion: nil)
 
-    ///2017 08 14 注释下面部分 导致界面dismiss
-    // Manually fire our custom delegate since it doesn't automatically get triggered from
-    // `self.popoverPresentationControllerDidDismissPopover(:)`.
+    ////2017 08 14 注释下面部分 导致界面dismiss
+//     Manually fire our custom delegate since it doesn't automatically get triggered from
+//     `self.popoverPresentationControllerDidDismissPopover(:)`.
+
 //    self.delegate?.workspaceViewControllerDismissedViewController(self)
   }
 }

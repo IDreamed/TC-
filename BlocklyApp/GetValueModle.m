@@ -11,6 +11,18 @@
 
 @implementation GetValueModle
 
+- (instancetype)init {
+    
+    if (self = [super init]) {
+        self.numberValue = 0;
+        self.boolValue = NO;
+        self.stringValue = @"";
+        self.colourValue = @"777777";
+        
+    }
+    return self;
+}
+
 - (void)getvalueForSelf {
 
     

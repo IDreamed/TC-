@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		80B86E5BE6EF1FDB570993F5 /* libPods-BlocklyApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 912C7ADF09223B8A8B1E187E /* libPods-BlocklyApp.a */; };
+		C61221751F5F98A200A1604F /* UpdateValueModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C61221741F5F98A200A1604F /* UpdateValueModel.m */; };
 		C6250A031F189D6D005E66DE /* sirui.bin in Resources */ = {isa = PBXBuildFile; fileRef = C6250A021F189D6D005E66DE /* sirui.bin */; };
 		C65B997E1F4D5AA2005DDB59 /* GetValueModle.m in Sources */ = {isa = PBXBuildFile; fileRef = C65B997D1F4D5AA2005DDB59 /* GetValueModle.m */; };
 		C65B99921F4EDD14005DDB59 /* control_blocks.json in Resources */ = {isa = PBXBuildFile; fileRef = C65B99881F4EDD14005DDB59 /* control_blocks.json */; };
@@ -185,6 +186,8 @@
 		04B913E2B23CC65AB8BFE6ED /* Pods-BlocklyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlocklyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlocklyApp/Pods-BlocklyApp.release.xcconfig"; sourceTree = "<group>"; };
 		4CA5ABC16FF2A6F1201CFACA /* Pods-BlocklyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlocklyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlocklyApp/Pods-BlocklyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		912C7ADF09223B8A8B1E187E /* libPods-BlocklyApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BlocklyApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C61221731F5F98A200A1604F /* UpdateValueModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateValueModel.h; sourceTree = "<group>"; };
+		C61221741F5F98A200A1604F /* UpdateValueModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateValueModel.m; sourceTree = "<group>"; };
 		C6250A021F189D6D005E66DE /* sirui.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = sirui.bin; sourceTree = "<group>"; };
 		C65B997C1F4D5AA2005DDB59 /* GetValueModle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetValueModle.h; sourceTree = "<group>"; };
 		C65B997D1F4D5AA2005DDB59 /* GetValueModle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetValueModle.m; sourceTree = "<group>"; };
@@ -539,6 +542,8 @@
 				C6E560C31EEAA44F000FE9EF /* CustomNotificationCenter.m */,
 				C666B2321EF2261F00D621A6 /* RGBLightModel.h */,
 				C666B2331EF2261F00D621A6 /* RGBLightModel.m */,
+				C61221731F5F98A200A1604F /* UpdateValueModel.h */,
+				C61221741F5F98A200A1604F /* UpdateValueModel.m */,
 			);
 			name = BlocklyHealper;
 			sourceTree = "<group>";
@@ -841,6 +846,7 @@
 				C6E5605A1EE56CDE000FE9EF /* SetTableCell.m in Sources */,
 				C6E560881EE91D1F000FE9EF /* CurrentBlock.m in Sources */,
 				C6E560341EE53053000FE9EF /* ChackBlocklyVC.m in Sources */,
+				C61221751F5F98A200A1604F /* UpdateValueModel.m in Sources */,
 				C6E5608C1EE9242C000FE9EF /* BlocklyControl.m in Sources */,
 				C6E560421EE53EAC000FE9EF /* CustomHUD.m in Sources */,
 				C6A737B31ED6B19D0065B501 /* BlocklyToolBoxHealper.m in Sources */,

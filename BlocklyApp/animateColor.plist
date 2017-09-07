@@ -9,5 +9,22 @@
 	<string>ffff00</string>
 	<string>ff00ff</string>
 	<string>00fffff</string>
+	<string>ffcccc</string>
+	<string>993300</string>
+	<string>ffcc66</string>
+	<string>ffcc33</string>
+	<string>33cc00</string>
+	<string>00cccc</string>
+	<string>66cccc</string>
+	<string>33ccff</string>
+	<string>3333ff</string>
+	<string>6600cc</string>
+	<string>cc66cc</string>
+	<string>ff99ff</string>
+	<string>ffccff</string>
+	<string>330033</string>
+	<string>ffff33</string>
+	<string>cc9933</string>
+	<string>cc6600</string>
 </array>
 </plist>

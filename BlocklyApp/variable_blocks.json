@@ -20,7 +20,11 @@
     {
       "type": "input_value",
       "name": "set_value1",
-      "check": "number"
+      "check": ["number",
+                "bool",
+                "string",
+                "colour"
+                ]
     }
   ],
  "inputsInline":true,

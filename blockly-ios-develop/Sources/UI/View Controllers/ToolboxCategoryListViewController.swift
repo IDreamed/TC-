@@ -115,7 +115,7 @@ public final class ToolboxCategoryListViewController: UICollectionViewController
     
     flowLayout.minimumLineSpacing = 1;
     flowLayout.minimumInteritemSpacing = 1;
-    flowLayout.sectionInset = UIEdgeInsetsMake(ToolboxCategoryListViewController.resizeFloat(value: 50), 0, 0, 0);
+    flowLayout.sectionInset = UIEdgeInsetsMake(ToolboxCategoryListViewController.resizeFloat(value: 50), 0, ToolboxCategoryListViewController.resizeFloat(value: 50),0);
     self.collectionView?.backgroundColor = UIColor.init(white: 0.87, alpha: 1);
   }
 
