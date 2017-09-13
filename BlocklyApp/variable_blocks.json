@@ -7,15 +7,11 @@
             "type": "field_dropdown",
             "name": "set_value",
             "options": [
-              [
-                "and",
-                "and"
-              ],
-              [
-                "or",
-                "or"
-              ]
-            ]
+                        [
+                         " ",
+                         " "
+                         ]
+                        ]
             },
     {
       "type": "input_value",
@@ -40,19 +36,19 @@
            "type": "field_dropdown",
            "name": "get_value",
            "options": [
-           
+                       [
+                        " ",
+                        " "
+                        ]
            ]
            }
            ],
  "inputsInline":true,
- "output":"number",
+ "output": ["number",
+            "bool",
+            "string",
+            "colour"
+            ],
   "colour": 235
- },
- {
- "type": "create_value",
- "message0": "创建新的变量",
-"inputsInline":true,
- "colour": 235
  }
- 
 ]

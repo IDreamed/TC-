@@ -14,6 +14,11 @@
     @property (weak, nonatomic) IBOutlet UIButton *heardImageButton;
     @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *firstLabel;
+@property (weak, nonatomic) IBOutlet UILabel *secondLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *thirdLabel;
+
 @end
 
 @implementation SelfVC
@@ -22,6 +27,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.nameLabel.font = DEFAULT_FONT;
+    self.firstLabel.font = DEFAULT_FONT;
+    self.secondLabel.font = DEFAULT_FONT;
+    self.thirdLabel.font = DEFAULT_FONT;
+
     SetModel * model = [APPControll getUserInfo];
 
     [self.heardImageButton setNeedsLayout];

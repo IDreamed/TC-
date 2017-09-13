@@ -15,7 +15,7 @@
 //@property (nonatomic, copy) NSString * valueType;
 
 ///value值的封装
-//@property (nonatomic, copy) NSString * value;
+@property (nonatomic, copy) NSString * value;
 
 @property (nonatomic, copy) NSString * stringValue;
 

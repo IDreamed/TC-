@@ -457,14 +457,11 @@ open class FunctionControl: NSObject {
     
     public var names: [String : String] = Dictionary();
     
-    public var values: [String : CreateValueModel] = Dictionary();
-    public var model: CreateValueModel = CreateValueModel();
+    public var values: [String : String] = Dictionary();
      func clearFunction() {
         
        self.names.removeAll();
-    }
-    
-    func clearDictionary() {
         self.values.removeAll();
+
     }
 }

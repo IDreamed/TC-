@@ -27,6 +27,28 @@
 #define NSLog(...)
 #endif
 
+/// 当前版本号
+#define VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+///判断是否是ipad
+#define isPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
+///fontsize
+#define DEFAULT_FONT_SIZE (isPad ? 21:16)
+
+#define DEFAULT_FONT [UIFont systemFontOfSize:DEFAULT_FONT_SIZE]
+
+#define DEFAULT_FONT_SMALL_SIZE (isPad ? 17:12)
+
+#define DEFAULT_FONT_SMALL [UIFont systemFontOfSize:DEFAULT_FONT_SMALL_SIZE]
+
+
+///屏幕大小
+#define SCREEN_SIZE [UIScreen mainScreen].bounds.size
+
+
+///更新数据时的通知名称 用于通知while和重复直到
+#define UPDATE_IN_NAME @"updateInValue"
+
 #pragma mark 发送指令宏定义
 
 #pragma mark 端口相关指令
@@ -83,7 +105,7 @@
  绿: 一字节 00-ff 十六进制
  蓝: 一字节 00-ff 十六进制
   */
-#define RGBLight @"c56a0009050006%@020d%02x%02x%02x"
+#define RGBLight @"c56a0007170004%02x%@"
 
 /*
  - 灯光亮度设置
@@ -138,7 +160,7 @@
 ////0连续上报 1 单次上报 2 连续有效上报 3 单次有效上报
 #define GET_IN_VALUE @"c56a00080d0005%02x0101%02x%02x"
 ///更新数值的事件 00为默认1s
-#define UPDATE_TIME 70
+#define UPDATE_TIME 50
 
 #pragma mark 颜色宏
 

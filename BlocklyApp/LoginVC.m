@@ -54,6 +54,12 @@
         }
     }
     
+    [[HTTPRequest sharedHttpRequest] checkAppVersionWithCallback:^(NSDictionary * _Nullable dict) {
+       
+#warning 版本检测
+        
+    }];
+    
 }
     
 - (void)loginClink {

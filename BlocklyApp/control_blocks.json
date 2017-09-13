@@ -66,9 +66,14 @@
  "message0": " 将 %1 从 %2 到 %3 %4 %5",
  "args0": [
            {
-           "type": "input_value",
+           "type": "field_dropdown",
            "name": "repetition_for",
-           "check": "number"
+           "options": [
+                       [
+                        " ",
+                        " "
+                        ]
+                       ]
            },
            {
            "type": "input_value",
@@ -119,7 +124,6 @@
  "previousStatement": null,
  "nextStatement": null,
  "colour": 311
-
  },
  {
  "type": "bool_value",

@@ -103,7 +103,7 @@
 
         <!--    <block type="light_on_off"></block>-->
         <!--    <block type="light_caution_on_off"></block>-->
-        <!--    <block type="light_color"></block>-->
+            <block type="light_color"></block>
         <!--    <block type="highlight_level"></block>-->
         <!--    <block type="highlight_on_off"></block>-->
         <!--    <block type="light1"></block>-->
@@ -189,10 +189,7 @@
 
         </block>
         <block type ="repetition_for">
-            <value name = "repetition_for">
-                <shadow type="number_value">
-                </shadow>
-            </value>
+            
             <value name = "repetition_for1">
                 <shadow type="number_value">
                 </shadow>
@@ -322,7 +319,7 @@
     </category>
 
     <category name="变量" colour="235" icon="gj_bianliang">
-        <block type="create_value"></block>
+<!--        <block type="create_value"></block>-->
         <block type="set_value">
             <value name = "set_value1">
                 <shadow type="number_value">

@@ -25,6 +25,8 @@
 ///while树是否在运行
 @property (assign ,nonatomic) BOOL whileIsRun;
 
+///更新输入参数的计时器
+@property (strong, nonatomic) NSTimer * timer;
 ///RGB灯管全局值
 @property (strong, nonatomic) RGBLightModel * light;
 ///蜂鸣器音阶

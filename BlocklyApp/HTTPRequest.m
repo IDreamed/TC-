@@ -117,4 +117,26 @@
     
 }
 
+- (void)checkAppVersionWithCallback:(VersionCallback)callback {
+    
+    
+    NSString * newUrl = [BASE_URL stringByAppendingString:@"g=portal&m=app&a=return_version_ios"];
+    
+    AFHTTPSessionManager * manager = [[AFHTTPSessionManager alloc] init];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST:newUrl parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSDictionary * data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+                
+        if (callback) {
+            
+            callback(data);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
+
+
 @end

@@ -12,11 +12,12 @@
 #import "PersonalWorksModel.h"
 #import "BlockVC.h"
 
-@interface PersonalWorksVC () <UICollectionViewDelegate, UICollectionViewDataSource>
-    @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-    @property (copy, nonatomic) NSString * cellKey;
-    @property (strong, nonatomic) NSMutableArray * dataSource;
- 
+@interface PersonalWorksVC () <UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (copy, nonatomic) NSString * cellKey;
+@property (strong, nonatomic) NSMutableArray * dataSource;
+@property (weak, nonatomic) IBOutlet UILabel *titlLabel;
+
 @end
 
 @implementation PersonalWorksVC
@@ -31,14 +32,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.titlLabel.font = [UIFont systemFontOfSize:DEFAULT_FONT_SIZE];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.dataSource = [NSMutableArray array];
     self.cellKey = @"PersonalWorksCell";
     
     [self getHttpData];
-   
+    
 }
 
 - (void)getHttpData {
@@ -108,6 +109,21 @@
     
     [self.navigationController pushViewController:bvc animated:YES];
 }
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    
+    UICollectionViewFlowLayout * layout = (UICollectionViewFlowLayout *)collectionViewLayout;
+    
+    CGFloat speace = layout.minimumLineSpacing;
+    
+    CGFloat width = (screenSize.width - speace * 5)/4;
+    CGFloat height = width/3.0*4.2;
+    
+    return CGSizeMake(width, height);
+}
+
 
 - (void)delegateCell:(PersonalWorksCell *)cell {
     

@@ -157,16 +157,21 @@ extension FieldDropdownView: DropdownViewDelegate {
             
         }
         
+        let isNULL = options.count == 0;
+        if isNULL {
+            options.append((displayName: " ", value: " "));
+        }
+        
         self.options = options;
         self.fieldDropdownLayout?.fieldDropdown.options = self.options;
         self.fieldDropdownLayout?.fieldDropdown.selectedIndex = currentIndex;
         
-        if self.options.count == 0 {
+        if isNULL {
             
             return ;
         }
     }
-    if (self.fieldDropdownLayout?.field.name == "get_value") {
+    if (["get_value","set_value","repetition_for"].contains(self.fieldDropdownLayout!.field.name)) {
         
         ////2017 08 15 根据以定义函数生成数据源
         let functions = FunctionControl.functionControl.values;
@@ -183,11 +188,16 @@ extension FieldDropdownView: DropdownViewDelegate {
             index += 1;
             
         }
+        let isNULL = options.count == 0;
+        if isNULL {
+            options.append((displayName: " ", value: " "));
+        }
+        
         self.options = options;
         self.fieldDropdownLayout?.fieldDropdown.options = self.options;
         self.fieldDropdownLayout?.fieldDropdown.selectedIndex = currentIndex;
         
-        if self.options.count == 0 {
+        if isNULL {
             
             return ;
         }

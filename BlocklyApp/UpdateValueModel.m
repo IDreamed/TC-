@@ -26,6 +26,10 @@ static UpdateValueModel * model;
     return model;
 }
 
+- (void)dealloc {
+    [[CustomNotificationCenter sharedCenter] removeAllNotifitionWithObserver:self];
+}
+
 + (void)beginGetValue {
     
     if (!model) {

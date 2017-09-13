@@ -26,6 +26,7 @@
     
     if (self.deleteCallback) {
         
+        
         self.deleteCallback(cell);
     }
     
@@ -34,7 +35,8 @@
 - (void)updateValueWithModel:(PersonalWorksModel *)model {
     
     self.model = model;
-    
+    self.titleLabel.font = [UIFont systemFontOfSize:DEFAULT_FONT_SIZE];
+    self.timeLabel.font = [UIFont systemFontOfSize:DEFAULT_FONT_SMALL_SIZE];
     NSArray * images = @[@"grzp_fengmian_1", @"grzp_fengmian_2", @"grzp_fengmian_3", @"grzp_fengmian_4", @"grzp_fengmian_5", @"grzp_fengmian_6", @"grzp_fengmian_7", @"grzp_fengmian_8"];
     self.titleLabel.text = model.title;
     self.iconImageVIew.image = [UIImage imageNamed:images[arc4random()%8]];

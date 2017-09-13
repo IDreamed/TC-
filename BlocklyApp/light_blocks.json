@@ -556,20 +556,31 @@
   "message0": "RGB-LED灯颜色 %1 %2",
   "args0": [
             {
-            "type": "field_input",
+            "type": "field_dropdown",
             "name": "light_color",
-            "text": "OUT2"
+            "options": [
+                        [
+                         "OUT1",
+                         "OUT1"
+                         ],
+                        [
+                         "OUT2",
+                         "OUT2"
+                         ],
+                        [
+                         "OUT3",
+                         "OUT3"
+                         ]
+                        ]
             },
             {
-            "type": "field_image",
-            "src": "gj_yanse_hong_1",
+            "type": "input_value",
             "name": "light_color1",
-            "width": 46,
-            "height":  26,
-            "alt": "*"
+            "check": "colour"
             }
             ],
   "previousStatement": null,
+  "inputsInline": true,
   "nextStatement": null,
   "colour": 170,
   "tooltip": "While a thing is happen, then do some statements."

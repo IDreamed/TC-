@@ -81,16 +81,77 @@ public final class ToolboxCategoryViewController: UIViewController {
   /// The button for adding variables to the name manager.
   private lazy var addVariableButton: UIButton = {
     let button = UIButton()
-    let buttonText = message(forKey: "BKY_IOS_VARIABLES_ADD_VARIABLE")
+    
+    ////2017 09 07 修改buttontitle
+//    let buttonText = message(forKey: "BKY_IOS_VARIABLES_ADD_VARIABLE")
+    let buttonText = "+添加变量";
     button.setTitle(buttonText, for: UIControlState.normal)
     button.setTitleColor(.white, for: .normal)
     button.setTitleColor(.gray, for: .highlighted)
     button.backgroundColor = .darkGray
-    button.addTarget(self, action: #selector(didTapAddButton(_:)), for: .touchUpInside)
+    
+    ////2017 09 07 更换点击方法
+//    button.addTarget(self, action: #selector(didTapAddButton(_:)), for: .touchUpInside)
+    button.addTarget(self, action: #selector(showAddValueAlert), for: .touchUpInside)
     button.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     return button
   }()
 
+    ////2017 09 07 添加变量的点击方法
+    
+    func showAddValueAlert() {
+        
+        let title = message(forKey: "添加新变量")
+        let cancelText = message(forKey: "取消")
+        let addText = message(forKey: "确定")
+        let addView = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        addView.addTextField { textField in
+            textField.placeholder = message(forKey: "请输入变量名")
+        }
+        addView.addAction(UIAlertAction(title: cancelText, style: .default, handler: nil))
+        let addAlertAction = UIAlertAction(title: addText, style: .default) { _ in
+           
+            let fc = FunctionControl.functionControl
+            let valuesArray = fc.values
+            
+            guard let textField = addView.textFields?[0],
+                let newName = textField.text,
+                FieldVariable.isValidName(newName) else
+            {
+                self.showAddAlert(error:"变量名不能为空")
+                return
+            }
+            
+            if valuesArray.keys.contains(newName) {
+                let error = message(forKey: "已存在变量名")
+                    .replacingOccurrences(of: "%1", with: newName)
+                self.showAddAlert(error: error)
+                return
+            }
+            
+            FunctionControl.functionControl.values[newName] = "0";
+            
+//            let factory = BlockFactory.init();
+//            let path = Bundle.main.path(forResource: "variable_blocks", ofType: "json");
+//
+//            try factory.load(fromJSONPaths: [path!]) {
+//            
+//            }
+//            let block = factory.makeBlock(name: "get_value");
+//            
+//            self.category?.addBlockTree(block);
+        }
+        addView.addAction(addAlertAction)
+        
+        if #available(iOS 9, *) {
+            // When the user presses the return button on the keyboard, it will automatically execute
+            // this action
+            addView.preferredAction = addAlertAction
+        }
+        
+        workspaceViewController.present(addView, animated: true, completion: nil)
+    }
+    
   // MARK: - Super
 
   public init(viewFactory: ViewFactory,
@@ -232,8 +293,14 @@ public final class ToolboxCategoryViewController: UIViewController {
 
     // TODO(#291):- Add customization(and default) here.
     var buttonSize: CGFloat = 0
+    
+    ////2017 09 07 显示添加变量button
+    
+//    if let category = category,
+//        category.categoryType == .variable
+
     if let category = category,
-      category.categoryType == .variable
+      category.name == "变量"
     {
       addVariableButton.isHidden = false
       switch (orientation) {
@@ -258,7 +325,7 @@ public final class ToolboxCategoryViewController: UIViewController {
       self._heightConstraint.constant = newHeight
     })
   }
-
+    
   fileprivate func showAddAlert(error: String = "") {
     let title = message(forKey: "BKY_NEW_VARIABLE_TITLE")
     let cancelText = message(forKey: "BKY_IOS_CANCEL")

@@ -100,7 +100,7 @@ static CustomNotificationCenter * center;
     [self.center addObserver:observer selector:blueBlock name:name object:object];
 }
 
-- (void)removeAllNotifitionWithObserver:(id)observer {
+- (void)removeAllNotifitionWithObserver:(id)observer  {
 
     [self.center removeObserver:observer];
 
@@ -160,10 +160,15 @@ static CustomNotificationCenter * center;
             }
             [CustomHUD showText:string];
             
-        } else {
+        } else if (six->input == 0x18) {
+            
+            [self.center postNotificationName:key object:nil userInfo:@{@"callback":data}];
+
            // [self.center postNotificationName:key object:self userInfo:@{@"callback":[NSValue value:&six withObjCType:@encode(SixLenthCallback)]}];
 
+        } else if (six->input == 0x04) {
             [self.center postNotificationName:key object:self userInfo:@{@"callback":data}];
+
         }
         
     } else if (data.length == 10) {
@@ -197,6 +202,11 @@ static CustomNotificationCenter * center;
         key = NAME_HEAD(six.point);
         
         [self.center postNotificationName:key object:nil userInfo:@{@"callback":data}];
+    }
+    
+    if (data.length != 12) {
+        
+        NSLog(@"post %@",data);
     }
     
 }
@@ -270,6 +280,11 @@ static CustomNotificationCenter * center;
     }
         
     
+}
+
++ (void)postNotaficationWithName:(NSString *)name {
+
+    [[CustomNotificationCenter sharedCenter].center postNotificationName:name object:nil];
 }
 
 @end

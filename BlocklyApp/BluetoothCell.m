@@ -13,6 +13,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.nameLabel.font = DEFAULT_FONT;
+    self.keyLabel.font = DEFAULT_FONT_SMALL;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

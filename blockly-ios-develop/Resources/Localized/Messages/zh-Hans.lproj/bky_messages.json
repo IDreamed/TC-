@@ -75,7 +75,7 @@
   "IOS_PROCEDURES_DUPLICATE_INPUTS_ERROR": "This function has duplicate inputs.",
   "IOS_PROCEDURES_INPUTS": "INPUTS",
   "IOS_VARIABLES_ADD_BUTTON": "Add",
-  "IOS_VARIABLES_ADD_VARIABLE": "+ Add Variable",
+  "IOS_VARIABLES_ADD_VARIABLE": "+ \u6dfb\u52a0\u53d8\u91cf",
   "IOS_VARIABLES_DELETE_BUTTON": "Delete",
   "IOS_VARIABLES_EMPTY_NAME_ERROR": "You can't use an empty variable name.",
   "IOS_VARIABLES_RENAME_BUTTON": "Rename",
@@ -388,4 +388,3 @@
   "VARIABLES_SET_HELPURL": "https://github.com/google/blockly/wiki/Variables#set",
   "VARIABLES_SET_TOOLTIP": "\u8bbe\u7f6e\u6b64\u53d8\u91cf\uff0c\u4ee5\u4f7f\u5b83\u548c\u8f93\u5165\u503c\u76f8\u7b49\u3002",
   "VARIABLE_ALREADY_EXISTS": "\u5df2\u5b58\u5728\u540d\u4e3a\u201c%1\u201d\u7684\u53d8\u91cf\u3002"
-}

@@ -23,6 +23,34 @@
     return self;
 }
 
+- (void)setBoolValue:(BOOL)boolValue {
+    
+    _boolValue = boolValue;
+    
+    self.value = [NSString stringWithFormat:@"%d",boolValue];
+}
+
+- (void)setColourValue:(NSString *)colourValue {
+    _colourValue = colourValue;
+    self.value = colourValue;
+}
+
+- (void)setNumberValue:(CGFloat)numberValue {
+    _numberValue = numberValue;
+    self.value = [NSString stringWithFormat:@"%f",numberValue];
+}
+
+- (void)setStringValue:(NSString *)stringValue {
+    _stringValue = stringValue;
+    
+    self.value = stringValue;
+}
+
+- (void)setValueName:(NSString *)valueName {
+    _valueName = valueName;
+    self.value = valueName;
+}
+
 - (void)getvalueForSelf {
 
     

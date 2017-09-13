@@ -247,7 +247,11 @@ static BLEControl * control;
     
     NSString * str = [BLEControl convertDataToHexStr:self.callbackData];
     
-    
+    if (self.callbackData.length < range.location/2 + lenth + 4) {
+        
+        [NSThread sleepForTimeInterval:1];
+        return ;
+    }
         NSRange dataRange = NSMakeRange(range.location/2, 4+lenth);
         NSData * subData = [self.callbackData subdataWithRange:dataRange];
 //        NSLog(@"post %@",[BLEControl convertDataToHexStr:subData]);
@@ -428,7 +432,7 @@ static BLEControl * control;
         if (index+1 < self.updatas.count) {
             
             self.currentData = self.updatas[index+1];
-            [self writUpdateData];
+            [self threadUpdate];
         } else {
             ///上传成功
             [CustomHUD showText:@"设备升级中请稍等"];
@@ -440,24 +444,6 @@ static BLEControl * control;
     }
     
 }
-
-//- (void)writeUpdateCallback:(NSError *)error {
-//    
-//    
-//    if (error) {
-//        NSLog(@"error");
-//        
-//        [self postUpdateData:self.currentData];
-//    } else {
-//        
-//        self.currentIndex += 1;
-//        if (self.currentIndex < (self.currentData.length+20)/20) {
-//            
-//            [self postUpdateData:self.currentData];
-//            
-//        }
-//    }
-//}
 
 //拼接更新数据帧
 - (NSData *)returnUpdateDateWithCount:(NSInteger)count {
@@ -708,10 +694,10 @@ static BLEControl * control;
         NSInteger point = [[blockValues.firstObject componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
 
         NSString * color = [self getColorRGBWithColorName:blockValues.lastObject];
-        sendKey = [NSString stringWithFormat:sendKey,point,color];
-        if (point == 5 || point == 6) {
-            //            point = point * 10 + 1;///数字信号
-            point = point * 10;  ///模拟信号
+        sendKey = [NSString stringWithFormat:RGBLight,point,color];
+        if (point == 4 || point == 5 || point == 6) {
+            point = point * 10 + 1;///数字信号
+//            point = point * 10;  ///模拟信号
         }
         [dict setObject:sendKey forKey:@(point)];
     }
@@ -876,59 +862,11 @@ static BLEControl * control;
 
 - (NSString *)getColorRGBWithColorName:(NSString *)name {
     
-    NSArray * array = @[@"gj_yanse_bai_1",@"gj_yanse_hong_1",@"gj_yanse_cheng_1",@"gj_yanse_lan_1",@"gj_yanse_lv_1",@"gj_yanse_pin_1",@"gj_yanse_qing_1"];
-    
-    if ([name containsString:@"|"]) {
+    if ([name containsString:@"#"]) {
         
-        name = [name componentsSeparatedByString:@"|"].lastObject;
+        name = [name componentsSeparatedByString:@"#"].lastObject;
     }
-    
-    NSString * color = @"ffffff";
-    
-    NSInteger index = [array indexOfObject:name];
-    
-    switch (index) {
-        case 0: {
-            
-            color = COLOR_WHITE;
-            break;
-        }
-        case 1: {
-            
-            color = COLOR_RED;
-            break;
-        }
-        case 2: {
-            
-            color = COLOR_ORANGE;
-            break;
-        }
-        case 3: {
-            
-            color = COLOR_BLUE;
-            break;
-        }
-        case 4: {
-            
-            color = COLOR_GREEN;
-            break;
-        }
-        case 5: {
-            
-            color = COLOR_PURPLE;
-            break;
-        }
-        case 6: {
-            
-            color = COLOR_CYAN;
-            break;
-        }
-        default:
-            break;
-    }
-    
-    
-    return color;
+    return name;
 }
 
 - (void)sendCMDToBluetooth:(NSString *)CMD {

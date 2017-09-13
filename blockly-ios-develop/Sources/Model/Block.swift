@@ -696,7 +696,7 @@ extension Block {
         return blocks;
     }
     ///获取创建的变量
-    open func getTheValueWith(name:String) -> CreateValueModel? {
+    open func getTheValueWith(name:String) -> String?  {
         
         let dic = FunctionControl.functionControl.values;
         
@@ -707,7 +707,7 @@ extension Block {
         return nil;
     }
     ///将更改后的变量保存
-    open func setValueWith(name: String, value:CreateValueModel) {
+    open func setValueWith(name: String, value:String) {
         
         FunctionControl.functionControl.values[name] = value;
     }

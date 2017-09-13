@@ -44,8 +44,10 @@
 
 ///重复直到 while触发
 @property (nonatomic, assign) BOOL isTrue;
-///计时器 控制当开始和重复直到获取数据
-@property (nonatomic, strong) NSTimer * timer;
+///for 循环的计数
+@property (nonatomic, assign) CGFloat forNumber;
+///for 循环中 是加计数还是减
+@property (nonatomic, assign) BOOL forIsTure;
 
 @end
 
@@ -54,10 +56,6 @@
 - (void)dealloc {
     
     [[CustomNotificationCenter sharedCenter] removeAllNotifitionWithObserver:self];
-    if ([self.timer isValid]) {
-        
-        [self.timer invalidate];
-    }
 }
 
 - (instancetype)init {
@@ -116,6 +114,8 @@
     if (_isTrue && [self.rootBlock.name isEqualToString:@"repetition_until1"]) {
         
         self.loopCount = 0;
+        
+        [[CustomNotificationCenter sharedCenter] removeObserver:self blockName:UPDATE_IN_NAME values:nil];
         
     }
 }
@@ -220,7 +220,7 @@
         }
         case 1: {
             
-            NSInteger count = [self getValueWithOutPutBlock:[self.currentBlock allBlockInSelf].firstObject].numberValue;
+            NSInteger count = [[self getValueWithOutPutBlock:[self.currentBlock allBlockInSelf].firstObject].value integerValue];
             self.DOCurrent.loopCount = count;
             
             break;
@@ -235,27 +235,12 @@
         case 3: {
             self.DOCurrent.loopCount = 10000;
             
-            NSString * str = [self.currentBlock getBlockValues].firstObject;
             NSArray * inputArray = self.currentBlock.allBlockInSelf;
-            CGFloat rangeDown = [self getValueWithOutPutBlock:inputArray[1]].numberValue;
-            CGFloat rangeUp = [self getValueWithOutPutBlock:inputArray[2]].numberValue;
+            CGFloat rangeDown = [[self getValueWithOutPutBlock:inputArray[1]].value floatValue];
+            CGFloat rangeUp = [[self getValueWithOutPutBlock:inputArray[2]].value floatValue];
+            self.DOCurrent.forIsTure = rangeUp > rangeDown;
+            self.DOCurrent.forNumber = rangeDown;
             
-            BOOL up = rangeUp > rangeDown;
-            BOOL down = rangeDown > rangeUp;
-            self.DOCurrent.forValue = [self getValueWithOutPutBlock:inputArray[0]].numberValue;
-            if ([@[@"+",@"x"] containsObject:str]) {
-                
-                if (!up && down) {
-                    
-                    self.DOCurrent.loopCount = 0;
-                }
-                
-            } else if ([@[@"-",@"÷"] containsObject:str]) {
-                if (up && !down) {
-                    
-                    self.DOCurrent.loopCount = 0;
-                }
-            }
             break;
         }
        
@@ -266,7 +251,8 @@
 
 - (void)coffNotifition {
     
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(getWhileOutputCallback) userInfo:nil repeats:YES];
+    [[CustomNotificationCenter sharedCenter] addObserver:self name:UPDATE_IN_NAME callback:@selector(getWhileOutputCallback) object:nil];
+   
 }
 ///遍历output的Block 得到最终的值
 - (GetValueModle *)getValueWithOutPutBlock:(BKYBlock *)block {
@@ -277,7 +263,7 @@
         
         NSString * point = [block getBlockValues].firstObject;
         GetValueModle * valueModel = [self getValueWithOutPutBlock:[block allBlockInSelf].firstObject];
-        model.boolValue = [(NSString *)[[UpdateValueModel sharedValueModel] valueForKey:point] floatValue] > valueModel.numberValue;
+        model.boolValue = [(NSString *)[[UpdateValueModel sharedValueModel] valueForKey:point] floatValue] > [valueModel.value floatValue];
         
         return model;
     }
@@ -312,19 +298,12 @@
         }
         case 4 : {
             
-            CreateValueModel * smodel = [block getTheValueWithName:[block getBlockValues].firstObject];
+            NSString * value = [block getTheValueWithName:[block getBlockValues].firstObject];
             
-            if (smodel != nil) {
+            if (value != nil) {
                 
-                NSMutableDictionary * dic = [smodel mj_keyValues];
-                [dic removeObjectForKey:@"typeName"];
-                
-                for (NSString * key in dic) {
-                    [model setValue:dic[key] forKey:key];
-                }
-            }
-            
-            
+                model.value = value;
+            }            
             break;
         }
         
@@ -378,15 +357,15 @@
     if ([block.name isEqualToString:@"not_value"]) {
         
         GetValueModle * smodel = [self getValueWithOutPutBlock:block.allBlockInSelf.firstObject];
-        model.boolValue = !smodel.boolValue;
+        model.boolValue = ![smodel.value boolValue];
         return model;
 
     }
     
     if ([block.name isEqualToString:@"control_compare"]) {
         
-        CGFloat number1 = [self getValueWithOutPutBlock:block.allBlockInSelf.firstObject].numberValue;
-        CGFloat number2 = [self getValueWithOutPutBlock:block.allBlockInSelf.lastObject].numberValue;
+        CGFloat number1 = [[self getValueWithOutPutBlock:block.allBlockInSelf.firstObject].value floatValue];
+        CGFloat number2 = [[self getValueWithOutPutBlock:block.allBlockInSelf.lastObject].value floatValue];
         NSString * str = [block getBlockValues].firstObject;
         NSArray * strs = @[@"=",@"≠",@">",@"≥",@"<",@"≤"];
         NSInteger sindex = [strs indexOfObject:str];
@@ -432,8 +411,8 @@
     
     if ([block.name isEqualToString:@"and_or"]) {
         
-        BOOL bool1 = [self getValueWithOutPutBlock:block.allBlockInSelf.firstObject].boolValue;
-        bool bool2= [self getValueWithOutPutBlock:block.allBlockInSelf.lastObject].boolValue;
+        BOOL bool1 = [[self getValueWithOutPutBlock:block.allBlockInSelf.firstObject].value boolValue];
+        bool bool2= [[self getValueWithOutPutBlock:block.allBlockInSelf.lastObject].value boolValue];
         
         NSString * str = [block getBlockValues].firstObject;
         if ([str isEqualToString:@"and"]) {
@@ -450,8 +429,8 @@
     
     if ([block.name isEqualToString:@"math_calculator"]) {
         
-        CGFloat number1 = [self getValueWithOutPutBlock:block.allBlockInSelf.firstObject].numberValue;
-        CGFloat number2 = [self getValueWithOutPutBlock:block.allBlockInSelf.lastObject].numberValue;
+        CGFloat number1 = [[self getValueWithOutPutBlock:block.allBlockInSelf.firstObject].value floatValue];
+        CGFloat number2 = [[self getValueWithOutPutBlock:block.allBlockInSelf.lastObject].value floatValue];
         NSString * str = [block getBlockValues].firstObject;
         NSArray * strs = @[@"+",@"-",@"x",@"÷"];
         NSInteger index = [strs indexOfObject:str];
@@ -484,7 +463,7 @@
     
     if ([block.name isEqualToString:@"math_odevity"]) {
         
-        CGFloat number = [self getValueWithOutPutBlock:[block allBlockInSelf].firstObject].numberValue;
+        CGFloat number = [[self getValueWithOutPutBlock:[block allBlockInSelf].firstObject].value floatValue];
         NSInteger intVale = number;
         
         NSInteger i = intVale % 2;
@@ -502,7 +481,7 @@
     
     if ([block.name isEqualToString:@"math_intger"]) {
         
-        CGFloat number = [self getValueWithOutPutBlock:[block allBlockInSelf].firstObject].numberValue;
+        CGFloat number = [[self getValueWithOutPutBlock:[block allBlockInSelf].firstObject].value floatValue];
         NSInteger interValue = round(number);
         model.numberValue = interValue;
         return model;
@@ -510,13 +489,13 @@
     }
     if ([block.name isEqualToString:@"math_cover_to"]) {
         
-        CGFloat number = [self getValueWithOutPutBlock:[block allBlockInSelf].firstObject].numberValue;
+        CGFloat number = [[self getValueWithOutPutBlock:[block allBlockInSelf].firstObject].value floatValue];
         
-        CGFloat rangeDown = [self getValueWithOutPutBlock:[block allBlockInSelf][1]].numberValue;
-        CGFloat rangeUp = [self getValueWithOutPutBlock:[block allBlockInSelf][2]].numberValue;
+        CGFloat rangeDown = [[self getValueWithOutPutBlock:[block allBlockInSelf][1]].value floatValue];
+        CGFloat rangeUp = [[self getValueWithOutPutBlock:[block allBlockInSelf][2]].value floatValue];
         
-        CGFloat rangeDown1 = [self getValueWithOutPutBlock:[block allBlockInSelf][3]].numberValue;
-        CGFloat rangeUp1 = [self getValueWithOutPutBlock:[block allBlockInSelf][4]].numberValue;
+        CGFloat rangeDown1 = [[self getValueWithOutPutBlock:[block allBlockInSelf][3]].value floatValue];
+        CGFloat rangeUp1 = [[self getValueWithOutPutBlock:[block allBlockInSelf][4]].value floatValue];
         ///y = A*x +B
         CGFloat lenth1 = rangeUp1 - rangeDown1;
         CGFloat lenth = rangeUp - rangeDown;
@@ -535,8 +514,8 @@
         CGFloat number = [[[UpdateValueModel sharedValueModel] valueForKey:port] doubleValue];
 
         
-        CGFloat rangeDown = [self getValueWithOutPutBlock:[block allBlockInSelf][1]].numberValue;
-        CGFloat rangeUp = [self getValueWithOutPutBlock:[block allBlockInSelf][2]].numberValue;
+        CGFloat rangeDown = [[self getValueWithOutPutBlock:[block allBlockInSelf][1]].value floatValue];
+        CGFloat rangeUp = [[self getValueWithOutPutBlock:[block allBlockInSelf][2]].value floatValue];
         CGFloat lenth = rangeUp - rangeDown;
         CGFloat proport = (number - rangeDown)/lenth;
         model.numberValue = proport;
@@ -577,7 +556,7 @@
     
     BKYBlock * root = self.rootBlock;
     
-    self.isTrue = [self getValueWithOutPutBlock:root.allBlockInSelf.firstObject].boolValue;
+    self.isTrue = [[self getValueWithOutPutBlock:root.allBlockInSelf.firstObject].value boolValue];
     
 }
 
@@ -684,6 +663,7 @@
     //
     //        [self.thread cancel];
     //    }
+    
     [self.thread cancel];
     
     self.loopCount = 0;
@@ -804,7 +784,7 @@
     if ([current.name isEqualToString:@"machine_speed_direction"]) {
         
         
-        NSInteger time = [self getValueWithOutPutBlock:current.allBlockInSelf.firstObject].numberValue;
+        NSInteger time = [[self getValueWithOutPutBlock:current.allBlockInSelf.firstObject].value integerValue];
         newValues = @[values[0],values[1],values[2],@(time),values[3]];
 
     }
@@ -840,16 +820,23 @@
         
     }
     
+    if ([current.name isEqualToString:@"light_color"]) {
+        
+        NSString * color = [self getValueWithOutPutBlock:current.allBlockInSelf.firstObject].value;
+        
+        newValues = @[values[0],color];
+    }
+    
 #pragma mark 声音
     if ([@[@"daily_words",@"music_sound",@"animal_sound",@"transport_sound"] containsObject:current.name]) {
         
-        NSInteger time = [self getValueWithOutPutBlock:current.allBlockInSelf.firstObject].numberValue;
+        NSInteger time = [[self getValueWithOutPutBlock:current.allBlockInSelf.firstObject].value floatValue];
         newValues = @[values[0],values[1],@(time),values[2]];
     }
     
     if ([current.name isEqualToString:@"buzzer_level"]) {
      
-        NSInteger time = [self getValueWithOutPutBlock:current.allBlockInSelf.firstObject].numberValue;
+        NSInteger time = [[self getValueWithOutPutBlock:current.allBlockInSelf.firstObject].value floatValue];
         newValues = @[values[0],values[1],values[2],@(time),values[3]];
     }
     
@@ -857,7 +844,7 @@
     if ([current.name isEqualToString:@"port_out"]) {
         
         NSString * point = values[0];
-        NSInteger value = [self getValueWithOutPutBlock:current.allBlockInSelf.firstObject].numberValue;
+        NSInteger value = [[self getValueWithOutPutBlock:current.allBlockInSelf.firstObject].value integerValue];
         
         newValues = @[point,@(value)];
         
@@ -875,7 +862,7 @@
     if ([current.name isEqualToString:@"wait_do"]) {
         
         NSArray * values = [current getBlockValues];
-        CGFloat value = [self getValueWithOutPutBlock:[current allBlockInSelf].firstObject].numberValue;
+        CGFloat value = [[self getValueWithOutPutBlock:[current allBlockInSelf].firstObject].value floatValue];
         self.sound = value;
         newValues = @[values[0]];
     }
@@ -893,16 +880,23 @@
         if ([current.name isEqualToString:@"do_function"]) {
             
             self.funcCurrent = [BlocklyControl shardControl].functions[[current getBlockValues].firstObject];
-            self.funcCurrent.loopCount = 1;
-            self.funcCurrent.superBlock = self;
-            [self.funcCurrent runCurrent];
+            if (self.funcCurrent) {
+                
+                self.funcCurrent.loopCount = 1;
+                self.funcCurrent.superBlock = self;
+                [self.funcCurrent runCurrent];
+                
+            } else {
+                
+                [NSThread sleepForTimeInterval:self.delay];
+            }
             
             return ;
         }
         if ([current.name isEqualToString:@"long_time"]) {
             
             NSArray * values = [current getBlockValues];
-            NSInteger time = [self getValueWithOutPutBlock:current.allBlockInSelf.firstObject].numberValue;
+            NSInteger time = [[self getValueWithOutPutBlock:current.allBlockInSelf.firstObject].value integerValue];
             time = [values.firstObject isEqualToString:@"ms"]?time/1000:time;
             
             [NSThread sleepForTimeInterval:time];
@@ -925,13 +919,12 @@
         if ([current.name isEqualToString:@"set_value"]) {
          
 
-            GetValueModle * model = [self getValueWithOutPutBlock:self.currentBlock];
+            GetValueModle * model = [self getValueWithOutPutBlock:self.currentBlock.allBlockInSelf.firstObject];
             
+            NSString * name = [current getBlockValues].firstObject;
             
-            ValueModel * newModel = [BlocklyControl shardControl].values[current.getBlockValues.firstObject];
-            CGFloat value = [self getValueWithOutPutBlock:current.allBlockInSelf.firstObject].numberValue;
+            [current setValueWithName:name value:model.value];
             
-            newModel.value = value;
             [NSThread sleepForTimeInterval:self.delay];
 
 
@@ -984,7 +977,7 @@
     
     NSArray * names = @[@"if",@"if_else"];
     
-    BOOL isTrue = [self getValueWithOutPutBlock:self.currentBlock.allBlockInSelf.firstObject].boolValue;
+    BOOL isTrue = [[self getValueWithOutPutBlock:self.currentBlock.allBlockInSelf.firstObject].value boolValue];
     
     if (isTrue) {
     
@@ -1073,6 +1066,12 @@
             [self runNext];
         }
         return ;
+    }
+    
+    if ([self.currentName isEqualToString:@"light_color"]) {
+        FiveLenthCallback * callback = (FiveLenthCallback *)bytes;
+        
+        isSuccess = callback->success == 0x01;
     }
     
     [[CustomNotificationCenter sharedCenter].center removeObserver:self name:noti.name object:nil];
@@ -1170,7 +1169,7 @@
         
         if ([@[@"daily_words",@"music_sound",@"animal_sound",@"transport_sound"] containsObject:self.currentName]) {
 
-            CGFloat time = [self getValueWithOutPutBlock:self.currentBlock.allBlockInSelf.firstObject].numberValue;
+            CGFloat time = [[self getValueWithOutPutBlock:self.currentBlock.allBlockInSelf.firstObject].value floatValue];
             if ([self.currentBlock.getBlockValues.lastObject isEqualToString:@"ms"]) {
                 
                 time = time / 1000;
@@ -1240,30 +1239,32 @@
 
 - (void)overRun {
     
-    if ([self.rootBlock.name isEqualToString:@"repetition_until1"]) {
+    if ([self.rootBlock.name isEqualToString:@"repetition_for"]) {
         
         NSArray * values = [self.rootBlock getBlockValues];
-       #warning 未完成
-                NSString * str = [self.rootBlock getBlockValues].firstObject;
-                NSArray * inputArray = self.rootBlock.allBlockInSelf;
-                CGFloat rangeDown = [self getValueWithOutPutBlock:inputArray[1]].numberValue;
-                CGFloat rangeUp = [self getValueWithOutPutBlock:inputArray[2]].numberValue;
-                
-                BOOL up = rangeUp > rangeDown;
-                BOOL down = rangeDown > rangeUp;
-                self.DOCurrent.forValue = [self getValueWithOutPutBlock:inputArray[0]].numberValue;
+
+        NSString * str = values.firstObject;
+        
+        NSArray * inputArray = self.rootBlock.allBlockInSelf;
+        CGFloat rangeUp = [[self getValueWithOutPutBlock:inputArray[2]].value floatValue];
+        self.DOCurrent.forValue = [[self getValueWithOutPutBlock:inputArray[0]].value floatValue];
+        self.forNumber = self.forIsTure? self.forNumber++ : self.forNumber--;
+        if (self.forNumber > rangeUp && self.forIsTure) {
+            
+            self.loopCount = 0;
+        } else if (self.forNumber < rangeUp && !self.forIsTure) {
+            
+            self.loopCount = 0;
+        }
+        CGFloat number = [[self.rootBlock getTheValueWithName:str] floatValue];
+        
                 if ([@[@"+",@"x"] containsObject:str]) {
                     
-                    if (!up && down) {
-                        
-                        self.DOCurrent.loopCount = 0;
-                    }
+                   
                     
                 } else if ([@[@"-",@"÷"] containsObject:str]) {
-                    if (up && !down) {
-                        
-                        self.DOCurrent.loopCount = 0;
-                    }
+                    
+                    
                 }
         
     }
@@ -1292,10 +1293,7 @@
             
             //        self.isRun = YES;
         }
-        if ([self.timer isValid]) {
-            
-            [self.timer invalidate];
-        }
+        
         [self.superBlock didFinishCurrentBlock:self];
     }
 

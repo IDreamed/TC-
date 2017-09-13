@@ -225,6 +225,19 @@ open class Workspace : NSObject {
     // Figure out which blocks to remove from the workspace and fire listeners
     for block in rootBlock.allBlocksForTree() {
       if containsBlock(block) {
+        
+        ////2017 09 11 移除删除的变量
+        if block.name == "get_value" {
+            
+            if let name = block.getBlockValues().first {
+                
+                if name.characters.count > 0 {
+                    
+                    FunctionControl.functionControl.values.removeValue(forKey: name);
+                }
+            }
+        }
+        
         removedBlocks.append(block)
         listeners.forEach { $0.workspace?(self, willRemoveBlock: block) }
       }

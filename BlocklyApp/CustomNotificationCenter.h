@@ -31,5 +31,7 @@ typedef void (^SuccessBlock)(BOOL);
 - (void)removeAllNotifitionWithObserver:(id)observer;
 
 //- (NSString *)getNotifationNameWith:(NSString *)typeName;
+///发送通知
++ (void)postNotaficationWithName:(NSString *)name;
 
 @end

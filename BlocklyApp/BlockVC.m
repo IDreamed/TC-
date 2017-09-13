@@ -35,6 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.titleLabel.font = DEFAULT_FONT;
     [self loadBlockWork];
     
     [self coffButton];
@@ -121,6 +122,29 @@
     [saveButton addTarget:self action:@selector(saveClink) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:saveButton];
+    
+    
+    UIButton * updateButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    updateButton.frame = CGRectMake(saveButton.frame.origin.x,
+                                  saveButton.frame.origin.y + width*2, width*0.8, width*0.8);
+    [updateButton setBackgroundImage:[UIImage imageNamed:@"gj_baocun"] forState:UIControlStateNormal];
+    [updateButton addTarget:self action:@selector(updateClink) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:updateButton];
+    
+}
+
+- (void)updateClink {
+    
+    if ([BLEControl sharedControl].peripheral) {
+        
+        [[BLEControl sharedControl] updateDevice];
+        
+    } else {
+    
+        [CustomHUD showText:@"未连接设备"];
+    }
+    
 }
 
 - (void)updateTitle {

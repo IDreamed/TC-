@@ -40,7 +40,7 @@
 		C6A7374D1ED6AC9F0065B501 /* BlocklyAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A7374C1ED6AC9F0065B501 /* BlocklyAppUITests.m */; };
 		C6A737A81ED6AF1F0065B501 /* AEXML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A737911ED6AEB40065B501 /* AEXML.framework */; };
 		C6A737A91ED6AF1F0065B501 /* AEXML.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C6A737911ED6AEB40065B501 /* AEXML.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C6A737AD1ED6AF2A0065B501 /* Blockly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A737831ED6AEA10065B501 /* Blockly.framework */; };
+		C6A737AD1ED6AF2A0065B501 /* Blockly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A737831ED6AEA10065B501 /* Blockly.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		C6A737AE1ED6AF2A0065B501 /* Blockly.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C6A737831ED6AEA10065B501 /* Blockly.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C6A737B31ED6B19D0065B501 /* BlocklyToolBoxHealper.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A737B21ED6B19D0065B501 /* BlocklyToolBoxHealper.m */; };
 		C6A737B41ED6B1F40065B501 /* BlockVC.h in Resources */ = {isa = PBXBuildFile; fileRef = C6A7372D1ED6AC9F0065B501 /* BlockVC.h */; };
@@ -621,7 +621,7 @@
 				TargetAttributes = {
 					C6A737231ED6AC9F0065B501 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 74C5QH84T8;
+						DevelopmentTeam = YR2B264NUU;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1036,12 +1036,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMPRESS_PNG_FILES = NO;
-				DEVELOPMENT_TEAM = 74C5QH84T8;
+				DEVELOPMENT_TEAM = YR2B264NUU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PRODUCT_NAME)/control.pch";
 				INFOPLIST_FILE = BlocklyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Guangzhao.BlocklyApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ToFly.TC3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1054,12 +1054,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMPRESS_PNG_FILES = NO;
-				DEVELOPMENT_TEAM = 74C5QH84T8;
+				DEVELOPMENT_TEAM = YR2B264NUU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PRODUCT_NAME)/control.pch";
 				INFOPLIST_FILE = BlocklyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Guangzhao.BlocklyApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ToFly.TC3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

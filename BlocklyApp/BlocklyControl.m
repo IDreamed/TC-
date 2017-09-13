@@ -85,26 +85,37 @@ static BlocklyControl * control;
     
     self.whileIsRun = NO;
     
-    [UpdateValueModel beginGetValue];
+//    [UpdateValueModel beginGetValue];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateValue) userInfo:nil repeats:YES];
     
     [self.mianTree runCurrent];
     [CustomHUD hidenHUD];
 }
 
+- (void)updateValue {
+
+    [CustomNotificationCenter postNotaficationWithName:UPDATE_IN_NAME];
+}
+
 - (void)stopAllBlockTree {
     
-//    [[BLEControl sharedControl] sendCMDToBluetooth:[NSString stringWithFormat:DEFAULT_OF,1]];
-//    [[BLEControl sharedControl] sendCMDToBluetooth:[NSString stringWithFormat:DEFAULT_OF,2]];
-//    [[BLEControl sharedControl] sendCMDToBluetooth:[NSString stringWithFormat:DEFAULT_OF,3]];
+    
+    if ([self.timer isValid]) {
+        
+        [self.timer invalidate];
+        self.timer = nil;
+    }
     
     [self.mianTree endRun];
     self.mianTree = nil;
     
-    [UpdateValueModel endGetValue];
+//    [UpdateValueModel endGetValue];
     
     for (CurrentBlock * block in self.whileBlocks) {
         
         [[CustomNotificationCenter sharedCenter] removeObserver:block blockName:@"" values:@[]];
+        
         [block endRun];
         
     }
