@@ -22,20 +22,72 @@
     </category>
     <category name="灯阵" colour="170" icon="dengzhen">
         
-        <!--        <block type="set_light_image"></block>-->
-        <!--        <block type="set_light_color"></block>-->
-        <!--        <block type="set_light_animate"></block>-->
-        <!--        <block type="set_light_text"></block>-->
-        <!--        <block type="set_light_text_color"></block>-->
-        <!--        <block type="set_light_speed"></block>-->
+        <!--        <block type="animation_image">-->
+        <!--            <value name = "animation_image">-->
+        <!--                <block type="animate_light">-->
+        <!--                </block>-->
+        <!--            </value>-->
+        <!--        </block>-->
+        <!--        <block type="animate_light"></block>-->
+        <!--        <block type="animation_color">-->
+        <!---->
+        <!--            <value name = "animation_color">-->
+        <!--                <shadow type="colour_value">-->
+        <!---->
+        <!--                </shadow>-->
+        <!--            </value>-->
+        <!---->
+        <!--        </block>-->
+        <!--        <block type="animation_rotation"></block>-->
+        <!--        <block type="animation_move">-->
+        <!--            <value name = "animation_move1">-->
+        <!--                <shadow type="number_value">-->
+        <!--                </shadow>-->
+        <!--            </value>-->
+        <!--        </block>-->
+        <!--        <block type="animation_set_XY">-->
+        <!--            <value name = "animation_set_XY1">-->
+        <!--                <shadow type="colour_value">-->
+        <!---->
+        <!--                </shadow>-->
+        <!--            </value>-->
+        <!--        </block>-->
+        <!--        <block type="colour_value"></block>-->
+        <!--        <block type="get_colour"></block>-->
+        <!--        <block type="RGB_colour">-->
+        <!--            <value name = "RGB_colour">-->
+        <!--                <shadow type="number_value">-->
+        <!--                </shadow>-->
+        <!--            </value>-->
+        <!--            <value name = "RGB_colour1">-->
+        <!--                <shadow type="number_value">-->
+        <!--                </shadow>-->
+        <!--            </value>-->
+        <!--            <value name = "RGB_colour2">-->
+        <!--                <shadow type="number_value">-->
+        <!--                </shadow>-->
+        <!--            </value>-->
+        <!--        </block>-->
+        <!--        <!--        <block type="animation_animate"></block>-->-->
+        <!--        <block type="animation_text">-->
+        <!--            <value name = "animation_text">-->
+        <!--                <shadow type="string_value">-->
+        <!--                </shadow>-->
+        <!--            </value>-->
+        <!---->
+        <!--        </block>-->
+        <!--        <block type="animation_text_color">-->
+        <!---->
+        <!--            <value name = "animation_text_color">-->
+        <!--                <shadow type="colour_value">-->
+        <!--                </shadow>-->
+        <!--            </value>-->
+        <!---->
+        <!--        </block>-->
+        <!--        <block type="animation_speed"></block>-->
+        <!--        <block type="string_value"></block>-->
         
-        <block type="light_on_off"></block>
-        <block type="light_caution_on_off"></block>
-        <block type="light_color"></block>
-        <block type="highlight_level"></block>
-        <block type="highlight_on_off"></block>
-        <block type="light1"></block>
-        <block type="light2"></block>
+        <!--    <block type="light_caution_on_off"></block>-->
         
         
     </category>

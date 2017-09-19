@@ -45,7 +45,7 @@
 - (void)getHttpData {
     
     SetModel * model = [APPControll getUserInfo];
-    NSDictionary * parameter = @{@"uid":model.uid, @"token":model.token, @"type":@"1"};
+    NSDictionary * parameter = @{@"uid":model.uid, @"token":model.token, @"type":@([HTTPRequest getAppType])};
     [[HTTPRequest sharedHttpRequest] postUrl:@"g=portal&m=app&a=find_program_list" parameter:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSDictionary * dic = responseObject;

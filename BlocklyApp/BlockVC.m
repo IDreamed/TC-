@@ -17,6 +17,7 @@
 #import "BlocklyControl.h"
 #import "InputNameView.h"
 #import "ValueView.h"
+#import "SelfVC.h"
 
 @interface BlockVC () <UIPopoverPresentationControllerDelegate>
 
@@ -77,7 +78,7 @@
     
     button.frame = CGRectMake(20, (backHeight - width)/2, width, width);
     
-    [button setBackgroundImage:[UIImage imageNamed:@"gj_fanhui"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"gj_gerenzhongxin"] forState:UIControlStateNormal];
     
     [button addTarget:self action:@selector(backButtonClink) forControlEvents:UIControlEventTouchUpInside];
     
@@ -104,8 +105,8 @@
     [self.view addSubview:blueButton];
     
     
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width*4, width)];
-    self.titleLabel.font = [UIFont systemFontOfSize:24];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 4*width, width)];
+    self.titleLabel.font = DEFAULT_FONT;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.userInteractionEnabled = YES;
     self.titleLabel.center = CGPointMake(self.view.bounds.size.width/2+backWidth/2, blueButton.center.y);
@@ -127,7 +128,7 @@
     UIButton * updateButton = [UIButton buttonWithType:UIButtonTypeCustom];
     updateButton.frame = CGRectMake(saveButton.frame.origin.x,
                                   saveButton.frame.origin.y + width*2, width*0.8, width*0.8);
-    [updateButton setBackgroundImage:[UIImage imageNamed:@"gj_baocun"] forState:UIControlStateNormal];
+    [updateButton setBackgroundImage:[UIImage imageNamed:@"gj_gengxin"] forState:UIControlStateNormal];
     [updateButton addTarget:self action:@selector(updateClink) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:updateButton];
@@ -138,7 +139,14 @@
     
     if ([BLEControl sharedControl].peripheral) {
         
-        [[BLEControl sharedControl] updateDevice];
+        UIAlertController * al = [UIAlertController alertControllerWithTitle:@"是否更新设备" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        [al addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+        [al addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [[BLEControl sharedControl] updateDevice];
+
+        }]];
+        
+        [self.navigationController presentViewController:al animated:YES completion:nil];
         
     } else {
     
@@ -151,27 +159,23 @@
     
     if ([BLEControl sharedControl].peripheral) {
         
-        self.titleLabel.text = [NSString stringWithFormat:@"已连接：%@",[BLEControl sharedControl].peripheral.name];
+        NSString * title = [NSString stringWithFormat:@"已连接：%@",[BLEControl sharedControl].peripheral.name];
+        self.titleLabel.text = title;
+        CGSize size = [APPControll getSizeOfText:title font:DEFAULT_FONT realSize:CGSizeMake(0, self.titleLabel.height)];
+        self.titleLabel.width = size.width;
     } else {
         self.titleLabel.text = @"未连接设备";
+    
     }
 
 }
 
 - (void)backButtonClink {
     
-    if ([BLEControl sharedControl].peripheral) {
-        
-        [[BLEControl sharedControl].manager cancelPeripheralConnection:[BLEControl sharedControl].peripheral];
-        [BLEControl sharedControl].peripheral = nil;
-        [BLEControl sharedControl].ch = nil;
-    }
+    SelfVC * vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SelfVC"];
+    
+    [self.navigationController pushViewController:vc animated:YES];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"clearFunction" object:nil];
-    
-    [self.navigationController popViewControllerAnimated:YES];
-    
-//    [[BLEControl sharedControl] updateDevice];
 }
 
 - (void)saveClink {
@@ -205,7 +209,7 @@
             }
             NSString * url = self.isChange ? @"g=portal&m=app&a=edit_program":@"g=portal&m=app&a=add_program";
             
-            NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithDictionary:@{@"uid":model.uid,@"token":model.token,@"type":@"1",@"title":title,@"content":xmlStr}];
+            NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithDictionary:@{@"uid":model.uid,@"token":model.token,@"type":@([HTTPRequest getAppType]),@"title":title,@"content":xmlStr}];
             
             if (self.isChange) {
                 

@@ -10,4 +10,8 @@
 
 @interface LoginVC : SuperViewController
 
+///判断是登陆或者顶账号
+@property (nonatomic, assign) BOOL notFirst;
+
+    
 @end

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		80B86E5BE6EF1FDB570993F5 /* libPods-BlocklyApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 912C7ADF09223B8A8B1E187E /* libPods-BlocklyApp.a */; };
 		C61221751F5F98A200A1604F /* UpdateValueModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C61221741F5F98A200A1604F /* UpdateValueModel.m */; };
+		C61BE8CE1F6F9C1300C2DCD2 /* StartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C61BE8CD1F6F9C1300C2DCD2 /* StartVC.m */; };
+		C61BE8D11F6F9D0C00C2DCD2 /* ImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C61BE8D01F6F9D0C00C2DCD2 /* ImageVC.m */; };
+		C61BE8D41F6F9D8400C2DCD2 /* CallbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C61BE8D31F6F9D8400C2DCD2 /* CallbackVC.m */; };
 		C6250A031F189D6D005E66DE /* sirui.bin in Resources */ = {isa = PBXBuildFile; fileRef = C6250A021F189D6D005E66DE /* sirui.bin */; };
 		C65B997E1F4D5AA2005DDB59 /* GetValueModle.m in Sources */ = {isa = PBXBuildFile; fileRef = C65B997D1F4D5AA2005DDB59 /* GetValueModle.m */; };
 		C65B99921F4EDD14005DDB59 /* control_blocks.json in Resources */ = {isa = PBXBuildFile; fileRef = C65B99881F4EDD14005DDB59 /* control_blocks.json */; };
@@ -69,6 +72,8 @@
 		C6E560C11EEA75A3000FE9EF /* NSData+Healper.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E560C01EEA75A3000FE9EF /* NSData+Healper.m */; };
 		C6E560C41EEAA44F000FE9EF /* CustomNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E560C31EEAA44F000FE9EF /* CustomNotificationCenter.m */; };
 		C6E852671F25E72A00F371E3 /* type_point.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6E852661F25E72A00F371E3 /* type_point.plist */; };
+		C6FA17BB1F68C4B200ED0245 /* updateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FA17BA1F68C4B200ED0245 /* updateModel.m */; };
+		C6FA17D41F6929B900ED0245 /* UIView+FrameAbout.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FA17D31F6929B900ED0245 /* UIView+FrameAbout.m */; };
 		C6FE28C21EFF8C0D0069CF1B /* InputNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FE28C11EFF8C0D0069CF1B /* InputNameView.m */; };
 		C6FE28CB1EFF8C260069CF1B /* InputNameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6FE28CA1EFF8C260069CF1B /* InputNameView.xib */; };
 /* End PBXBuildFile section */
@@ -188,6 +193,12 @@
 		912C7ADF09223B8A8B1E187E /* libPods-BlocklyApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BlocklyApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C61221731F5F98A200A1604F /* UpdateValueModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateValueModel.h; sourceTree = "<group>"; };
 		C61221741F5F98A200A1604F /* UpdateValueModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateValueModel.m; sourceTree = "<group>"; };
+		C61BE8CC1F6F9C1300C2DCD2 /* StartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartVC.h; sourceTree = "<group>"; };
+		C61BE8CD1F6F9C1300C2DCD2 /* StartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartVC.m; sourceTree = "<group>"; };
+		C61BE8CF1F6F9D0C00C2DCD2 /* ImageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageVC.h; sourceTree = "<group>"; };
+		C61BE8D01F6F9D0C00C2DCD2 /* ImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageVC.m; sourceTree = "<group>"; };
+		C61BE8D21F6F9D8400C2DCD2 /* CallbackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallbackVC.h; sourceTree = "<group>"; };
+		C61BE8D31F6F9D8400C2DCD2 /* CallbackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallbackVC.m; sourceTree = "<group>"; };
 		C6250A021F189D6D005E66DE /* sirui.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = sirui.bin; sourceTree = "<group>"; };
 		C65B997C1F4D5AA2005DDB59 /* GetValueModle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetValueModle.h; sourceTree = "<group>"; };
 		C65B997D1F4D5AA2005DDB59 /* GetValueModle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetValueModle.m; sourceTree = "<group>"; };
@@ -277,6 +288,10 @@
 		C6E560C21EEAA44F000FE9EF /* CustomNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNotificationCenter.h; sourceTree = "<group>"; };
 		C6E560C31EEAA44F000FE9EF /* CustomNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNotificationCenter.m; sourceTree = "<group>"; };
 		C6E852661F25E72A00F371E3 /* type_point.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = type_point.plist; sourceTree = "<group>"; };
+		C6FA17B91F68C4B200ED0245 /* updateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = updateModel.h; sourceTree = "<group>"; };
+		C6FA17BA1F68C4B200ED0245 /* updateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = updateModel.m; sourceTree = "<group>"; };
+		C6FA17D21F6929B900ED0245 /* UIView+FrameAbout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FrameAbout.h"; sourceTree = "<group>"; };
+		C6FA17D31F6929B900ED0245 /* UIView+FrameAbout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FrameAbout.m"; sourceTree = "<group>"; };
 		C6FE28C01EFF8C0D0069CF1B /* InputNameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputNameView.h; sourceTree = "<group>"; };
 		C6FE28C11EFF8C0D0069CF1B /* InputNameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputNameView.m; sourceTree = "<group>"; };
 		C6FE28CA1EFF8C260069CF1B /* InputNameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputNameView.xib; sourceTree = "<group>"; };
@@ -477,6 +492,12 @@
 				C6E560AF1EE96912000FE9EF /* BluetoothVC.m */,
 				C687DC2B1F0381B0001E6219 /* SuperViewController.h */,
 				C687DC2C1F0381B0001E6219 /* SuperViewController.m */,
+				C61BE8CC1F6F9C1300C2DCD2 /* StartVC.h */,
+				C61BE8CD1F6F9C1300C2DCD2 /* StartVC.m */,
+				C61BE8CF1F6F9D0C00C2DCD2 /* ImageVC.h */,
+				C61BE8D01F6F9D0C00C2DCD2 /* ImageVC.m */,
+				C61BE8D21F6F9D8400C2DCD2 /* CallbackVC.h */,
+				C61BE8D31F6F9D8400C2DCD2 /* CallbackVC.m */,
 			);
 			name = VC;
 			sourceTree = "<group>";
@@ -512,6 +533,8 @@
 		C6E560431EE546B6000FE9EF /* custom */ = {
 			isa = PBXGroup;
 			children = (
+				C6FA17D21F6929B900ED0245 /* UIView+FrameAbout.h */,
+				C6FA17D31F6929B900ED0245 /* UIView+FrameAbout.m */,
 				C6E560401EE53EAC000FE9EF /* CustomHUD.h */,
 				C6E560411EE53EAC000FE9EF /* CustomHUD.m */,
 				C6E5602E1EE50E04000FE9EF /* APPControll.h */,
@@ -521,6 +544,8 @@
 				C6E560691EE7915C000FE9EF /* HTTPRequest.h */,
 				C6E5606A1EE7915C000FE9EF /* HTTPRequest.m */,
 				C666B22A1EF21CA100D621A6 /* Control.pch */,
+				C6FA17B91F68C4B200ED0245 /* updateModel.h */,
+				C6FA17BA1F68C4B200ED0245 /* updateModel.m */,
 			);
 			name = custom;
 			sourceTree = "<group>";
@@ -852,6 +877,7 @@
 				C6A737B31ED6B19D0065B501 /* BlocklyToolBoxHealper.m in Sources */,
 				C6E5606B1EE7915C000FE9EF /* HTTPRequest.m in Sources */,
 				C6A7372F1ED6AC9F0065B501 /* BlockVC.m in Sources */,
+				C61BE8D11F6F9D0C00C2DCD2 /* ImageVC.m in Sources */,
 				C67725581F009CA80031A73D /* PersonalWorksModel.m in Sources */,
 				C6E560611EE68E13000FE9EF /* SetModel.m in Sources */,
 				C6E560B31EE987DD000FE9EF /* BluetoothCell.m in Sources */,
@@ -865,12 +891,16 @@
 				C6A737291ED6AC9F0065B501 /* main.m in Sources */,
 				C6E5607B1EE83F00000FE9EF /* PersonalWorksVC.m in Sources */,
 				C6E560491EE54F57000FE9EF /* SelfVC.m in Sources */,
+				C61BE8CE1F6F9C1300C2DCD2 /* StartVC.m in Sources */,
 				C687DC2D1F0381B0001E6219 /* SuperViewController.m in Sources */,
 				C6E560C41EEAA44F000FE9EF /* CustomNotificationCenter.m in Sources */,
 				C65B997E1F4D5AA2005DDB59 /* GetValueModle.m in Sources */,
 				C6E560501EE564E1000FE9EF /* SetVC.m in Sources */,
+				C61BE8D41F6F9D8400C2DCD2 /* CallbackVC.m in Sources */,
 				C6E560461EE5470E000FE9EF /* NavigationVC.m in Sources */,
+				C6FA17BB1F68C4B200ED0245 /* updateModel.m in Sources */,
 				C6E560C11EEA75A3000FE9EF /* NSData+Healper.m in Sources */,
+				C6FA17D41F6929B900ED0245 /* UIView+FrameAbout.m in Sources */,
 				C666B2341EF2261F00D621A6 /* RGBLightModel.m in Sources */,
 				C6E5608F1EE9280A000FE9EF /* BLEControl.m in Sources */,
 			);

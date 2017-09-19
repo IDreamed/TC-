@@ -1,45 +1,52 @@
-//
-//  NavigationVC.m
-//  BlocklyApp
-//
-//  Created by 张 on 2017/6/5.
-//  Copyright © 2017年 text. All rights reserved.
-//
-
 #import "NavigationVC.h"
-#import <objc/runtime.h>
+#import "LoginVC.h"
 
 @interface NavigationVC ()
-
-@end
+    
+    @end
 
 @implementation NavigationVC
-
+    
+- (void)dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+    
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginOut:) name:@"loginOut" object:nil];
 }
-
+    
+- (void)loginOut:(NSNotification *)noti {
+    
+    [CustomHUD showText:@"登陆信息实效"];
+    [NSThread sleepForTimeInterval:1];
+    
+    LoginVC * vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginVC"];
+    
+    vc.notFirst = YES;
+    
+    [self presentViewController:vc animated:YES completion:nil];
+    
+    
+    //    [self dismissViewControllerAnimated:YES completion:nil];
+}
+    
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-//#error 事件拦截 过滤viewController的dismiss事件
-
-//- (BOOL)shouldAutorotate {
-//    
-//    return NO;
-//}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+- (BOOL)shouldAutorotate {
+    
+    return YES;
 }
-*/
+    
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    
+    return UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight;
+}
 
 @end

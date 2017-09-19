@@ -216,5 +216,13 @@
     
     return dic;
 }
+
++ (CGSize)getSizeOfText:(NSString *)text font:(UIFont *)font realSize:(CGSize)realSize {
+
+    
+   CGRect rect = [text boundingRectWithSize:realSize options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font} context:nil];
+    
+    return rect.size;
+}
     
 @end

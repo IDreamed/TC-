@@ -91,8 +91,8 @@ public final class ToolboxCategoryViewController: UIViewController {
     button.backgroundColor = .darkGray
     
     ////2017 09 07 更换点击方法
-//    button.addTarget(self, action: #selector(didTapAddButton(_:)), for: .touchUpInside)
-    button.addTarget(self, action: #selector(showAddValueAlert), for: .touchUpInside)
+    button.addTarget(self, action: #selector(didTapAddButton(_:)), for: .touchUpInside)
+//    button.addTarget(self, action: #selector(showAddValueAlert), for: .touchUpInside)
     button.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     return button
   }()
@@ -329,7 +329,9 @@ public final class ToolboxCategoryViewController: UIViewController {
   fileprivate func showAddAlert(error: String = "") {
     let title = message(forKey: "BKY_NEW_VARIABLE_TITLE")
     let cancelText = message(forKey: "BKY_IOS_CANCEL")
+
     let addText = message(forKey: "BKY_IOS_VARIABLES_ADD_BUTTON")
+
     let addView = UIAlertController(title: title, message: error, preferredStyle: .alert)
     addView.addTextField { textField in
       textField.placeholder = message(forKey: "BKY_IOS_VARIABLES_VARIABLE_NAME")
@@ -345,11 +347,13 @@ public final class ToolboxCategoryViewController: UIViewController {
         FieldVariable.isValidName(newName) else
       {
         self.showAddAlert(error: message(forKey: "BKY_IOS_VARIABLES_EMPTY_NAME_ERROR"))
+
         return
       }
 
       if variableNameManager.containsName(newName) {
         let error = message(forKey: "BKY_VARIABLE_ALREADY_EXISTS")
+
           .replacingOccurrences(of: "%1", with: newName)
         self.showAddAlert(error: error)
         return
@@ -378,7 +382,14 @@ public final class ToolboxCategoryViewController: UIViewController {
       return nil
     }
     for (index, category) in categories.enumerated() {
-      if category.categoryType == .variable {
+        
+        if category.categoryType == .variable {
+            return toolboxLayout?.categoryLayoutCoordinators[index]
+        }
+        
+        ////2017  09 14 添加变量筛选
+//      if category.categoryType == .variable {
+        if category.name == "变量" {
         return toolboxLayout?.categoryLayoutCoordinators[index]
       }
     }

@@ -28,8 +28,6 @@
 @property (strong, nonnull) CurrentBlock * loopCurrent;
 ///重复次数 0不重复  maxInteger 一直重复
 @property (assign, nonatomic) NSInteger loopCount;
-///for循环的变量
-@property (assign, nonatomic) CGFloat forValue;
 ///当前control中是否在运行
 @property (assign, atomic) BOOL isRun;
 

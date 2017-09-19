@@ -103,10 +103,7 @@
            "type": "field_dropdown",
            "name": "port_on_off",
            "options": [
-                       [
-                        "OUT1",
-                        "OUT1"
-                        ],
+                       
                        [
                         "OUT2",
                         "OUT2"

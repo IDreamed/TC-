@@ -11,7 +11,7 @@
     ],
     "inputsInline": true,
     "output":"number",
-    "colour": 209
+    "colour": 276
   },
   {
     "type": "math_calculator",
@@ -52,7 +52,7 @@
     ],
     "inputsInline": true,
     "output":"number",
-    "colour": 209
+    "colour": 276
   },
   {
     "type": "math_odevity",
@@ -82,7 +82,7 @@
     ],
     "inputsInline":true,
     "output":"bool",
-    "colour": 209
+    "colour": 276
   },
   {
     "type": "math_intger",
@@ -96,7 +96,7 @@
     ],
  "inputsInline":true,
  "output":"number",
-    "colour": 209
+    "colour": 276
   },
   {
     "type": "math_cover_to",
@@ -130,7 +130,7 @@
     ],
  "inputsInline":true,
  "output":"number",
-    "colour": 209
+    "colour": 276
   },
  {
  "type": "math_cover_proportion",
@@ -167,7 +167,7 @@
            ],
  "inputsInline":true,
  "output":"number",
- "colour": 209
+ "colour": 276
  }
 
 

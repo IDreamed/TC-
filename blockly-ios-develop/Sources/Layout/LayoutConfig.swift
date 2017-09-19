@@ -233,8 +233,9 @@ open class LayoutConfig: NSObject {
 
     setDouble(0.3, for: LayoutConfig.ViewAnimationDuration)
 
+    ////2017 09 14  修改替换自己的变量相关block
     setStringArray(["variables_get"], for: LayoutConfig.VariableBlocks)
-    setStringArray(["variables_set", "math_change"], for: LayoutConfig.UniqueVariableBlocks)
+    setStringArray(["variables_set"], for: LayoutConfig.UniqueVariableBlocks) //, "math_change"
 
     setFontCreator({ scale in
       return UIFont.systemFont(ofSize: 16 * scale)

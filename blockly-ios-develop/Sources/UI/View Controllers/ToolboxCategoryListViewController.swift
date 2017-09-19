@@ -447,7 +447,7 @@ private class ToolboxCategoryListViewCell: UICollectionViewCell {
     }
   }
 
-    ///2017 07 26 修改颜色
+    ////2017 07 26 修改颜色
     func colorWithIndex(text: String) -> UIColor {
         
         var h: CGFloat = 0;
@@ -464,7 +464,7 @@ private class ToolboxCategoryListViewCell: UICollectionViewCell {
             b =  0.97;
             s = 0.64;
         }
-        if text == "灯阵" {
+        if text == "灯光" {
             h = 171;
             b =  0.82;
             s = 0.74;
@@ -503,6 +503,13 @@ private class ToolboxCategoryListViewCell: UICollectionViewCell {
             h = 0.769 * 360;
             s = 0.577;
             b = 0.761;
+        }
+        
+        if text == "事件" {
+        
+            h = 0.023 * 260;
+            s = 0.769;
+            b = 1;
         }
         
         return UIColor.init(hue: h/360.0, saturation: s, brightness: b, alpha: 1);

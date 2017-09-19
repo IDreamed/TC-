@@ -208,7 +208,7 @@
  },
  {
  "type": "fan_stop",
- "message0": "停止固定点击 %1 ",
+ "message0": "停止固定电机 %1 ",
  "args0": [
            {
            "type": "field_dropdown",
@@ -233,7 +233,7 @@
  },
  {
  "type": "fan_speed",
- "message0": "风扇速度 %1 %2",
+ "message0": "固定电机速度 %1 %2",
  "args0": [
            {
            "type": "field_dropdown",

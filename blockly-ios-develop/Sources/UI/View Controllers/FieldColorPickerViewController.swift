@@ -126,10 +126,12 @@ open class FieldColorPickerViewController: UICollectionViewController {
   open override func viewDidLoad() {
     super.viewDidLoad()
 
-    let path = Bundle.main.path(forResource: "animateColor", ofType: "plist");
+    ////2017 09 15 预留颜色数组 自定义剔除不能实现的
+    //    let path = Bundle.main.path(forResource: "animateColor", ofType: "plist");
+//    let array: [String] = NSArray.init(contentsOfFile: path!) as! [String];
+//    self.colors = array;
     
-    let array: [String] = NSArray.init(contentsOfFile: path!) as! [String];
-    self.colors = array;
+    
     self.collectionView?.backgroundColor = UIColor.clear
     self.collectionView?.register(FieldColorPickerViewCell.self,
       forCellWithReuseIdentifier: _reusableCellIdentifier)

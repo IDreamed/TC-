@@ -1,54 +1,38 @@
 [
   {
-  "type": "set_value",
-  "message0": "设置 %1 = %2",
-  "args0": [
-            {
-            "type": "field_dropdown",
-            "name": "set_value",
-            "options": [
-                        [
-                         " ",
-                         " "
-                         ]
-                        ]
-            },
-    {
-      "type": "input_value",
-      "name": "set_value1",
-      "check": ["number",
-                "bool",
-                "string",
-                "colour"
-                ]
-    }
-  ],
- "inputsInline":true,
-  "previousStatement": null,
-  "nextStatement": null,
-  "colour": 235
-},
- {
- "type": "get_value",
- "message0": "选择 %1",
- "args0": [
-           {
-           "type": "field_dropdown",
-           "name": "get_value",
-           "options": [
-                       [
-                        " ",
-                        " "
-                        ]
-           ]
-           }
-           ],
- "inputsInline":true,
- "output": ["number",
-            "bool",
-            "string",
-            "colour"
-            ],
-  "colour": 235
- }
+    "type": "variables_get",
+    "message0": "获取 %1",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "variables_get",
+        "variable": "item"
+      }
+    ],
+    "output": null,
+    "colour": 330,
+    "tooltip": "Returns the value of this variable.",
+    "helpUrl": "https://github.com/google/blockly/wiki/Variables#get"
+  },
+  {
+    "type": "variables_set",
+    "message0": "设置 %1 = %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "variables_set",
+        "variable": "item"
+      },
+      {
+        "type": "input_value",
+        "name": "variables_set1"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "inputsInline": true,
+    "colour": 330,
+    "tooltip": "Sets this variable to be equal to the input.",
+    "helpUrl": "https://github.com/google/blockly/wiki/Variables#set"
+  }
 ]

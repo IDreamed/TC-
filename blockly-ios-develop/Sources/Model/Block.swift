@@ -674,6 +674,13 @@ extension Block {
                     values.append(str as! String);
                 }
                 
+                if field.isMember(of: FieldVariable.self) {
+                    let variable = field as! FieldVariable;
+                    
+                    let str = variable.variable;
+                    values.append(str);
+                }
+                
             }
         }
         
@@ -687,6 +694,7 @@ extension Block {
         for input in self.inputs {
             if let connectedBlock = input.connectedBlock {
                 blocks.append(connectedBlock)
+                continue ;
             }
             if let connectedShadowBlock = input.connectedShadowBlock {
                 blocks.append(connectedShadowBlock)
@@ -709,6 +717,7 @@ extension Block {
     ///将更改后的变量保存
     open func setValueWith(name: String, value:String) {
         
+            
         FunctionControl.functionControl.values[name] = value;
     }
     

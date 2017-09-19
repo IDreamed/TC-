@@ -107,7 +107,7 @@ open class DefaultLayoutConfig: LayoutConfig {
     setUnit(Unit(30), for: DefaultLayoutConfig.NotchWidth)
     setUnit(Unit(4), for: DefaultLayoutConfig.NotchHeight)
     setUnit(Unit(10), for: DefaultLayoutConfig.StatementSectionHeight)
-    setUnit(Unit(10), for: DefaultLayoutConfig.StatementMinimumConnectorWidth)
+    setUnit(Unit(20), for: DefaultLayoutConfig.StatementMinimumConnectorWidth)
     setSize(Size(10, 25), for: DefaultLayoutConfig.MinimumInlineConnectorSize)
 
     setColor(UIColor.init(white: 0, alpha: 0.2), for: DefaultLayoutConfig.BlockStrokeDefaultColor)

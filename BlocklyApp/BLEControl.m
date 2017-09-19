@@ -563,9 +563,6 @@ static BLEControl * control;
     NSDictionary * types = [APPControll getTypeDic];
     NSString * sendKey = types[blockName];
     
-    if (sendKey.length == 0) {
-        return dict;
-    }
     
     if ([blockName isEqualToString:@"machine_speed_direction"]) {
         
@@ -646,47 +643,16 @@ static BLEControl * control;
     if ([blockName isEqualToString:@"light_on_off"]) {
         
         NSInteger point = [[blockValues.firstObject componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
-        
-        if ([blockValues.lastObject isEqualToString:@"dg_dengliang_1"]) {
-            
-            if ([BlocklyControl shardControl].light.RGBColor) {
-                
-              //  NSString * color = [self getColorRGBWithColorName:[BlocklyControl shardControl].light.RGBColor];
-                
-              //  sendKey = [NSString stringWithFormat:sendKey,point,color];
-                
-                sendKey = [NSString stringWithFormat:LIGHT_LIVE,point,99];
-                
-                if (point == 5 || point == 6) {
-                    //            point = point * 10 + 1;///数字信号
-                    point = point * 10;  ///模拟信号
-                }
-                [dict setObject:sendKey forKey:@(point)];
-            } else {
-                
-            //    sendKey = [NSString stringWithFormat:sendKey,point,@"ffffff"];
-                sendKey = [NSString stringWithFormat:LIGHT_LIVE,point,0];
+        NSString * color = [blockValues.lastObject isEqualToString:@"开"]?@"ffffff":@"000000";
+        sendKey = [NSString stringWithFormat:RGBLight,point,color];
 
-                if (point == 5 || point == 6) {
-                    //            point = point * 10 + 1;///数字信号
-                    point = point * 10;  ///模拟信号
-                }
-                [dict setObject:sendKey forKey:@(point)];
-            }
-
-        } else {
-            
-           // sendKey = [NSString stringWithFormat:sendKey,point,@"000000"];
-            sendKey = [NSString stringWithFormat:LIGHT_LIVE,point,0];
-
-            if (point == 5 || point == 6) {
-                //            point = point * 10 + 1;///数字信号
-                point = point * 10;  ///模拟信号
-            }
-            [dict setObject:sendKey forKey:@(point)];
+        if (point == 4 || point == 5 || point == 6) {
+            point = point * 10 + 1;///数字信号
+            //            point = point * 10;  ///模拟信号
         }
-        
-        
+
+        [dict setObject:sendKey forKey:@(point)];
+
     }
     
     if ([blockName isEqualToString:@"light_color"]) {
@@ -707,9 +673,9 @@ static BLEControl * control;
         NSInteger point = [[blockValues.firstObject componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
 
         NSInteger value = 0;
-        if ([blockValues.lastObject isEqualToString:@"dg_dengliang_1"]) {
+        if ([blockValues.lastObject isEqualToString:@"开"]) {
             
-            value = [BlocklyControl shardControl].light.highlightLevel;
+            value = 99;
         }
         
         sendKey = [NSString stringWithFormat:LIGHT_LIVE,point,value];
@@ -744,27 +710,42 @@ static BLEControl * control;
     }
     
     if ([blockName isEqualToString:@"daily_words"]) {
-        NSArray * vales = @[@"bibibibibi",@"bling",@"duang",@"生日歌",@"数码声",@"小号声",@"旋律"];
+        NSArray * vales = @[@"口哨",@"打呼噜",@"东西掉地上",@"打雷",@"门铃",@"吓人恶搞",@"亲吻"];
         NSInteger point = [[blockValues.firstObject componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
 
         NSInteger soundIndex = 0;
         NSInteger index = [vales indexOfObject:blockValues[1]];
         soundIndex = index + 22;
-        sendKey = [NSString stringWithFormat:sendKey,point,soundIndex];
-        if (point == 5 || point == 6) {
+        sendKey = [NSString stringWithFormat:PLAY_SOUND,point,2,soundIndex];
+        if (point == 5 || point == 6 || point == 4) {
             point = point * 10 + 1;///数字信号
 //            point = point * 10;  ///模拟信号
         }
         [dict setObject:sendKey forKey:@(point)];
     }
-    if ([blockName isEqualToString:@"action"]) {
-        NSArray * vales = @[@"wuwuwu",@"打呼噜",@"打雷",@"东西掉地上",@"欢呼",@"口哨",@"冒泡",@"亲吻",@"跳水"];
+    if ([blockName isEqualToString:@"music_sound"]) {
+        NSArray * vales = @[@"生日歌",@"旋律",@"bibibibibi",@"bling",@"duang",@"wuwuwuwu",@"国歌",@"小号声",@"数码",@"魔法声音",
+                             ];
+        NSInteger point = [[blockValues.firstObject componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
+        
+        NSInteger index = [vales indexOfObject:blockValues[1]];
+        NSInteger soundIndex = index + 13;
+        sendKey = [NSString stringWithFormat:PLAY_SOUND,point,3,soundIndex];
+        if (point == 5 || point == 6 || point == 4) {
+            point = point * 10 + 1;///数字信号
+            //            point = point * 10;  ///模拟信号
+        }
+        [dict setObject:sendKey forKey:@(point)];
+        
+    }
+    if ([blockName isEqualToString:@"action_sound"]) {
+        NSArray * vales = @[@"欢呼",@"欢呼2",@"欢快",@"冒泡",@"跳水",@"吐舌头"];
         NSInteger point = [[blockValues.firstObject componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
 
         NSInteger index = [vales indexOfObject:blockValues[1]];
         NSInteger soundIndex = index + 13;
-        sendKey = [NSString stringWithFormat:sendKey,point,soundIndex];
-        if (point == 5 || point == 6) {
+        sendKey = [NSString stringWithFormat:PLAY_SOUND,point,4,soundIndex];
+        if (point == 5 || point == 6 || point == 4) {
             point = point * 10 + 1;///数字信号
             //            point = point * 10;  ///模拟信号
         }
@@ -775,11 +756,11 @@ static BLEControl * control;
     if ([blockName isEqualToString:@"animal_sound"]) {
         NSInteger point = [[blockValues.firstObject componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
 
-        NSArray * vales = @[@"狗啃骨头",@"狗狂吠",@"恐龙",@"猫叫",@"鸟叫",@"青蛙叫"];
+        NSArray * vales = @[@"猫叫",@"鸟叫",@"狗狂吠",@"狗啃骨头",@"青蛙叫",@"恐龙"];
         NSInteger index = [vales indexOfObject:blockValues[1]];
         NSInteger soundIndex = index + 1;
-        sendKey = [NSString stringWithFormat:sendKey,point,soundIndex];
-        if (point == 5 || point == 6) {
+        sendKey = [NSString stringWithFormat:PLAY_SOUND,point,0,soundIndex];
+        if (point == 5 || point == 6 || point == 4) {
             point = point * 10 + 1;///数字信号
             //            point = point * 10;  ///模拟信号
         }
@@ -789,12 +770,12 @@ static BLEControl * control;
     if ([blockName isEqualToString:@"transport_sound"]) {
         NSInteger point = [[blockValues.firstObject componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
 
-        NSArray * values = @[@"车鸣笛",@"船鸣笛",@"飞机起飞",@"火车鸣笛",@"警车鸣笛",@"拖拉机"];
+        NSArray * values = @[@"车鸣笛",@"火车鸣笛",@"飞机起飞",@"船鸣笛",@"拖拉机"];
         NSInteger index = [values indexOfObject:blockValues[1]];
         NSInteger soundIndex = index + 7;
 
-        sendKey = [NSString stringWithFormat:sendKey,point,soundIndex];
-        if (point == 5 || point == 6) {
+        sendKey = [NSString stringWithFormat:PLAY_SOUND,point,1,soundIndex];
+        if (point == 5 || point == 6 || point == 4) {
             point = point * 10 + 1;///数字信号
             //            point = point * 10;  ///模拟信号
         }
@@ -821,11 +802,16 @@ static BLEControl * control;
         
         NSInteger point = [[blockValues.firstObject componentsSeparatedByString:@"OUT"].lastObject integerValue] + 3;
         
-        BOOL isShuzi = [blockValues[1] isEqualToString:@"数字"];
         
-        point = point * 10 + isShuzi;
+        NSInteger value = [blockValues.lastObject isEqualToString:@"开"]?99:0;
+        sendKey = [NSString stringWithFormat:LIGHT_LIVE,point,value];
         
-//        [dict setObject:@"" forKey:@(point)];
+        if (point == 5 || point == 6) {
+            //            point = point * 10 + 1;///数字信号
+            point = point * 10;  ///模拟信号
+        }
+        
+        [dict setObject:sendKey forKey:@(point)];
     }
     
     if ([blockName isEqualToString:@"port_out"]) {
@@ -866,6 +852,19 @@ static BLEControl * control;
         
         name = [name componentsSeparatedByString:@"#"].lastObject;
     }
+#warning 错误的正则 
+    NSString * str = @"^[(\\d)|(a-f)|(A-F)]{6}";
+    
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",name,str];
+    
+    BOOL isColor = [predicate evaluateWithObject:name];
+    
+    
+    if (!isColor) {
+        
+        return @"000000";
+    }
+    
     return name;
 }
 
@@ -912,7 +911,8 @@ static BLEControl * control;
     NSData * urf8 = [name dataUsingEncoding:NSUTF8StringEncoding];
     
     NSInteger lenth = urf8.length+1;
-    NSInteger cmdLenth = lenth + 4;
+    
+    NSInteger cmdLenth = lenth + 3;
     
     NSString * utf8Str = [BLEControl convertDataToHexStr:urf8];
     

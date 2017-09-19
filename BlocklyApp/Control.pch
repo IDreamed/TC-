@@ -14,9 +14,11 @@
 
 #import <Blockly/Blockly.h>
 #import <Blockly/Blockly-Swift.h>
+#import "UIView+FrameAbout.h"
 #import "APPControll.h"
 #import "CustomHUD.h"
 #import "SuperViewController.h"
+
 
 
 #pragma mark nslog debug 定义
@@ -26,6 +28,12 @@
 #else
 #define NSLog(...)
 #endif
+
+///App Store的链接
+#define APP_URL @"https://itunes.apple.com/cn/app/id%@?mt=8"
+///app的id 从iTunes Connect获取 //启蒙1267797459  基础1270027666 高阶1270027680
+#define APP_ID @"1270027680"
+
 
 /// 当前版本号
 #define VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]

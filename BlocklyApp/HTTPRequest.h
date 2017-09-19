@@ -30,5 +30,6 @@ typedef void(^FailureCallback)(NSURLSessionDataTask * _Nullable task, NSError * 
 
 - (void)postHrardImageWidthcallback:(void(^)(NSString * str))callback;
 
-- (void)checkAppVersionWithCallback:(VersionCallback _Nullable )callback;
+- (void)checkAppType:(NSInteger)type VersionWithCallback:(VersionCallback _Nullable )callback;
++ (NSInteger)getAppType;
 @end

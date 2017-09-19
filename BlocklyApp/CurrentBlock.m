@@ -236,9 +236,9 @@
             self.DOCurrent.loopCount = 10000;
             
             NSArray * inputArray = self.currentBlock.allBlockInSelf;
-            CGFloat rangeDown = [[self getValueWithOutPutBlock:inputArray[1]].value floatValue];
-            CGFloat rangeUp = [[self getValueWithOutPutBlock:inputArray[2]].value floatValue];
-            self.DOCurrent.forIsTure = rangeUp > rangeDown;
+            CGFloat rangeDown = [[self getValueWithOutPutBlock:inputArray[0]].value floatValue];
+            CGFloat rangeUp = [[self getValueWithOutPutBlock:inputArray[1]].value floatValue];
+            self.DOCurrent.forIsTure = rangeUp >= rangeDown;
             self.DOCurrent.forNumber = rangeDown;
             
             break;
@@ -268,7 +268,7 @@
         return model;
     }
     
-    NSArray * typeNames = @[@"number_value",@"bool_value",@"colour_value",@"string_value",@"get_value"];
+    NSArray * typeNames = @[@"number_value",@"bool_value",@"colour_value",@"string_value",@"variables_get"];
     NSInteger index = [typeNames indexOfObject:block.name];
     switch (index) {
         case 0:{
@@ -303,7 +303,9 @@
             if (value != nil) {
                 
                 model.value = value;
-            }            
+            } else {
+                model.value = @"0";
+            }
             break;
         }
         
@@ -708,7 +710,7 @@
                 return ;
             }
             
-//            NSArray * valuesType = @[@"set_value",@"use_change",@"variable_repetition_num",@"variable_repetition",@"variable_if",@"variable_if_else"];
+//            NSArray * valuesType = @[@"variables_get",@"use_change",@"variable_repetition_num",@"variable_repetition",@"variable_if",@"variable_if_else"];
 //            
             self.isRun = NO;
             //执行过程中赋值保持current的最新
@@ -816,10 +818,16 @@
     }
     
 #pragma mark 灯阵
-    if ([current.name isEqualToString:@"animation_image"]) {
-        
-    }
+//    if ([current.name isEqualToString:@"animation_image"]) {
+//        
+//    }
     
+    
+    
+    if ([current.name containsString:@"light"]) {
+    
+        newValues = values;
+    }
     if ([current.name isEqualToString:@"light_color"]) {
         
         NSString * color = [self getValueWithOutPutBlock:current.allBlockInSelf.firstObject].value;
@@ -859,14 +867,7 @@
     if ([current.name isEqualToString:@"wait_port_open"]) {
         newValues = values;
     }
-    if ([current.name isEqualToString:@"wait_do"]) {
-        
-        NSArray * values = [current getBlockValues];
-        CGFloat value = [[self getValueWithOutPutBlock:[current allBlockInSelf].firstObject].value floatValue];
-        self.sound = value;
-        newValues = @[values[0]];
-    }
-
+   
     
     if (newValues.count > 0) {
         
@@ -916,7 +917,7 @@
             [NSThread sleepForTimeInterval:self.delay];
         }
         
-        if ([current.name isEqualToString:@"set_value"]) {
+        if ([current.name isEqualToString:@"variables_set"]) {
          
 
             GetValueModle * model = [self getValueWithOutPutBlock:self.currentBlock.allBlockInSelf.firstObject];
@@ -929,18 +930,57 @@
 
 
         }
+        
+        if ([current.name isEqualToString:@"wait_do"]) {
+            
+            NSArray * values = [current getBlockValues];
+            CGFloat value = [[self getValueWithOutPutBlock:[current allBlockInSelf].firstObject].value floatValue];
+            self.sound = value;
+            newValues = @[values[0]];
+        }
         if ([current.name isEqualToString:@"break"]) {
             
             [NSThread sleepForTimeInterval:self.delay];
             [self didBreak];
         }
         
+        if ([current.name isEqualToString:@"wait_do"]) {
+            
+            NSArray * values = [current getBlockValues];
+            CGFloat value = [[self getValueWithOutPutBlock:[current allBlockInSelf].firstObject].value floatValue];
+            self.sound = value;
+            newValues = @[values[0]];
+            [self waitDoFunction];
+        }
+        
         [self.currentBlock.defaultBlockView setDisHighlight];
-        self.currentBlock = self.currentBlock.nextBlock;
-        self.isRun = YES;
+        [self runNext];
+        
     }
     
     
+}
+///等待端口 wait_do
+- (void)waitDoFunction {
+
+    NSString * point = [self.currentBlock getBlockValues][0];
+    NSString * str = [self.currentBlock getBlockValues][1];
+    CGFloat number = [self getValueWithOutPutBlock:self.currentBlock.allBlockInSelf.firstObject].value.floatValue;
+    BOOL isWait = YES;
+    while (isWait) {
+        
+        CGFloat inNumber = [(NSNumber *)[[UpdateValueModel sharedValueModel] valueForKey:point] floatValue];
+        if ([str isEqualToString:@">"]) {
+            
+            isWait = !(inNumber > number);
+            
+        } else if ([str isEqualToString:@"<"]) {
+        
+            isWait = !(inNumber < number);
+        }
+        
+        [NSThread sleepForTimeInterval:0.5];
+    }
 }
 
 ///break传递
@@ -1020,7 +1060,6 @@
         }
     }
     
-#warning 未完成
 }
 
 
@@ -1068,11 +1107,21 @@
         return ;
     }
     
-    if ([self.currentName isEqualToString:@"light_color"]) {
+    if ([@[@"light_color",@"light_on_off"] containsObject:self.currentName]) {
         FiveLenthCallback * callback = (FiveLenthCallback *)bytes;
         
         isSuccess = callback->success == 0x01;
     }
+    
+    if ([self.currentName containsString:@"sound"]) {
+    
+        isSuccess = callback->success == 0x01;
+        
+        NSInteger time = [self getValueWithOutPutBlock:self.currentBlock.allBlockInSelf.lastObject].value.integerValue;
+        BOOL isMS = [self.currentBlock.getBlockValues.lastObject isEqualToString:@"ms"];
+        [NSThread sleepForTimeInterval:isMS?time/1000:time];
+    }
+    
     
     [[CustomNotificationCenter sharedCenter].center removeObserver:self name:noti.name object:nil];
     
@@ -1222,7 +1271,7 @@
     
     if (self.DOCurrent == currentBlock || self.ELSECurrent == currentBlock) {
         //当分枝树走完
-        NSArray * typeNames = @[@"if",@"if2",@"if_else",@"if_else2",@"variable_if",@"variable_if_else",@"always_repeat",@"repetition_num",@"repetition_until1",@"repetition_until2",@"variable_repetition_num",@"variable_repetition"];
+        NSArray * typeNames = @[@"if",@"if_else",@"always_repeat",@"repetition_num",@"repetition_until1",@"repetition_for"];
         
         
         
@@ -1246,9 +1295,9 @@
         NSString * str = values.firstObject;
         
         NSArray * inputArray = self.rootBlock.allBlockInSelf;
-        CGFloat rangeUp = [[self getValueWithOutPutBlock:inputArray[2]].value floatValue];
-        self.DOCurrent.forValue = [[self getValueWithOutPutBlock:inputArray[0]].value floatValue];
-        self.forNumber = self.forIsTure? self.forNumber++ : self.forNumber--;
+        CGFloat rangeUp = [[self getValueWithOutPutBlock:inputArray[1]].value floatValue];
+        
+        self.forNumber = self.forIsTure? self.forNumber + 1 : self.forNumber - 1;
         if (self.forNumber > rangeUp && self.forIsTure) {
             
             self.loopCount = 0;
@@ -1256,17 +1305,35 @@
             
             self.loopCount = 0;
         }
-        CGFloat number = [[self.rootBlock getTheValueWithName:str] floatValue];
         
-                if ([@[@"+",@"x"] containsObject:str]) {
-                    
-                   
-                    
-                } else if ([@[@"-",@"÷"] containsObject:str]) {
-                    
-                    
+        CGFloat number = [[self getValueWithOutPutBlock:inputArray[2]].value floatValue];
+        CGFloat valueNumber = [[self.rootBlock getTheValueWithName:str] floatValue];
+        
+        NSArray * array = @[@"+",@"x",@"-",@"÷"];
+        NSInteger index = [array indexOfObject:values.lastObject];
+        switch (index) {
+            case 0: {
+                valueNumber += number;
+                break;
+            }
+            case 1: {
+                valueNumber *= number;
+                break;
+            }
+            case 2: {
+                valueNumber -= number;
+                break;
+            }
+            case 3: {
+                if (number !=0) {
+                    valueNumber /= number;
                 }
-        
+                break;
+            }
+            default:
+                break;
+        }
+        [self.rootBlock setValueWithName:str value:[NSString stringWithFormat:@"%f",valueNumber]];
     }
     if (self.loopCount >=1) {
         

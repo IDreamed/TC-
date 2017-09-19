@@ -78,9 +78,9 @@ open class FieldDropdownView: FieldView {
         dropDownView.textColor =
           fieldDropdownLayout.config.color(for: LayoutConfig.FieldEditableTextColor)
         
+        ////2017 0905  更新下拉框图标
         let scale: CGFloat = self.layout!.engine.scale;
         
-        ////2017 0905  更新下拉框图标
         dropDownView.updateConstraintsWhenUpdate(scale: scale);
       }
     }

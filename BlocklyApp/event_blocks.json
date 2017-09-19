@@ -29,7 +29,7 @@
            ],
  "inputsInline": true,
  "output": "bool",
- "colour": 26,
+ "colour": 8,
  "tooltip": "",
  "helpUrl": ""
  },
@@ -63,7 +63,7 @@
            ],
  "inputsInline": true,
  "output": "bool",
- "colour": 26,
+ "colour": 8,
  "tooltip": "",
  "helpUrl": ""
  },
@@ -96,7 +96,7 @@
            }
            ], "inputsInline": true,
  "output": "bool",
- "colour": 26,
+ "colour": 8,
  "tooltip": "",
  "helpUrl": ""
  },
@@ -130,7 +130,7 @@
            ],
  "inputsInline": true,
  "output": "bool",
- "colour": 26,
+ "colour": 8,
  "tooltip": "",
  "helpUrl": ""
  },
@@ -164,7 +164,7 @@
            ],
  "inputsInline": true,
  "output": "bool",
- "colour": 26,
+ "colour": 8,
  "tooltip": "",
  "helpUrl": ""
  }

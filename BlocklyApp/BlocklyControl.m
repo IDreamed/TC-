@@ -85,7 +85,7 @@ static BlocklyControl * control;
     
     self.whileIsRun = NO;
     
-//    [UpdateValueModel beginGetValue];
+    [UpdateValueModel beginGetValue];
     
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateValue) userInfo:nil repeats:YES];
     
@@ -100,7 +100,8 @@ static BlocklyControl * control;
 
 - (void)stopAllBlockTree {
     
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"clearFunction" object:nil];
+
     if ([self.timer isValid]) {
         
         [self.timer invalidate];

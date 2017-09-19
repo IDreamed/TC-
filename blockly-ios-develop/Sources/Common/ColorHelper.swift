@@ -72,63 +72,68 @@ public class ColorHelper: NSObject {
     ///2017 07 28 特例菜单颜色 
   public static func makeNewColor(hue: CGFloat, saturation: CGFloat, brightness: CGFloat, alpha: CGFloat) -> UIColor {
         
-        //2017 06 03 修改工具栏和block颜色
+        ////2017 06 03 修改工具栏和block颜色
         var h: CGFloat = hue/360.0;
         var b: CGFloat = saturation;
         var s: CGFloat = brightness;
-        if hue == 36 {
-            
-            h = 0.105;
-            b = 0.857;
-            s = 0.662;
-        }
+    if hue == 36 {
+        h = 29/360.0;
+        b =  0.96;
+        s = 0.66;
+    }
+    if hue == 340 {
+        h = 340/360.0;
+        b =  0.97;
+        s = 0.54;
+    }
+    if hue == 170 {
+        h = 0.573;
+        b =  0.82;
+        s = 0.64;
+    }
+    if hue == 209 {
+        h = 206/360.0;
+        b =  0.83;
+        s = 0.73;
+    }
+    if hue == 311 {
+
+        h = 0.866;
+        b =  0.89;
+        s = 0.63;
         
-        if hue == 340 {
-            h = 0.946;
-            b =  0.743;
-            s = 0.571;
-        }
-        
-        if hue == 170 {
-            h = 0.47;
-            b = 0.716;
-            s = 0.64;
-        }
-        if hue == 209 {
-            
-            h = 0.573;
-            b =  0.631;
-            s = 0.435;
-        }
-        
-        if hue == 200 {
-            h = 0.573;
-            b =  0.731;
-            s = 0.533;
-        }
+    }
+    if hue == 330 {
+        h = 0.651;
+        b = 0.87;
+        s = 0.54;
+    }
+    
+    if hue == 200 {
+        h = 0.557;
+        s = 0.633;
+        b = 0.961;
+    }
     
     if hue == 105 {
+        
         h = 0.294;
-        b =  0.535;
-        s = 0.684;
+        s = 0.635;
+        b = 0.784;
     }
     
     if hue == 276 {
         h = 0.769;
-        b =  0.577;
-        s = 0.661;
+        s = 0.577;
+        b = 0.661;
     }
-        if hue == 311 {
-            h = 0.865;
-            b =  0.635;
-            s = 0.457;
-        }
-        if hue == 235 {
-            h = 0.651;
-            b = 0.576;
-            s = 0.442;
-        }
-        
+    
+    if hue == 8 {
+        h = 0.023;
+        s = 0.769;
+        b = 1;
+    }
+    
         if h == 0 {
             
             let percentHue = (min(max(hue, 0), 360)) / 360

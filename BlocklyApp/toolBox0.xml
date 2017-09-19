@@ -32,83 +32,21 @@
         <block type="machine_two_stop"></block>
         <block type="fan_stop"></block>
         <block type="fan_speed"></block>
-        <block type="machine_swing"></block>
+<!--        <block type="machine_swing"></block>-->
     </category>
-    <category name="灯阵" colour="170" icon="dengzhen">
-
-        <block type="animation_image">
-            <value name = "animation_image">
-                <block type="animate_light">
-                </block>
-            </value>
-        </block>
-        <block type="animate_light"></block>
-        <block type="animation_color">
-
-            <value name = "animation_color">
-                <shadow type="colour_value">
-
-                </shadow>
-            </value>
-
-        </block>
-        <block type="animation_rotation"></block>
-        <block type="animation_move">
-            <value name = "animation_move1">
-                <shadow type="number_value">
-                </shadow>
-            </value>
-        </block>
-        <block type="animation_set_XY">
-            <value name = "animation_set_XY1">
-                <shadow type="colour_value">
-
-                </shadow>
-            </value>
-        </block>
-        <block type="colour_value"></block>
-        <block type="get_colour"></block>
-        <block type="RGB_colour">
-            <value name = "RGB_colour">
-                <shadow type="number_value">
-                </shadow>
-            </value>
-            <value name = "RGB_colour1">
-                <shadow type="number_value">
-                </shadow>
-            </value>
-            <value name = "RGB_colour2">
-                <shadow type="number_value">
-                </shadow>
-            </value>
-        </block>
-        <!--        <block type="animation_animate"></block>-->
-        <block type="animation_text">
-            <value name = "animation_text">
-                <shadow type="text">
-                </shadow>
-            </value>
-
-        </block>
-        <block type="animation_text_color">
-
-            <value name = "animation_text_color">
+    <category name="灯光" colour="170" icon="z1_deng">
+        <block type="light_on_off"></block>
+        <block type="light_color">
+            <value name = "light_color1">
                 <shadow type="colour_value">
                 </shadow>
             </value>
-
+            
         </block>
-        <block type="animation_speed"></block>
-        <block type="text"></block>
-
-        <!--    <block type="light_on_off"></block>-->
-        <!--    <block type="light_caution_on_off"></block>-->
-            <block type="light_color"></block>
-        <!--    <block type="highlight_level"></block>-->
-        <!--    <block type="highlight_on_off"></block>-->
-        <!--    <block type="light1"></block>-->
-        <!--    <block type="light2"></block>-->
-
+        <block type="highlight_level"></block>
+        <block type="highlight_on_off"></block>
+        <block type="light1"></block>
+        <block type="light2"></block>
 
     </category>
 
@@ -134,15 +72,16 @@
                 <shadow type="number_value">
                 </shadow>
             </value></block>
-        <block type="buzzer_level">
-            <value name = "buzzer_level3">
+        <block type="action_sound">
+            <value name = "action_sound2">
                 <shadow type="number_value">
                 </shadow>
             </value></block>
+       
     </category>
     <category name="端口" colour="200" icon="duankou">
         <block type="port_in"></block>
-        <block type="port_get_type"></block>
+<!--        <block type="port_get_type"></block>-->
         <block type="port_out">
             <value name = "port_out1">
                 <shadow type="number_value">
@@ -165,7 +104,7 @@
         <block type="end_timer"></block>
         <block type="reset_timer"></block>
         <block type="get_timer"></block>
-        <block type="wait_port_open"></block>
+<!--        <block type="wait_port_open"></block>-->
         <block type="wait_do">
             <value name = "wait_do2">
                 <shadow type="number_value">
@@ -222,7 +161,7 @@
 
     </category>
 
-    <category name="事件" colour="36" icon="z1_kaiqi">
+    <category name="事件" colour="8" icon="gj_xinhao">
 
         <block type="redline_action">
             <value name = "redline_action1">
@@ -256,7 +195,7 @@
         </block>
 
     </category>
-    <category name="数学" colour="209" icon="shijian">
+    <category name="数学" colour="210" icon="shuxue">
         <block type="number_value"></block>
         <block type="math_calculator">
 
@@ -320,14 +259,14 @@
 
     <category name="变量" colour="235" icon="gj_bianliang">
 <!--        <block type="create_value"></block>-->
-        <block type="set_value">
-            <value name = "set_value1">
-                <shadow type="number_value">
-                </shadow>
-            </value>
-
-        </block>
-        <block type="get_value"></block>
+<!--        <block type="set_value">-->
+<!--            <value name = "set_value1">-->
+<!--                <shadow type="number_value">-->
+<!--                </shadow>-->
+<!--            </value>-->
+<!---->
+<!--        </block>-->
+<!--        <block type="get_value"></block>-->
     </category>
 
 

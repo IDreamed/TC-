@@ -73,6 +73,10 @@ open class FieldVariableView: FieldView {
         dropDownView.textFont = fieldVariableLayout.config.font(for: LayoutConfig.GlobalFont)
         dropDownView.textColor =
           fieldVariableLayout.config.color(for: LayoutConfig.FieldEditableTextColor)
+        ////2017 0905  更新下拉框图标
+        let scale: CGFloat = self.layout!.engine.scale;
+        
+        dropDownView.updateConstraintsWhenUpdate(scale: scale);
       }
     }
   }
@@ -134,8 +138,11 @@ extension FieldVariableView: DropdownViewDelegate {
     viewController.textLabelColor =
       fieldVariableLayout.config.color(for: LayoutConfig.FieldEditableTextColor)
 
+    ////2017 09 14 修改自适配文字为 非适配中文
     let renameText = message(forKey: "BKY_RENAME_VARIABLE")
     let deleteText = message(forKey: "BKY_DELETE_VARIABLE")
+//    let renameText = message(forKey: "重新命名变量")
+//    let deleteText = message(forKey: "删除变量")
       .replacingOccurrences(of: "%1", with: fieldVariableLayout.variable)
 
     // Populate options
@@ -201,6 +208,11 @@ extension FieldVariableView: DropdownOptionsViewControllerDelegate {
         return
       }
 
+        let oldName = fieldVariableLayout.variable;
+        let value = FunctionControl.functionControl.values[oldName]
+        FunctionControl.functionControl.values.removeValue(forKey: oldName);
+        FunctionControl.functionControl.values[newName] = value;
+        
       EventManager.sharedInstance.groupAndFireEvents {
         fieldVariableLayout.renameVariable(to: newName)
       }

@@ -99,81 +99,11 @@ open class FieldInputView: FieldView {
           fieldInputLayout.config.color(for: LayoutConfig.FieldEditableTextColor)
         textField.insetPadding =
           fieldInputLayout.config.edgeInsets(for: LayoutConfig.FieldTextFieldInsetPadding)
-        
-        
+
       }
     }
   }
 
-    class func imageNameWith(value: String) -> String {
-        
-        let dic: [String: String] = ["gj_yanse_bai_1":"0001",
-                                     "gj_yanse_hei_1":"0002",
-                                     "gj_yanse_hong_1":"0003",
-                                     "gj_yanse_lv_1":"0004",
-                                     "gj_yanse_lan_1":"0005",
-                                     "gj_yanse_huang_1":"0006",
-                                     "gj_yanse_pin_1":"0007",
-                                     "gj_yanse_qing_1":"0008",
-                                     "gj_yanse_cheng_1":"0009",
-
-                                     "bl_sanjiao_2":"0021",
-                                     "bl_xingxing_2":"0010",
-                                     "bl_yuan_2":"0011",
-                                     "bl_fang_2":"0012",
-                                     "gj_jia":"0013",
-                                     "gj_jian":"0014",
-                                     "gj_cheng":"0015",
-                                     "gj_chu":"0016",
-                                     "gj_dayu":"0017",
-                                     "gj_xiaoyu":"0018",
-                                     "gj_dengyu":"0019",
-                                     "gj_budengyu":"0020",];
-        
-        
-        let string = value.components(separatedBy: "|")[1];
-        
-        var image = "";
-        for key in Array(dic.keys) {
-            
-            if string == dic[key] {
-                image = key;
-            }
-        }
-        
-        return image;
-    }
-    
-    class func returnValueWith(imageName: String) -> String {
-        
-        let dic: [String: String] = ["gj_yanse_bai_1":"0001",
-                                     "gj_yanse_hei_1":"0002",
-                                     "gj_yanse_hong_1":"0003",
-                                     "gj_yanse_lv_1":"0004",
-                                     "gj_yanse_lan_1":"0005",
-                                     "gj_yanse_huang_1":"0006",
-                                     "gj_yanse_pin_1":"0007",
-                                     "gj_yanse_qing_1":"0008",
-                                     "gj_yanse_cheng_1":"0009",
-                                     "bl_sanjiao_2":"0021",
-                                     "bl_xingxing_2":"0010",
-                                     "bl_yuan_2":"0011",
-                                     "bl_fang_2":"0012",
-                                     "gj_jia":"0013",
-                                     "gj_jian":"0014",
-                                     "gj_cheng":"0015",
-                                     "gj_chu":"0016",
-                                     "gj_dayu":"0017",
-                                     "gj_xiaoyu":"0018",
-                                     "gj_dengyu":"0019",
-                                     "gj_budengyu":"0020",];
-        
-        let value = String.init(format: "|%@", dic[imageName]!);
-        
-        return value;
-        
-    }
-    
     
   open override func prepareForReuse() {
     super.prepareForReuse()
@@ -201,6 +131,46 @@ extension FieldInputView: UITextFieldDelegate {
   }
     
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
+        let name = self.fieldInputLayout?.field.name;
+        if name == "number_value" {
+        
+            textField.keyboardType = .numberPad
+            
+        } else if name == "string_value" {
+            textField.keyboardType = .default
+        }
+        
+        return true;
+    }
+    
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        
+        let name = self.fieldInputLayout?.field.name;
+        if name == "number_value" {
+            if string == "" {
+                return true;
+            }
+            let stri = "^[0-9-.]+$";
+            let predict = NSPredicate.init(format: "SELF MATCHES %@", stri);
+            let isNumber = predict.evaluate(with: string);
+            if isNumber {
+                if string == "-" && textField.text!.contains("-") {
+                    return false;
+                } else if (string == "-" && range.location != 0)  {
+                    return false;
+                }
+                if textField.text!.contains(".") && string == "." {
+                    
+                    return false;
+                }
+                
+            } else {
+                return false;
+            }
+        
+        }
         
         return true;
     }

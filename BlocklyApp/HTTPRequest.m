@@ -50,10 +50,11 @@
     
 }
 
+    
 - (void)postUrl:(NSString *)url parameter:(NSDictionary *)para progress:(ProgressCallback)press success:(SuccessCallback)success failure:(FailureCallback)failure {
     
     NSString * newUrl = [BASE_URL stringByAppendingString:url];
-
+    
     
     AFHTTPSessionManager * manager = [[AFHTTPSessionManager alloc] init];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -63,20 +64,34 @@
         NSDictionary * data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         
         if ([data[@"status"] integerValue] == 1) {
-        
+            
             if (success) {
                 
                 success(task,data);
             }
+            [CustomHUD showText:data[@"info"]];
+            
+        } else if ([data[@"status"] integerValue] == 2) {
+            
+            NSString * info = data[@"info"];
+            if ([info containsString:@"重新登录"]) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"loginOut" object:nil];
+                
+            }
+            
+        } else {
+            
+            [CustomHUD showText:data[@"info"]];
+            
         }
         
-        [CustomHUD showText:data[@"info"]];
-//        [CustomHUD hidenHUD];
+        
+        //        [CustomHUD hidenHUD];
         
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-//        [CustomHUD hidenHUD];
+        //        [CustomHUD hidenHUD];
         if (failure) {
             
             failure(task, error);
@@ -117,14 +132,16 @@
     
 }
 
-- (void)checkAppVersionWithCallback:(VersionCallback)callback {
+- (void)checkAppType:(NSInteger)type VersionWithCallback:(VersionCallback)callback {
     
     
     NSString * newUrl = [BASE_URL stringByAppendingString:@"g=portal&m=app&a=return_version_ios"];
     
+    NSDictionary * dict = @{@"type":@(type)};
+    
     AFHTTPSessionManager * manager = [[AFHTTPSessionManager alloc] init];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager POST:newUrl parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:newUrl parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSDictionary * data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
                 
@@ -138,5 +155,33 @@
     }];
 }
 
++ (NSInteger)getAppType {
+
+    NSDictionary * info = [[NSBundle mainBundle] infoDictionary];
+    
+    NSString * name = [info objectForKey:@"CFBundleDisplayName"];
+    NSInteger type = 0;
+    if ([name containsString:@"TC"]) {
+        
+        if ([name containsString:@"启蒙"]) {
+            type = type;
+        }
+        
+        if ([name containsString:@"基础"]) {
+            type = type + 1;
+        }
+        
+        if ([name containsString:@"高阶"]) {
+            type = type + 2;
+        }
+        
+        
+    } else if ([name containsString:@"TG"]) {
+        
+        type = type + 10;
+        
+    }
+    return type;
+}
 
 @end

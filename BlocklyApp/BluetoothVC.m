@@ -221,6 +221,7 @@
     [self.manager connectPeripheral:per options:nil];
     
     self.title = [NSString stringWithFormat:@"正在连接：%@",per.name];
+    [self.tableView reloadData];
     
 }
 
